@@ -7,8 +7,15 @@
 //
 
 #import "YMADetailViewController.h"
+#import "YMAAddTaskViewController.h"
+#import "YMATaskModel.h"
+#import "YMATaskServiceModel.h"
 
 @interface YMADetailViewController ()
+@property (nonatomic, strong) YMATaskModel *task;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UITextView *noteLabel;
 
 @end
 
@@ -16,22 +23,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.task = self.tasks.tasks[self.index];
+    [self fillInterfaceFromTask];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)fillInterfaceFromTask{
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"mm:HH / dd.MM.yyyy"];
+    self.dateLabel.text = [formatter stringFromDate:self.task.startDate];
+    self.nameLabel.text = self.task.name;
+    self.noteLabel.text = self.task.note;
 }
 
-/*
-#pragma mark - Navigation
+#pragma marks - Actions
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)editTaskTapped:(id)sender {
+    YMAAddTaskViewController *addView = [[YMAAddTaskViewController alloc]initWithNibName:@"YMAAddTaskViewController" bundle:nil];
+    addView.delegate = self;
+    addView.task = self.task;
+    [self showViewController:addView sender:nil];
 }
-*/
+
+- (IBAction)doneTapped:(id)sender {
+    self.task.finishDate = [NSDate date];
+    self.task.taskFinished = YES;
+    [self addTaskToList:self.task];
+}
+
+#pragma mark - Delegate
+
+-(void)addTaskToList:(YMATaskModel *)task{
+    self.task = task;
+    [self.tasks replaseTaskByIndex: self.index :self.task];
+    [self fillInterfaceFromTask];
+    
+}
+
 
 @end

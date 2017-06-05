@@ -6,8 +6,19 @@
 //  Copyright © 2017 Mikhail Yaskou. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+@class YMADateSelectorViewController;
+
+@protocol YMADateSelectorViewControllerDelegate <NSObject>
+
+- (void)setDate:(NSDate *)date;
+
+@end
+
 #import <UIKit/UIKit.h>
 
 @interface YMADateSelectorViewController : UIViewController
+
+@property (nonatomic, weak) id <YMADateSelectorViewControllerDelegate> delegate;
 
 @end

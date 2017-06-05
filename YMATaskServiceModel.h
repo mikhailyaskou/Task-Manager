@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class YMATaskModel;
+
 @interface YMATaskServiceModel : NSObject
+
+@property (nonatomic, strong) NSArray *tasks;
+
+- (instancetype)initWithMutableArrayTasks:(NSMutableArray *)mutableArrayTasks;
++ (instancetype)modelWithMutableArrayTasks:(NSMutableArray *)mutableArrayTasks;
+
+- (void)addTask:(YMATaskModel *)task;
+- (NSInteger)numberOftasks;
+- (YMATaskModel *)taskByIndex:(long)index;
+- (void)replaseTaskByIndex:(long)index :(YMATaskModel *)task;
 
 @end

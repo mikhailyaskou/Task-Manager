@@ -10,4 +10,10 @@
 
 @interface YMATaskListModel : NSObject
 
+@property (nonatomic, assign) int *IdTaskList;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSDate *creationDate;
+@property (nonatomic, copy) NSArray *tasksList;
+
+
 @end
