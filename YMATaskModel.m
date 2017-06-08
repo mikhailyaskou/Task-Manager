@@ -25,4 +25,10 @@
     return [[self alloc] initWithIdTask:idTask name:name note:note startDate:startDate];
 }
 
+-(void)finishTask {
+    NSDate *currentDate = [NSDate date];
+    self.finishDate = currentDate;
+    self.taskFinished = YES;
+}
+
 @end

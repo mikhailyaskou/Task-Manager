@@ -19,7 +19,8 @@
 
 - (void)addTask:(YMATaskModel *)task;
 - (NSInteger)numberOftasks;
-- (YMATaskModel *)taskByIndex:(long)index;
-- (void)replaseTaskByIndex:(long)index :(YMATaskModel *)task;
+- (YMATaskModel *)taskByIndex:(NSInteger)index;
+- (void)replaseTaskByIndex:(NSInteger)index :(YMATaskModel *)task;
+- (void)update:(NSInteger)index task:(id)task;
 
 @end

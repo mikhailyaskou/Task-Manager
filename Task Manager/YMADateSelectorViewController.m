@@ -10,8 +10,6 @@
 
 @interface YMADateSelectorViewController ()
 
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePiker;
-
 @end
 
 @implementation YMADateSelectorViewController
@@ -19,6 +17,5 @@
 - (IBAction)datePikerChanged:(id)sender {
     [self.delegate setDate:self.datePiker.date];
 }
-
 
 @end

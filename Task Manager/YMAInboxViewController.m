@@ -6,7 +6,7 @@
 //  Copyright © 2017 Mikhail Yaskou. All rights reserved.
 //
 
-#import "YMAAddTaskViewController.h"
+#import "YMAAddAndEditTaskViewController.h"
 #import "YMAInboxViewController.h"
 #import "YMATaskServiceModel.h"
 #import "YMATaskModel.h"
@@ -30,11 +30,30 @@
     [self.taskServiceModel addTask:task];
     task = [[YMATaskModel alloc] initWithIdTask:3 name:@"buy new staff" note:@"buy new staff" startDate:[NSDate date]];
     [self.taskServiceModel addTask:task];
-    
+    //notification that add task;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReccived:) name:@"recciveTask" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTaskInLis:) name:@"updateTask" object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-     [self.tableView reloadData];
+    [self.tableView reloadData];
+}
+
+#pragma mark - Notification
+
+-(void) taskReccived:(NSNotification *) notification {
+    NSDictionary *dict = notification.userInfo;
+    NSInteger indexOfTask  = [[dict valueForKey:@"indexOfTask"] integerValue];
+    YMATaskModel *task = [dict valueForKey:@"task"];
+    if (indexOfTask < 0) {
+        //adding mode;
+        [self.taskServiceModel addTask:task];
+    }
+    else
+    {
+        //editing mode;
+        [self.taskServiceModel update:indexOfTask task:task];
+    }
 }
 
 #pragma mark - Table View Delegate
@@ -45,31 +64,25 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YMATaskCell"];
-    long index = [indexPath row];
+    NSUInteger index = [indexPath row];
     cell.textLabel.text = [self.taskServiceModel taskByIndex:index].name;
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    YMADetailViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"detailView"];
-    detailView.tasks = self.taskServiceModel;
-    detailView.index = indexPath.row;
-    [self showViewController:detailView sender:nil];
-    
-}
-
 #pragma mark - Actions
 
-- (IBAction)addTaped:(id)sender {
-    YMAAddTaskViewController *addView = [[YMAAddTaskViewController alloc]initWithNibName:@"YMAAddTaskViewController" bundle:nil];
-    addView.delegate = self;
-    [self showViewController:addView sender:nil];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YMADetailViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"detailView"];
+    
+    detailView.task = [self.taskServiceModel taskByIndex:indexPath.row];
+    detailView.indexOfTaskInList = indexPath.row;
+    [self showViewController:detailView sender:nil];
 }
 
-#pragma mark - Delegate
-
--(void)addTaskToList:(YMATaskModel *)task{
-    [self.taskServiceModel addTask:task];
+- (IBAction)addTaped:(id)sender {
+    YMAAddAndEditTaskViewController *addView = [[YMAAddAndEditTaskViewController alloc]initWithNibName:@"YMAAddTaskViewController" bundle:nil];
+    addView.indexOfTaskInList = -1;
+    [self showViewController:addView sender:nil];
 }
 
 @end

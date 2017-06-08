@@ -7,15 +7,15 @@
 //
 
 #import "YMADetailViewController.h"
-#import "YMAAddTaskViewController.h"
+#import "YMAAddAndEditTaskViewController.h"
 #import "YMATaskModel.h"
 #import "YMATaskServiceModel.h"
 
 @interface YMADetailViewController ()
-@property (nonatomic, strong) YMATaskModel *task;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextView *noteLabel;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 
 @end
 
@@ -23,11 +23,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.task = self.tasks.tasks[self.index];
+    [self taskFinisedOrNotCheckAndRedrowInterface];
     [self fillInterfaceFromTask];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReccived:) name:@"recciveTask" object:nil];
 }
 
--(void)fillInterfaceFromTask{
+-(void) taskReccived:(NSNotification *) notification
+{
+    NSDictionary *dict = notification.userInfo;
+    NSInteger indexOfTask = [[dict valueForKey:@"indexOfTask"] integerValue];
+    YMATaskModel *task = [dict valueForKey:@"task"];
+    if (indexOfTask > 0) {
+        if (task != nil) {
+            
+            self.task = task;
+            [self fillInterfaceFromTask];
+        }
+    }
+}
+
+- (void)taskFinisedOrNotCheckAndRedrowInterface {
+    self.navigationItem.rightBarButtonItem.enabled = (!self.task.isTaskFinished);
+    self.doneButton.enabled = (!self.task.isTaskFinished);
+
+    
+}
+
+- (void)fillInterfaceFromTask{
     NSDateFormatter *formatter = [NSDateFormatter new];
     [formatter setDateFormat:@"mm:HH / dd.MM.yyyy"];
     self.dateLabel.text = [formatter stringFromDate:self.task.startDate];
@@ -38,26 +60,21 @@
 #pragma marks - Actions
 
 - (IBAction)editTaskTapped:(id)sender {
-    YMAAddTaskViewController *addView = [[YMAAddTaskViewController alloc]initWithNibName:@"YMAAddTaskViewController" bundle:nil];
-    addView.delegate = self;
-    addView.task = self.task;
-    [self showViewController:addView sender:nil];
+    YMAAddAndEditTaskViewController *editView = [[YMAAddAndEditTaskViewController alloc]initWithNibName:@"YMAAddTaskViewController" bundle:nil];
+    editView.task = self.task;
+    editView.indexOfTaskInList = self.indexOfTaskInList;
+    [self showViewController:editView sender:nil];
 }
 
 - (IBAction)doneTapped:(id)sender {
-    self.task.finishDate = [NSDate date];
+    [self.task finishDate];
     self.task.taskFinished = YES;
-    [self addTaskToList:self.task];
+    NSNumber *indexOfTask = [NSNumber numberWithInteger:self.indexOfTaskInList];
+    NSDictionary *dict = @{ @"task"  : self.task,
+                            @"indexOfTask" : indexOfTask
+                            };
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"recciveTask" object:nil userInfo:dict];
+    [self.navigationController popViewControllerAnimated:YES];
 }
-
-#pragma mark - Delegate
-
--(void)addTaskToList:(YMATaskModel *)task{
-    self.task = task;
-    [self.tasks replaseTaskByIndex: self.index :self.task];
-    [self fillInterfaceFromTask];
-    
-}
-
 
 @end

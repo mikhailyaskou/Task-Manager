@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YMAAddTaskViewController.h"
+#import "YMAAddAndEditTaskViewController.h"
 @class YMATaskServiceModel;
 
-@interface YMADetailViewController : UIViewController  <YMAAddTaskViewControllerDelegate>
+@interface YMADetailViewController : UIViewController 
 
-@property (nonatomic, strong) YMATaskServiceModel* tasks;
-@property (nonatomic, assign) long index;
+@property (nonatomic, strong) YMATaskModel* task;
+@property (nonatomic, assign) NSInteger indexOfTaskInList;
 
 @end

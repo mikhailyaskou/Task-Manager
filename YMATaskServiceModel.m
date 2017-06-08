@@ -54,12 +54,16 @@
     return self.mutableArrayTasks.count;
 }
 
-- (YMATaskModel *)taskByIndex:(long)index {
+- (YMATaskModel *)taskByIndex:(NSInteger)index {
     return self.mutableArrayTasks[index];
 }
 
-- (void)replaseTaskByIndex:(long)index :(YMATaskModel *)task{
+- (void)replaseTaskByIndex:(NSInteger)index :(YMATaskModel *)task{
     self.mutableArrayTasks[index] = task;
+}
+
+- (void)update:(NSInteger)index task:(id)task {
+    [self.mutableArrayTasks replaceObjectAtIndex:index withObject:task];
 }
 
 @end

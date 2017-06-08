@@ -87,8 +87,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIV-Yc-ocX">
-                                <rect key="frame" x="79" y="28" width="225" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="79" y="28" width="225" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -102,8 +102,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QW1-bO-hCW">
-                                <rect key="frame" x="79" y="66" width="225" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="79" y="66" width="225" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -117,7 +117,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="afn-3q-JLG">
                                 <rect key="frame" x="16" y="104" width="288" height="418"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -146,7 +146,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="m2g-l8-xz7">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="38L-Sy-Nqg">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="38L-Sy-Nqg">
                             <connections>
                                 <action selector="editTaskTapped:" destination="y2p-la-Ymr" id="Ifs-1D-o4m"/>
                             </connections>
@@ -154,6 +154,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="DateLabel" destination="QW1-bO-hCW" id="UAa-DC-ogj"/>
+                        <outlet property="dateLabel" destination="QW1-bO-hCW" id="BhB-hZ-fd0"/>
+                        <outlet property="doneButton" destination="uJ8-6H-2SW" id="mJy-Gh-cUK"/>
                         <outlet property="nameLabel" destination="jIV-Yc-ocX" id="V0W-tA-CsR"/>
                         <outlet property="noteLabel" destination="afn-3q-JLG" id="0xZ-n9-j2f"/>
                     </connections>

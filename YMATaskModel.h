@@ -18,7 +18,8 @@
 @property (nonatomic, assign, getter = isTaskFinished)  BOOL taskFinished;
 
 - (instancetype)initWithIdTask:(int)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate;
-
 + (instancetype)modelWithIdTask:(int)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate;
+
+-(void)finishTask;
 
 @end

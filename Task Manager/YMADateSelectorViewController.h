@@ -20,5 +20,6 @@
 @interface YMADateSelectorViewController : UIViewController
 
 @property (nonatomic, weak) id <YMADateSelectorViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePiker;
 
 @end
