@@ -6,8 +6,6 @@
 //  Copyright © 2017 Mikhail Yaskou. All rights reserved.
 //
 
-
-
 #import "YMATask.h"
 #import "YMAAddAndEditTaskViewController.h"
 #import "YMADateHelper.h"
