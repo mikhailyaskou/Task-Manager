@@ -22,5 +22,6 @@
 - (YMATask *)taskByIndex:(NSInteger)index;
 - (void)replaseTaskByIndex:(NSInteger)index task:(YMATask *)task;
 - (void)update:(NSInteger)index task:(id)task;
-
+- (void)incomingTask:(YMATask *)task;
+    
 @end

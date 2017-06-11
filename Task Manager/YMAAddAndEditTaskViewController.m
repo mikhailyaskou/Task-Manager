@@ -9,8 +9,7 @@
 #import "YMATask.h"
 #import "YMAAddAndEditTaskViewController.h"
 #import "YMADateHelper.h"
-
-static NSString * const notificationNameForTaskReceiving =@"recciveTask";
+#import "YMAConstants.h"
 
 @interface YMAAddAndEditTaskViewController ()
 
@@ -34,8 +33,8 @@ static NSString * const notificationNameForTaskReceiving =@"recciveTask";
         self.nameField.text = self.task.name;
         self.noteField.text = self.task.note;
         [self setDate:self.task.startDate];
-    } else
-    {
+    }
+    else {
         NSDate *currentDate = [NSDate date];
         [self setDate:currentDate];
     }
@@ -55,12 +54,16 @@ static NSString * const notificationNameForTaskReceiving =@"recciveTask";
 }
 
 - (void)saveTask {
-    NSInteger id = arc4random_uniform(1000);
-    self.task = [[YMATask alloc] initWithIdTask:id name:self.nameField.text note:self.noteField.text startDate: self.startDate];
-    NSNumber *indexOfTask = [NSNumber numberWithInteger:self.indexOfTaskInList];
-    NSDictionary *dict = @{ @"task"  : self.task,
-                            @"indexOfTask" : indexOfTask
-                            };
+    if (self.task) {
+        self.task.name = self.nameField.text;
+        self.task.note = self.noteField.text;
+        self.task.startDate = self.startDate;
+    }
+    else {
+        NSInteger id = arc4random_uniform(1000);
+        self.task = [[YMATask alloc] initWithIdTask:id name:self.nameField.text note:self.noteField.text startDate:self.startDate];
+    }
+    NSDictionary *dict = @{@"task" : self.task};
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationNameForTaskReceiving object:nil userInfo:dict];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -74,7 +77,7 @@ static NSString * const notificationNameForTaskReceiving =@"recciveTask";
 
 #pragma marks - Delegate
 
--(void)dateSelectorViewController:(id)id didSelectedDate:(NSDate *)date {
+- (void)dateSelectorViewController:(id)id didSelectedDate:(NSDate *)date {
     [self setDate:date];
 }
 

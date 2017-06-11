@@ -11,6 +11,7 @@
 #import "YMATaskService.h"
 #import "YMATask.h"
 #import "YMADetailViewController.h"
+#import "YMAConstants.h"
 
 @interface YMAInboxViewController ()
 
@@ -23,38 +24,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
-    self.taskService = [YMATaskService new];
-    YMATask *task = [[YMATask alloc] initWithIdTask:1 name:@"Купи молока" note:@"Купить хорошего молока" startDate:[NSDate date]];
-    [self.taskService addTask:task];
-    task = [[YMATask alloc] initWithIdTask:2 name:@"Sell milk" note:@"sell milk in store" startDate:[NSDate date]];
-    [self.taskService addTask:task];
-    task = [[YMATask alloc] initWithIdTask:3 name:@"buy new staff" note:@"buy new staff" startDate:[NSDate date]];
-    [self.taskService addTask:task];
-    //notification that add task;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReccived:) name:@"recciveTask" object:nil];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTaskInLis:) name:@"updateTask" object:nil];
+    self.taskService = [[YMATaskService alloc] initWithMutableArrayTasks:[NSMutableArray new]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReccived:) name:notificationNameForTaskReceiving object:nil];
 }
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     [self.tableView reloadData];
 }
 
 #pragma mark - Notification
 
--(void)taskReccived:(NSNotification *) notification {
+- (void)taskReccived:(NSNotification *) notification {
     NSDictionary *dict = notification.userInfo;
-    NSInteger indexOfTask  = [[dict valueForKey:@"indexOfTask"] integerValue];
-    YMATask *task = [dict valueForKey:@"task"];
-    if (indexOfTask < 0) {
-        //adding mode;
-        [self.taskService addTask:task];
-    }
-    else
-    {
-        //editing mode;
-        [self.taskService update:indexOfTask task:task];
-    }
+    YMATask *task = dict[@"task"];
+    [self.taskService incomingTask:task];
 }
 
 #pragma mark - Table View Delegate
@@ -72,16 +56,14 @@
 
 #pragma mark - Actions
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YMADetailViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"detailView"];
     detailView.task = [self.taskService taskByIndex:indexPath.row];
-    detailView.indexOfTaskInList = indexPath.row;
     [self showViewController:detailView sender:nil];
 }
 
 - (IBAction)addTaped:(id)sender {
     YMAAddAndEditTaskViewController *addViewController = [[YMAAddAndEditTaskViewController alloc]initWithNibName:@"YMAAddTaskViewController" bundle:nil];
-    addViewController.indexOfTaskInList = -1;
     [self showViewController:addViewController sender:nil];
 }
 

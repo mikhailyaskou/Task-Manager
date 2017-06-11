@@ -13,7 +13,5 @@
 @interface YMAAddAndEditTaskViewController : UIViewController <YMADateSelectorViewControllerDelegate>
 
 @property (nonatomic, strong) YMATask *task;
-//if this is new task his index is < 0; (-1)
-@property (nonatomic, assign) NSInteger indexOfTaskInList;
 
 @end

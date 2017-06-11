@@ -21,6 +21,13 @@
     self = [super init];
     if (self) {
         self.mutableArrayTasks = mutableArrayTasks;
+        YMATask *task = [[YMATask alloc] initWithIdTask:1 name:@"Купи молока" note:@"Купить хорошего молока" startDate:[NSDate date]];
+        [_mutableArrayTasks addObject: task];
+        task = [[YMATask alloc] initWithIdTask:2 name:@"Sell milk" note:@"sell milk in store" startDate:[NSDate date]];
+        [_mutableArrayTasks addObject: task];
+        task = [[YMATask alloc] initWithIdTask:3 name:@"buy new staff" note:@"buy new staff" startDate:[NSDate date]];
+        [_mutableArrayTasks addObject: task];
+        //notification that add task;
     }
     return self;
 }
@@ -64,6 +71,13 @@
 
 - (void)update:(NSInteger)index task:(id)task {
     [self.mutableArrayTasks replaceObjectAtIndex:index withObject:task];
+}
+
+- (void)incomingTask:(YMATask *)task {
+    if(NSNotFound == [self.mutableArrayTasks indexOfObject: task]) {
+        //insert new task
+        [self addTask:task];
+    }
 }
 
 @end

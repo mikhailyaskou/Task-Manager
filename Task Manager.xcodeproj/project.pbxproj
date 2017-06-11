@@ -23,6 +23,7 @@
 		989CF1D61EE37112004C1A47 /* YMADateSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 989CF1D41EE37112004C1A47 /* YMADateSelectorViewController.m */; };
 		989CF1D71EE37112004C1A47 /* YMADateSelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989CF1D51EE37112004C1A47 /* YMADateSelectorViewController.xib */; };
 		98B1A8C71EEC096B009B3DD6 /* YMADateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B1A8C61EEC096B009B3DD6 /* YMADateHelper.m */; };
+		98B655C01EEDB9D300109F7F /* YMAConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B655BF1EEDB9D300109F7F /* YMAConstants.m */; };
 		98D5E73E1EE5619100C4E969 /* YMATaskList.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D5E73D1EE5619100C4E969 /* YMATaskList.m */; };
 		98D5E7411EE57BE500C4E969 /* YMADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D5E7401EE57BE500C4E969 /* YMADetailViewController.m */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,8 @@
 		989CF1D51EE37112004C1A47 /* YMADateSelectorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YMADateSelectorViewController.xib; sourceTree = "<group>"; };
 		98B1A8C51EEC096B009B3DD6 /* YMADateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMADateHelper.h; sourceTree = "<group>"; };
 		98B1A8C61EEC096B009B3DD6 /* YMADateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMADateHelper.m; sourceTree = "<group>"; };
+		98B655BE1EEDB9D300109F7F /* YMAConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAConstants.h; sourceTree = "<group>"; };
+		98B655BF1EEDB9D300109F7F /* YMAConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAConstants.m; sourceTree = "<group>"; };
 		98D5E73C1EE5619100C4E969 /* YMATaskList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMATaskList.h; sourceTree = "<group>"; };
 		98D5E73D1EE5619100C4E969 /* YMATaskList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMATaskList.m; sourceTree = "<group>"; };
 		98D5E73F1EE57BE500C4E969 /* YMADetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMADetailViewController.h; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 		989CF19E1EE3535F004C1A47 /* Task Manager */ = {
 			isa = PBXGroup;
 			children = (
+				98B655B61EEDA54400109F7F /* Constants */,
 				989CF1CD1EE370B3004C1A47 /* XIBViewControllers */,
 				989CF1CC1EE35F36004C1A47 /* Model */,
 				989CF1AB1EE35360004C1A47 /* Main.storyboard */,
@@ -158,6 +162,16 @@
 				989CF1D51EE37112004C1A47 /* YMADateSelectorViewController.xib */,
 			);
 			name = XIBViewControllers;
+			sourceTree = "<group>";
+		};
+		98B655B61EEDA54400109F7F /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				98B655BE1EEDB9D300109F7F /* YMAConstants.h */,
+				98B655BF1EEDB9D300109F7F /* YMAConstants.m */,
+			);
+			name = Constants;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +260,7 @@
 				989CF1C81EE35EED004C1A47 /* YMATask.m in Sources */,
 				989CF1BE1EE35454004C1A47 /* YMATodayViewController.m in Sources */,
 				989CF1A11EE35360004C1A47 /* main.m in Sources */,
+				98B655C01EEDB9D300109F7F /* YMAConstants.m in Sources */,
 				989CF1D61EE37112004C1A47 /* YMADateSelectorViewController.m in Sources */,
 				98D5E73E1EE5619100C4E969 /* YMATaskList.m in Sources */,
 			);

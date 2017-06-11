@@ -20,6 +20,6 @@
 - (instancetype)initWithIdTask:(NSInteger)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate;
 + (instancetype)taskWithId:(NSInteger)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate;
 
--(void)finishTask;
+- (void)finishTask;
 
 @end

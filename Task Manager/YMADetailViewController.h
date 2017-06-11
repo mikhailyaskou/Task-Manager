@@ -13,6 +13,5 @@
 @interface YMADetailViewController : UIViewController 
 
 @property (nonatomic, strong) YMATask *task;
-@property (nonatomic, assign) NSInteger indexOfTaskInList;
 
 @end

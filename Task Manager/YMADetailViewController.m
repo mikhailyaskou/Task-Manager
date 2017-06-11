@@ -11,6 +11,7 @@
 #import "YMATask.h"
 #import "YMATaskService.h"
 #import "YMADateHelper.h"
+#import "YMAConstants.h"
 
 @interface YMADetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -26,20 +27,11 @@
     [super viewDidLoad];
     [self taskFinisedOrNotCheckAndRedrowInterface];
     [self fillInterfaceFromTask];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReccived:) name:@"recciveTask" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReccived:) name:notificationNameForTaskReceiving object:nil];
 }
 
--(void)taskReccived:(NSNotification *) notification {
-    NSDictionary *dict = notification.userInfo;
-    NSInteger indexOfTask = [[dict valueForKey:@"indexOfTask"] integerValue];
-    YMATask *task = [dict valueForKey:@"task"];
-    if (indexOfTask > 0) {
-        if (task != nil) {
-            
-            self.task = task;
-            [self fillInterfaceFromTask];
-        }
-    }
+- (void)taskReccived:(NSNotification *) notification {
+    [self fillInterfaceFromTask];
 }
 
 - (void)taskFinisedOrNotCheckAndRedrowInterface {
@@ -58,18 +50,14 @@
 - (IBAction)editTaskTapped:(id)sender {
     YMAAddAndEditTaskViewController *editView = [[YMAAddAndEditTaskViewController alloc]initWithNibName:@"YMAAddTaskViewController" bundle:nil];
     editView.task = self.task;
-    editView.indexOfTaskInList = self.indexOfTaskInList;
     [self showViewController:editView sender:nil];
 }
 
 - (IBAction)doneTapped:(id)sender {
     [self.task finishDate];
     self.task.taskFinished = YES;
-    NSNumber *indexOfTask = [NSNumber numberWithInteger:self.indexOfTaskInList];
-    NSDictionary *dict = @{ @"task"  : self.task,
-                            @"indexOfTask" : indexOfTask
-                            };
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"recciveTask" object:nil userInfo:dict];
+    NSDictionary *dict = @{ @"task"  : self.task};
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationNameForTaskReceiving object:nil userInfo:dict];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
