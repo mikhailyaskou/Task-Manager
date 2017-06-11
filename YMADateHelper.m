@@ -8,13 +8,13 @@
 
 #import "YMADateHelper.h"
 
-static NSString * const dateFormat = @"mm:HH / dd.MM.yyyy";
+static NSString * const YMADateFormat = @"mm:HH / dd.MM.yyyy";
 
 @implementation YMADateHelper
 
 + (NSString *)stringFromDate:(NSDate *)date {
     NSDateFormatter *formatter = [NSDateFormatter new];
-    [formatter setDateFormat:@"mm:HH / dd.MM.yyyy"];
+    [formatter setDateFormat:YMADateFormat];
     return [formatter stringFromDate:date];
 }
 

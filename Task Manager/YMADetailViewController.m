@@ -14,6 +14,7 @@
 #import "YMAConstants.h"
 
 @interface YMADetailViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextView *noteLabel;
@@ -27,7 +28,7 @@
     [super viewDidLoad];
     [self taskFinisedOrNotCheckAndRedrowInterface];
     [self fillInterfaceFromTask];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReccived:) name:notificationNameForTaskReceiving object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReccived:) name:YMANotificationNameForTaskReceiving object:nil];
 }
 
 - (void)taskReccived:(NSNotification *) notification {
@@ -48,7 +49,7 @@
 #pragma marks - Actions
 
 - (IBAction)editTaskTapped:(id)sender {
-    YMAAddAndEditTaskViewController *editView = [[YMAAddAndEditTaskViewController alloc]initWithNibName:@"YMAAddTaskViewController" bundle:nil];
+    YMAAddAndEditTaskViewController *editView = [[YMAAddAndEditTaskViewController alloc]initWithNibName:YMANibNameForAddTaskViewController bundle:nil];
     editView.task = self.task;
     [self showViewController:editView sender:nil];
 }
@@ -56,8 +57,8 @@
 - (IBAction)doneTapped:(id)sender {
     [self.task finishDate];
     self.task.taskFinished = YES;
-    NSDictionary *dict = @{ @"task"  : self.task};
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationNameForTaskReceiving object:nil userInfo:dict];
+    NSDictionary *dict = @{YMAKeyForTaskInNSNotificationMessage : self.task};
+    [[NSNotificationCenter defaultCenter] postNotificationName:YMANotificationNameForTaskReceiving object:nil userInfo:dict];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

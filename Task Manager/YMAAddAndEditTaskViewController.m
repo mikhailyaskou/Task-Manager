@@ -6,10 +6,15 @@
 //  Copyright © 2017 Mikhail Yaskou. All rights reserved.
 //
 
+
+
 #import "YMATask.h"
 #import "YMAAddAndEditTaskViewController.h"
 #import "YMADateHelper.h"
 #import "YMAConstants.h"
+
+static NSString * const YMASaveButtonTitle = @"Save";
+static NSString * const YMANibNameDateSelectorViewController = @"YMADateSelectorViewController";
 
 @interface YMAAddAndEditTaskViewController ()
 
@@ -25,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //save button on nav bar
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveTask)];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:YMASaveButtonTitle style:UIBarButtonItemStyleDone target:self action:@selector(saveTask)];
     self.navigationItem.rightBarButtonItem = saveButton;
     //set tooday date;
     if (self.task) {
@@ -63,13 +68,13 @@
         NSInteger id = arc4random_uniform(1000);
         self.task = [[YMATask alloc] initWithIdTask:id name:self.nameField.text note:self.noteField.text startDate:self.startDate];
     }
-    NSDictionary *dict = @{@"task" : self.task};
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationNameForTaskReceiving object:nil userInfo:dict];
+    NSDictionary *dict = @{YMAKeyForTaskInNSNotificationMessage : self.task};
+    [[NSNotificationCenter defaultCenter] postNotificationName:YMANotificationNameForTaskReceiving object:nil userInfo:dict];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)selctDateTaped:(id)sender {
-    YMADateSelectorViewController *dateSelectorView = [[YMADateSelectorViewController alloc]initWithNibName:@"YMADateSelectorViewController" bundle:nil];
+    YMADateSelectorViewController *dateSelectorView = [[YMADateSelectorViewController alloc]initWithNibName:YMANibNameDateSelectorViewController bundle:nil];
     dateSelectorView.delegate = self;
     [dateSelectorView.datePiker setDate:self.startDate];
     [self showViewController:dateSelectorView sender:nil];

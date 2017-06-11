@@ -12,6 +12,7 @@
 @protocol YMADateSelectorViewControllerDelegate <NSObject>
 
 - (void)dateSelectorViewController:id didSelectedDate:(NSDate *) date;
+
 @end
 
 #import <UIKit/UIKit.h>

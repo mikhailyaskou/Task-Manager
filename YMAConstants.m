@@ -8,4 +8,6 @@
 
 #import "YMAConstants.h"
 
-NSString * const notificationNameForTaskReceiving = @"recciveTask";
+NSString * const YMANotificationNameForTaskReceiving = @"recciveTask";
+NSString * const YMANibNameForAddTaskViewController = @"YMAAddTaskViewController";
+NSString * const YMAKeyForTaskInNSNotificationMessage = @"task";
