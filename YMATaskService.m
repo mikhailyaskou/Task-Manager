@@ -1,21 +1,21 @@
 //
-//  YMATaskServiceModel.m
+//  YMATaskService.m
 //  Task Manager
 //
 //  Created by Mikhail Yaskou on 04.06.17.
 //  Copyright © 2017 Mikhail Yaskou. All rights reserved.
 //
 
-#import "YMATaskServiceModel.h"
-#import "YMATaskModel.h"
+#import "YMATaskService.h"
+#import "YMATask.h"
 
-@interface YMATaskServiceModel()
+@interface YMATaskService()
 
 @property (nonatomic, strong) NSMutableArray *mutableArrayTasks;
 
 @end
 
-@implementation YMATaskServiceModel
+@implementation YMATaskService
 
 - (instancetype)initWithMutableArrayTasks:(NSMutableArray *)mutableArrayTasks {
     self = [super init];
@@ -25,7 +25,7 @@
     return self;
 }
 
-+ (instancetype)modelWithMutableArrayTasks:(NSMutableArray *)mutableArrayTasks {
++ (instancetype)taskServiceWithMutableArray:(NSMutableArray *)mutableArrayTasks {
     return [[self alloc] initWithMutableArrayTasks:mutableArrayTasks];
 }
 
@@ -46,7 +46,7 @@
     _mutableArrayTasks = tasks.mutableCopy;
 }
 
-- (void)addTask:(YMATaskModel *)task {
+- (void)addTask:(YMATask *)task {
     [self.mutableArrayTasks addObject:task];
 }
 
@@ -54,11 +54,11 @@
     return self.mutableArrayTasks.count;
 }
 
-- (YMATaskModel *)taskByIndex:(NSInteger)index {
+- (YMATask *)taskByIndex:(NSInteger)index {
     return self.mutableArrayTasks[index];
 }
 
-- (void)replaseTaskByIndex:(NSInteger)index :(YMATaskModel *)task{
+- (void)replaseTaskByIndex:(NSInteger)index task:(YMATask *)task{
     self.mutableArrayTasks[index] = task;
 }
 

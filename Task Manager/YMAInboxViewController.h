@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class YMATaskServiceModel;
+@class YMATaskService;
 
 @interface YMAInboxViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) YMATaskServiceModel *taskServiceModel;
+@property (nonatomic, strong) YMATaskService *taskService;
 
 @end

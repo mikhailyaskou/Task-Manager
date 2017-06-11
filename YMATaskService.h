@@ -1,5 +1,5 @@
 //
-//  YMATaskServiceModel.h
+//  YMATaskService.h
 //  Task Manager
 //
 //  Created by Mikhail Yaskou on 04.06.17.
@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@class YMATaskModel;
+@class YMATask;
 
-@interface YMATaskServiceModel : NSObject
+@interface YMATaskService : NSObject
 
 @property (nonatomic, strong) NSArray *tasks;
 
 - (instancetype)initWithMutableArrayTasks:(NSMutableArray *)mutableArrayTasks;
-+ (instancetype)modelWithMutableArrayTasks:(NSMutableArray *)mutableArrayTasks;
++ (instancetype)taskServiceWithMutableArray:(NSMutableArray *)mutableArrayTasks;
 
-- (void)addTask:(YMATaskModel *)task;
+- (void)addTask:(YMATask *)task;
 - (NSInteger)numberOftasks;
-- (YMATaskModel *)taskByIndex:(NSInteger)index;
-- (void)replaseTaskByIndex:(NSInteger)index :(YMATaskModel *)task;
+- (YMATask *)taskByIndex:(NSInteger)index;
+- (void)replaseTaskByIndex:(NSInteger)index task:(YMATask *)task;
 - (void)update:(NSInteger)index task:(id)task;
 
 @end

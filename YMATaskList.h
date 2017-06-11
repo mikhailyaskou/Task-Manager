@@ -1,5 +1,5 @@
 //
-//  YMATaskListModel.h
+//  YMATaskList.h
 //  Task Manager
 //
 //  Created by Mikhail Yaskou on 05.06.17.
@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface YMATaskListModel : NSObject
+@interface YMATaskList : NSObject
 
-@property (nonatomic, assign) int *IdTaskList;
+@property (nonatomic, assign) NSNumber *IdTaskList;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSDate *creationDate;
 @property (nonatomic, copy) NSArray *tasksList;

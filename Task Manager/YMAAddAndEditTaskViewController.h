@@ -8,14 +8,12 @@
 #import "YMADateSelectorViewController.h"
 #import <UIKit/UIKit.h>
 
-@class YMATaskModel;
+@class YMATask;
 
 @interface YMAAddAndEditTaskViewController : UIViewController <YMADateSelectorViewControllerDelegate>
 
-@property (nonatomic, strong) YMATaskModel *task;
+@property (nonatomic, strong) YMATask *task;
 //if this is new task his index is < 0; (-1)
 @property (nonatomic, assign) NSInteger indexOfTaskInList;
-
--(NSDate*)startDate;
 
 @end

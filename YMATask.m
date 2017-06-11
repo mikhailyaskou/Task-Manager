@@ -1,16 +1,16 @@
 //
-//  YMATaskModel.m
+//  YMATask.m
 //  Task Manager
 //
 //  Created by Mikhail Yaskou on 04.06.17.
 //  Copyright © 2017 Mikhail Yaskou. All rights reserved.
 //
 
-#import "YMATaskModel.h"
+#import "YMATask.h"
 
-@implementation YMATaskModel
+@implementation YMATask
 
-- (instancetype)initWithIdTask:(int)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate {
+- (instancetype)initWithIdTask:(NSInteger)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate {
     self = [super init];
     if (self) {
         self.idTask = idTask;
@@ -21,7 +21,7 @@
     return self;
 }
 
-+ (instancetype)modelWithIdTask:(int)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate {
++ (instancetype)taskWithId:(NSInteger)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate {
     return [[self alloc] initWithIdTask:idTask name:name note:note startDate:startDate];
 }
 

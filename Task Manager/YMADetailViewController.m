@@ -8,8 +8,9 @@
 
 #import "YMADetailViewController.h"
 #import "YMAAddAndEditTaskViewController.h"
-#import "YMATaskModel.h"
-#import "YMATaskServiceModel.h"
+#import "YMATask.h"
+#import "YMATaskService.h"
+#import "YMADateHelper.h"
 
 @interface YMADetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -28,11 +29,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReccived:) name:@"recciveTask" object:nil];
 }
 
--(void) taskReccived:(NSNotification *) notification
-{
+-(void)taskReccived:(NSNotification *) notification {
     NSDictionary *dict = notification.userInfo;
     NSInteger indexOfTask = [[dict valueForKey:@"indexOfTask"] integerValue];
-    YMATaskModel *task = [dict valueForKey:@"task"];
+    YMATask *task = [dict valueForKey:@"task"];
     if (indexOfTask > 0) {
         if (task != nil) {
             
@@ -45,14 +45,10 @@
 - (void)taskFinisedOrNotCheckAndRedrowInterface {
     self.navigationItem.rightBarButtonItem.enabled = (!self.task.isTaskFinished);
     self.doneButton.enabled = (!self.task.isTaskFinished);
-
-    
 }
 
-- (void)fillInterfaceFromTask{
-    NSDateFormatter *formatter = [NSDateFormatter new];
-    [formatter setDateFormat:@"mm:HH / dd.MM.yyyy"];
-    self.dateLabel.text = [formatter stringFromDate:self.task.startDate];
+- (void)fillInterfaceFromTask {
+    self.dateLabel.text = [YMADateHelper stringFromDate:self.task.startDate];
     self.nameLabel.text = self.task.name;
     self.noteLabel.text = self.task.note;
 }

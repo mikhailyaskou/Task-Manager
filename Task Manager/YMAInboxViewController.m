@@ -8,8 +8,8 @@
 
 #import "YMAAddAndEditTaskViewController.h"
 #import "YMAInboxViewController.h"
-#import "YMATaskServiceModel.h"
-#import "YMATaskModel.h"
+#import "YMATaskService.h"
+#import "YMATask.h"
 #import "YMADetailViewController.h"
 
 @interface YMAInboxViewController ()
@@ -23,66 +23,66 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
-    self.taskServiceModel = [YMATaskServiceModel new];
-    YMATaskModel *task = [[YMATaskModel alloc] initWithIdTask:1 name:@"Купи молока" note:@"Купить хорошего молока" startDate:[NSDate date]];
-    [self.taskServiceModel addTask:task];
-    task = [[YMATaskModel alloc] initWithIdTask:2 name:@"Sell milk" note:@"sell milk in store" startDate:[NSDate date]];
-    [self.taskServiceModel addTask:task];
-    task = [[YMATaskModel alloc] initWithIdTask:3 name:@"buy new staff" note:@"buy new staff" startDate:[NSDate date]];
-    [self.taskServiceModel addTask:task];
+    self.taskService = [YMATaskService new];
+    YMATask *task = [[YMATask alloc] initWithIdTask:1 name:@"Купи молока" note:@"Купить хорошего молока" startDate:[NSDate date]];
+    [self.taskService addTask:task];
+    task = [[YMATask alloc] initWithIdTask:2 name:@"Sell milk" note:@"sell milk in store" startDate:[NSDate date]];
+    [self.taskService addTask:task];
+    task = [[YMATask alloc] initWithIdTask:3 name:@"buy new staff" note:@"buy new staff" startDate:[NSDate date]];
+    [self.taskService addTask:task];
     //notification that add task;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReccived:) name:@"recciveTask" object:nil];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTaskInLis:) name:@"updateTask" object:nil];
 }
 
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
     [self.tableView reloadData];
 }
 
 #pragma mark - Notification
 
--(void) taskReccived:(NSNotification *) notification {
+-(void)taskReccived:(NSNotification *) notification {
     NSDictionary *dict = notification.userInfo;
     NSInteger indexOfTask  = [[dict valueForKey:@"indexOfTask"] integerValue];
-    YMATaskModel *task = [dict valueForKey:@"task"];
+    YMATask *task = [dict valueForKey:@"task"];
     if (indexOfTask < 0) {
         //adding mode;
-        [self.taskServiceModel addTask:task];
+        [self.taskService addTask:task];
     }
     else
     {
         //editing mode;
-        [self.taskServiceModel update:indexOfTask task:task];
+        [self.taskService update:indexOfTask task:task];
     }
 }
 
 #pragma mark - Table View Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.taskServiceModel.numberOftasks;
+    return self.taskService.numberOftasks;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YMATaskCell"];
     NSUInteger index = [indexPath row];
-    cell.textLabel.text = [self.taskServiceModel taskByIndex:index].name;
+    cell.textLabel.text = [self.taskService taskByIndex:index].name;
     return cell;
 }
 
 #pragma mark - Actions
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YMADetailViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"detailView"];
-    
-    detailView.task = [self.taskServiceModel taskByIndex:indexPath.row];
+    detailView.task = [self.taskService taskByIndex:indexPath.row];
     detailView.indexOfTaskInList = indexPath.row;
     [self showViewController:detailView sender:nil];
 }
 
 - (IBAction)addTaped:(id)sender {
-    YMAAddAndEditTaskViewController *addView = [[YMAAddAndEditTaskViewController alloc]initWithNibName:@"YMAAddTaskViewController" bundle:nil];
-    addView.indexOfTaskInList = -1;
-    [self showViewController:addView sender:nil];
+    YMAAddAndEditTaskViewController *addViewController = [[YMAAddAndEditTaskViewController alloc]initWithNibName:@"YMAAddTaskViewController" bundle:nil];
+    addViewController.indexOfTaskInList = -1;
+    [self showViewController:addViewController sender:nil];
 }
 
 @end

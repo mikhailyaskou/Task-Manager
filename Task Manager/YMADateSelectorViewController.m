@@ -15,7 +15,7 @@
 @implementation YMADateSelectorViewController
 
 - (IBAction)datePikerChanged:(id)sender {
-    [self.delegate setDate:self.datePiker.date];
+    [self.delegate dateSelectorViewController:self didSelectedDate:self.datePiker.date];
 }
 
 @end
