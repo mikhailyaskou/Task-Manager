@@ -27,8 +27,8 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
-    self.taskService = [[YMATaskService alloc] initWithMutableArrayTasks:[NSMutableArray new]];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReccived:) name:YMANotificationNameForTaskReceiving object:nil];
+    self.taskService = [[YMATaskService alloc] initWithTasks:[NSMutableArray new]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReceived:) name:YMAReceivedTaskNotificationName object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -38,21 +38,21 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
 
 #pragma mark - Notification
 
-- (void)taskReccived:(NSNotification *) notification {
+- (void)taskReceived:(NSNotification *) notification {
     NSDictionary *dict = notification.userInfo;
-    YMATask *task = dict[YMAKeyForTaskInNSNotificationMessage];
+    YMATask *task = dict[YMATaskNotificationKey];
     [self.taskService incomingTask:task];
 }
 
 #pragma mark - Table View Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.taskService.numberOftasks;
+    return self.taskService.numberOfTasks;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:YMACellIdentifier];
-    NSUInteger index = [indexPath row];
+    NSUInteger index = (NSUInteger) [indexPath row];
     cell.textLabel.text = [self.taskService taskByIndex:index].name;
     return cell;
 }
@@ -61,12 +61,12 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YMADetailViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:YMADetailViewControllerIdentifier];
-    detailView.task = [self.taskService taskByIndex:indexPath.row];
+    detailView.task = [self.taskService taskByIndex:(NSUInteger) indexPath.row];
     [self showViewController:detailView sender:nil];
 }
 
-- (IBAction)addTaped:(id)sender {
-    YMAAddAndEditTaskViewController *addViewController = [[YMAAddAndEditTaskViewController alloc]initWithNibName:YMANibNameForAddTaskViewController bundle:nil];
+- (IBAction)addTapped:(id)sender {
+    YMAAddAndEditTaskViewController *addViewController = [[YMAAddAndEditTaskViewController alloc]initWithNibName:YMAAddTaskViewControllerNibName bundle:nil];
     [self showViewController:addViewController sender:nil];
 }
 

@@ -28,11 +28,11 @@ static NSString * const YMANibNameDateSelectorViewController = @"YMADateSelector
 - (void)viewDidLoad {
     [super viewDidLoad];
     //save button on nav bar
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:YMASaveButtonTitle style:UIBarButtonItemStyleDone target:self action:@selector(saveTask)];
-    self.navigationItem.rightBarButtonItem = saveButton;
+    UIBarButtonItem *saveAndPopPreviousScreenButton = [[UIBarButtonItem alloc] initWithTitle:YMASaveButtonTitle style:UIBarButtonItemStyleDone target:self action:@selector(saveTask)];
+    self.navigationItem.rightBarButtonItem = saveAndPopPreviousScreenButton;
     //set tooday date;
     if (self.task) {
-        //fill intetrface if tesk reccived from table
+        //fill interface if task received from table
         self.nameField.text = self.task.name;
         self.noteField.text = self.task.note;
         [self setDate:self.task.startDate];
@@ -53,7 +53,7 @@ static NSString * const YMANibNameDateSelectorViewController = @"YMADateSelector
 #pragma marks - Actions
 
 - (IBAction)nameTextValueChanged:(id)sender {
-    self.navigationItem.rightBarButtonItem.enabled = self.nameField.text.length > 0 ? YES : NO;
+    self.navigationItem.rightBarButtonItem.enabled = self.nameField.text.length > 0;
 }
 
 - (void)saveTask {
@@ -66,8 +66,8 @@ static NSString * const YMANibNameDateSelectorViewController = @"YMADateSelector
         NSInteger id = arc4random_uniform(1000);
         self.task = [[YMATask alloc] initWithIdTask:id name:self.nameField.text note:self.noteField.text startDate:self.startDate];
     }
-    NSDictionary *dict = @{YMAKeyForTaskInNSNotificationMessage : self.task};
-    [[NSNotificationCenter defaultCenter] postNotificationName:YMANotificationNameForTaskReceiving object:nil userInfo:dict];
+    NSDictionary *dict = @{YMATaskNotificationKey : self.task};
+    [[NSNotificationCenter defaultCenter] postNotificationName:YMAReceivedTaskNotificationName object:nil userInfo:dict];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

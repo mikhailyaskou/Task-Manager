@@ -11,70 +11,70 @@
 
 @interface YMATaskService()
 
-@property (nonatomic, strong) NSMutableArray *mutableArrayTasks;
+@property (nonatomic, strong) NSMutableArray *privateTasks;
 
 @end
 
 @implementation YMATaskService
 
-- (instancetype)initWithMutableArrayTasks:(NSMutableArray *)mutableArrayTasks {
+- (instancetype)initWithTasks:(NSMutableArray *)tasks {
     self = [super init];
     if (self) {
-        self.mutableArrayTasks = mutableArrayTasks;
+        self.privateTasks = tasks;
         YMATask *task = [[YMATask alloc] initWithIdTask:1 name:@"Купи молока" note:@"Купить хорошего молока" startDate:[NSDate date]];
-        [_mutableArrayTasks addObject: task];
+        [_privateTasks addObject: task];
         task = [[YMATask alloc] initWithIdTask:2 name:@"Sell milk" note:@"sell milk in store" startDate:[NSDate date]];
-        [_mutableArrayTasks addObject: task];
+        [_privateTasks addObject: task];
         task = [[YMATask alloc] initWithIdTask:3 name:@"buy new staff" note:@"buy new staff" startDate:[NSDate date]];
-        [_mutableArrayTasks addObject: task];
+        [_privateTasks addObject: task];
         //notification that add task;
     }
     return self;
 }
 
-+ (instancetype)taskServiceWithMutableArray:(NSMutableArray *)mutableArrayTasks {
-    return [[self alloc] initWithMutableArrayTasks:mutableArrayTasks];
++ (instancetype)taskServiceWithTasks:(NSMutableArray *)tasks {
+    return [[self alloc] initWithTasks:tasks];
 }
 
 //lazy getter
-- (NSMutableArray *)mutableArrayTasks {
-    if (!_mutableArrayTasks){
-        _mutableArrayTasks = [NSMutableArray new];
+- (NSMutableArray *)privateTasks {
+    if (!_privateTasks){
+        _privateTasks = [NSMutableArray new];
     }
-    return _mutableArrayTasks;
+    return _privateTasks;
 }
 
 
 - (NSArray *)tasks {
-    return _mutableArrayTasks.copy;
+    return _privateTasks.copy;
 }
 
 - (void)setTasks:(NSArray *)tasks {
-    _mutableArrayTasks = tasks.mutableCopy;
+    _privateTasks = tasks.mutableCopy;
 }
 
 - (void)addTask:(YMATask *)task {
-    [self.mutableArrayTasks addObject:task];
+    [self.privateTasks addObject:task];
 }
 
-- (NSInteger)numberOftasks {
-    return self.mutableArrayTasks.count;
+- (NSInteger)numberOfTasks {
+    return self.privateTasks.count;
 }
 
-- (YMATask *)taskByIndex:(NSInteger)index {
-    return self.mutableArrayTasks[index];
+- (YMATask *)taskByIndex:(NSUInteger)index {
+    return self.privateTasks[index];
 }
 
-- (void)replaseTaskByIndex:(NSInteger)index task:(YMATask *)task{
-    self.mutableArrayTasks[index] = task;
+- (void)replaceTaskByIndex:(NSUInteger)index task:(YMATask *)task{
+    self.privateTasks[index] = task;
 }
 
-- (void)update:(NSInteger)index task:(id)task {
-    [self.mutableArrayTasks replaceObjectAtIndex:index withObject:task];
+- (void)update:(NSUInteger)index task:(id)task {
+    self.privateTasks[index] = task;
 }
 
 - (void)incomingTask:(YMATask *)task {
-    if(NSNotFound == [self.mutableArrayTasks indexOfObject: task]) {
+    if(NSNotFound == [self.privateTasks indexOfObject: task]) {
         //insert new task
         [self addTask:task];
     }

@@ -26,21 +26,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self taskFinisedOrNotCheckAndRedrowInterface];
-    [self fillInterfaceFromTask];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReccived:) name:YMANotificationNameForTaskReceiving object:nil];
+    [self updateUI];
+    [self fillForm];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskReccived:) name:YMAReceivedTaskNotificationName object:nil];
 }
 
 - (void)taskReccived:(NSNotification *) notification {
-    [self fillInterfaceFromTask];
+    [self fillForm];
 }
 
-- (void)taskFinisedOrNotCheckAndRedrowInterface {
+- (void)updateUI {
     self.navigationItem.rightBarButtonItem.enabled = (!self.task.isTaskFinished);
     self.doneButton.enabled = (!self.task.isTaskFinished);
 }
 
-- (void)fillInterfaceFromTask {
+- (void)fillForm {
     self.dateLabel.text = [YMADateHelper stringFromDate:self.task.startDate];
     self.nameLabel.text = self.task.name;
     self.noteLabel.text = self.task.note;
@@ -49,7 +49,7 @@
 #pragma marks - Actions
 
 - (IBAction)editTaskTapped:(id)sender {
-    YMAAddAndEditTaskViewController *editView = [[YMAAddAndEditTaskViewController alloc]initWithNibName:YMANibNameForAddTaskViewController bundle:nil];
+    YMAAddAndEditTaskViewController *editView = [[YMAAddAndEditTaskViewController alloc]initWithNibName:YMAAddTaskViewControllerNibName bundle:nil];
     editView.task = self.task;
     [self showViewController:editView sender:nil];
 }
@@ -57,8 +57,8 @@
 - (IBAction)doneTapped:(id)sender {
     [self.task finishDate];
     self.task.taskFinished = YES;
-    NSDictionary *dict = @{YMAKeyForTaskInNSNotificationMessage : self.task};
-    [[NSNotificationCenter defaultCenter] postNotificationName:YMANotificationNameForTaskReceiving object:nil userInfo:dict];
+    NSDictionary *dict = @{YMATaskNotificationKey : self.task};
+    [[NSNotificationCenter defaultCenter] postNotificationName:YMAReceivedTaskNotificationName object:nil userInfo:dict];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

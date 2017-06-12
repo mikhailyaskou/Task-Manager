@@ -14,14 +14,14 @@
 
 @property (nonatomic, strong) NSArray *tasks;
 
-- (instancetype)initWithMutableArrayTasks:(NSMutableArray *)mutableArrayTasks;
-+ (instancetype)taskServiceWithMutableArray:(NSMutableArray *)mutableArrayTasks;
+- (instancetype)initWithTasks:(NSMutableArray *)tasks;
++ (instancetype)taskServiceWithTasks:(NSMutableArray *)tasks;
 
 - (void)addTask:(YMATask *)task;
-- (NSInteger)numberOftasks;
-- (YMATask *)taskByIndex:(NSInteger)index;
-- (void)replaseTaskByIndex:(NSInteger)index task:(YMATask *)task;
-- (void)update:(NSInteger)index task:(id)task;
+- (NSInteger)numberOfTasks;
+- (YMATask *)taskByIndex:(NSUInteger)index;
+- (void)replaceTaskByIndex:(NSUInteger)index task:(YMATask *)task;
+- (void)update:(NSUInteger)index task:(id)task;
 - (void)incomingTask:(YMATask *)task;
     
 @end
