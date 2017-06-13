@@ -27,7 +27,6 @@
         [_privateTasks addObject: task];
         task = [[YMATask alloc] initWithIdTask:3 name:@"buy new staff" note:@"buy new staff" startDate:[NSDate date]];
         [_privateTasks addObject: task];
-        //notification that add task;
     }
     return self;
 }
@@ -75,7 +74,7 @@
 
 - (void)incomingTask:(YMATask *)task {
     if(NSNotFound == [self.privateTasks indexOfObject: task]) {
-        //insert new task
+        //add new task
         [self addTask:task];
     }
 }

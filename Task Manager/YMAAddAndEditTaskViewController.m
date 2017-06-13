@@ -30,9 +30,7 @@ static NSString * const YMANibNameDateSelectorViewController = @"YMADateSelector
     //save button on nav bar
     UIBarButtonItem *saveAndPopPreviousScreenButton = [[UIBarButtonItem alloc] initWithTitle:YMASaveButtonTitle style:UIBarButtonItemStyleDone target:self action:@selector(saveTask)];
     self.navigationItem.rightBarButtonItem = saveAndPopPreviousScreenButton;
-    //set tooday date;
     if (self.task) {
-        //fill interface if task received from table
         self.nameField.text = self.task.name;
         self.noteField.text = self.task.note;
         [self setDate:self.task.startDate];
