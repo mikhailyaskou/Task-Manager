@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YMADateSelectorViewController">
+            <connections>
+                <outlet property="datePiker" destination="Kws-dv-cm9" id="7MI-OE-ypo"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Kws-dv-cm9">
+                    <rect key="frame" x="16" y="53" width="343" height="580"/>
+                    <date key="date" timeIntervalSinceReferenceDate="518222412.48368001">
+                        <!--2017-06-03 22:40:12 +0000-->
+                    </date>
+                    <connections>
+                        <action selector="datePikerChanged:" destination="-1" eventType="valueChanged" id="tjs-67-73h"/>
+                    </connections>
+                </datePicker>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9XH-z4-XLZ">
+                    <rect key="frame" x="0.0" y="9" width="375" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="LkL-lR-R1K"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="Start Date" id="JUc-5w-VYP"/>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="9XH-z4-XLZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6Y1-jQ-dHt"/>
+                <constraint firstItem="Kws-dv-cm9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="WnQ-s9-1oH"/>
+                <constraint firstItem="Kws-dv-cm9" firstAttribute="top" secondItem="9XH-z4-XLZ" secondAttribute="bottom" id="ZF5-pR-7he"/>
+                <constraint firstAttribute="trailing" secondItem="9XH-z4-XLZ" secondAttribute="trailing" id="bVu-IK-jic"/>
+                <constraint firstItem="9XH-z4-XLZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="9" id="hD3-A4-cYq"/>
+                <constraint firstItem="9XH-z4-XLZ" firstAttribute="centerX" secondItem="Kws-dv-cm9" secondAttribute="centerX" id="m66-mf-e89"/>
+                <constraint firstAttribute="bottom" secondItem="Kws-dv-cm9" secondAttribute="bottom" constant="34" id="odP-ll-NVY"/>
+            </constraints>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+    </objects>
+</document>
