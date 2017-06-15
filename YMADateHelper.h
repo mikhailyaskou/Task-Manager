@@ -11,5 +11,6 @@
 @interface YMADateHelper : NSObject
 
 + (NSString *)stringFromDate:(NSDate *) date;
++ (NSDate *)dateFromString:(NSString *)dateString;
 
 @end

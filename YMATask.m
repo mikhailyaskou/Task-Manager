@@ -10,7 +10,7 @@
 
 @implementation YMATask
 
-- (instancetype)initWithIdTask:(NSInteger)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate {
+- (instancetype)initWithIdTask:(NSNumber *)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate {
     self = [super init];
     if (self) {
         self.idTask = idTask;
@@ -21,7 +21,7 @@
     return self;
 }
 
-+ (instancetype)taskWithId:(NSInteger)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate {
++ (instancetype)taskWithId:(NSNumber *)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate {
     return [[self alloc] initWithIdTask:idTask name:name note:note startDate:startDate];
 }
 

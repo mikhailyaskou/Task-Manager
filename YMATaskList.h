@@ -6,14 +6,25 @@
 //  Copyright © 2017 Mikhail Yaskou. All rights reserved.
 //
 
+@class YMATask;
 #import <Foundation/Foundation.h>
 
 @interface YMATaskList : NSObject
 
-@property (nonatomic, assign) NSNumber *IdTaskList;
+- (instancetype)initWithIdTaskList:(NSNumber *)idTaskList name:(NSString *)name creationDate:(NSDate *)creationDate tasks:(NSArray *)tasks;
++ (instancetype)listWithIdTaskList:(NSNumber *)idTaskList name:(NSString *)name creationDate:(NSDate *)creationDate tasks:(NSArray *)tasks;
+
+@property (nonatomic, assign) NSNumber *idTaskList;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSDate *creationDate;
-@property (nonatomic, copy) NSArray *tasksList;
+@property (nonatomic, copy) NSArray *tasks;
+
+- (void)removeTaskFromList:(YMATask *)task;
+- (void)addTask:(YMATask *)task;
+- (YMATask *)taskAtIndex:(NSUInteger)index;
+- (void)removeTask:(NSUInteger *)index;
+- (void)incomingTask:(YMATask *)task;
+- (void)filterTaskToday;
 
 
 @end

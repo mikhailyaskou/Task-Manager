@@ -10,15 +10,17 @@
 
 @interface YMATask : NSObject
 
-@property (nonatomic, assign) NSInteger idTask;
+@property (nonatomic, assign) NSNumber *idTask;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *note;
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *finishDate;
 @property (nonatomic, assign, getter = isTaskFinished)  BOOL taskFinished;
+@property (nonatomic, assign, getter = isRemindMeOnADay) BOOL remindMeOnADay;
+@property (nonatomic, strong) NSString *priority;
 
-- (instancetype)initWithIdTask:(NSInteger)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate;
-+ (instancetype)taskWithId:(NSInteger)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate;
+- (instancetype)initWithIdTask:(NSNumber *)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate;
++ (instancetype)taskWithId:(NSNumber *)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate;
 
 - (void)finishTask;
 
