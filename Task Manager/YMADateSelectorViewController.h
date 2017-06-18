@@ -6,20 +6,10 @@
 //  Copyright © 2017 Mikhail Yaskou. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-@class YMADateSelectorViewController;
-
-@protocol YMADateSelectorViewControllerDelegate <NSObject>
-
-- (void)dateSelectorViewController:(id)Sender didSelectedDate:(NSDate *) date;
-
-@end
-
 #import <UIKit/UIKit.h>
 
 @interface YMADateSelectorViewController : UIViewController
 
-@property (nonatomic, weak) id <YMADateSelectorViewControllerDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePiker;
+@property (strong, nonatomic) NSDate *date;
 
 @end

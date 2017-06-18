@@ -7,15 +7,28 @@
 //
 
 #import "YMADateSelectorViewController.h"
+#import "YMADateHelper.h"
 
 @interface YMADateSelectorViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePiker;
 
 @end
 
 @implementation YMADateSelectorViewController
 
-- (IBAction)datePikerChanged:(id)sender {
-    [self.delegate dateSelectorViewController:self didSelectedDate:self.datePiker.date];
+- (void)viewWillAppear:(BOOL)animated {
+    [self updateUi];
+}
+
+-(void)updateUi {
+    self.dateLabel.text=[YMADateHelper stringFromDate:self.date];
+    [self.datePiker setDate:self.date];
+}
+
+- (IBAction)datePickerChanged:(id)sender {
+    self.date = self.datePiker.date;
+    [self updateUi];
 }
 
 @end

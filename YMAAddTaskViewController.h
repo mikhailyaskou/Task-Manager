@@ -17,7 +17,7 @@
 
 @end
 
-@interface YMAAddTaskViewController : UITableViewController <YMADateSelectorViewControllerDelegate>
+@interface YMAAddTaskViewController : UITableViewController
 
 @property (nonatomic, weak) id<YMAAddTaskViewControllerDelegate> delegate;
 @property (nonatomic, strong) YMATask *task;

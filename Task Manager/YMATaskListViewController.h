@@ -10,6 +10,6 @@
 #import "YMAAddTaskViewController.h"
 #import "YMAAddTaskListViewController.h"
 
-@interface YMATaskListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, YMAAddTaskListViewControllerDelegate>;
+@interface YMATaskListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

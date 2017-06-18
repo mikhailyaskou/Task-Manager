@@ -9,13 +9,33 @@
 #import "YMATaskList.h"
 #import "YMATask.h"
 
-@interface YMATaskList()
+@interface YMATaskList() <NSCoding>
 
 @property (nonatomic, strong) NSMutableArray *privateTasks;
 
 @end
 
 @implementation YMATaskList
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super init];
+    if (self) {
+        self.idTaskList = [coder decodeObjectForKey:@"self.idTaskList"];
+        self.name = [coder decodeObjectForKey:@"self.name"];
+        self.creationDate = [coder decodeObjectForKey:@"self.creationDate"];
+        self.privateTasks = [coder decodeObjectForKey:@"self.privateTasks"];
+    }
+
+    return self;
+}
+
+#pragma mark  - Coder
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.idTaskList forKey:@"self.idTaskList"];
+    [coder encodeObject:self.name forKey:@"self.name"];
+    [coder encodeObject:self.creationDate forKey:@"self.creationDate"];
+    [coder encodeObject:self.privateTasks forKey:@"self.privateTasks"];
+}
 
 - (instancetype)initWithIdTaskList:(NSNumber *)idTaskList name:(NSString *)name creationDate:(NSDate *)creationDate tasks:(NSArray *)tasks {
   self = [super init];
@@ -29,12 +49,22 @@
   return self;
 }
 
+
+
 + (instancetype)listWithIdTaskList:(NSNumber *)idTaskList name:(NSString *)name creationDate:(NSDate *)creationDate tasks:(NSArray *)tasks {
   return [[self alloc] initWithIdTaskList:idTaskList name:name creationDate:creationDate tasks:tasks];
 }
 
-- (void)setTasksList:(NSArray *)tasksList {
-    _privateTasks = [tasksList mutableCopy];
+//lazy getter
+- (NSMutableArray *)privateTasks {
+    if (!_privateTasks){
+        _privateTasks = [NSMutableArray new];
+    }
+    return _privateTasks;
+}
+
+- (void)setTasks:(NSArray *)tasks {
+  _privateTasks = [tasks mutableCopy];
 }
 
 -(NSArray *)tasks {
@@ -61,7 +91,9 @@
 }
 
 - (void)removeTaskFromList:(YMATask *)task {
-  [self.privateTasks removeObject:task];
+  if ([self.privateTasks containsObject: task]) {
+    [self.privateTasks removeObject:task];
+  }
 }
 
 - (void)filterUsingPredicate:(NSPredicate *)predicate {

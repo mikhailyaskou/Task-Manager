@@ -9,6 +9,7 @@
 #import "YMATaskListViewController.h"
 #import "YMATaskService.h"
 #import "YMATaskList.h"
+#import "YMAToDoListViewController.h"
 
 @interface YMATaskListViewController ()
 
@@ -30,10 +31,6 @@
   [super viewWillAppear:YES];
   [self.tableView reloadData];
 }
-- (void)incomingTaskList:(id)Sender taskList:(YMATaskList *)taskList {
-  [self.taskService addTasks:taskList];
-}
-
 
 #pragma mark - UITableViewDataSource
 
@@ -44,13 +41,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
   UITableViewCell *taskCell = [tableView dequeueReusableCellWithIdentifier:@"YMATaskListCell"];
-
   YMATaskList *taskList = self.taskService.taskLists[(NSUInteger) indexPath.row];
   taskCell.textLabel.text = taskList.name;
-
   NSInteger numberOfActiveTasks = taskList.tasks.count; // active
-  taskCell.detailTextLabel.text = [NSString stringWithFormat:@"(%i)", numberOfActiveTasks];
-
+  taskCell.detailTextLabel.text = [NSString stringWithFormat:@"(%li)", (long)numberOfActiveTasks];
   return taskCell;
 }
 
@@ -62,20 +56,25 @@
   [self.tableView setEditing:editing animated:animated];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  YMAAddTaskListViewController *showTasksOfTaskList = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskListViewController"];
-  //showTasksOfTaskList.listIndex = (NSUInteger) indexPath.section;
-//  showTasksOfTaskList.delegate = self;
- // showTasksOfTaskList.task =
-      [self.taskService taskFromListAtIndex:(NSUInteger) indexPath.section taskIndex:(NSUInteger) indexPath.row];
-  [self showViewController:showTasksOfTaskList sender:nil];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender {
+  if ([segue.identifier isEqualToString:@"ShowProjectTasksIdentifier"]) {
+
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    YMAToDoListViewController *toDoListViewController = [segue destinationViewController];
+   toDoListViewController.tasks = self.taskService.taskLists[(NSUInteger) indexPath.row];
+
+  }
 }
 
-- (IBAction)addTapped:(id)sender {
-  YMAAddTaskListViewController *addTaskListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskListViewController"];
-  addTaskListVC.delegate = self;
-  [self showViewController:addTaskListVC sender:nil];
-}
 
+- (IBAction)unwindToEditViewController:(UIStoryboardSegue *)unwindSegue {
+  if ([unwindSegue.identifier isEqualToString:@"DoneTappedUnwindSegueIdentifier"]) {
+    YMAAddTaskListViewController *taskListViewController = [unwindSegue sourceViewController];
+    YMATaskList *newTaskList = [YMATaskList new];
+    newTaskList.idTaskList = @(arc4random_uniform(100000));
+    newTaskList.name = taskListViewController.projectNameLabel.text;
+    [self.taskService addTasks:newTaskList];
+  }
+}
 
 @end

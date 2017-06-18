@@ -41,16 +41,6 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
 
 #pragma mark - Table View Delegate
 
-//delete row
-/*- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-      [self.taskService removeTaskFromListIndex:(NSUInteger) indexPath.section taskIndex:(NSUInteger) indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                         withRowAnimation:UITableViewRowAnimationFade];
-    }
-}*/
-
 //title for section
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     YMATaskList *tasks = [self.taskService taskListAtIndex:(NSUInteger) section];
@@ -82,10 +72,14 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
 }
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+  //get task
+  YMATask *task = [self.taskService taskFromListAtIndex:indexPath.section taskIndex:indexPath.row];
   UITableViewRowAction *doneAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Done" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-    // обработка
+
+    [task finishTask];
+    [self.tableView setEditing:NO];
   }];
+  //delete tapped
   UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
     //alert
     UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:@"Do you want to remove item?" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -93,18 +87,19 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     [alertViewController addAction:cancelAction];
     UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-      YMATaskList *taskList = self.taskService.taskLists[indexPath.section];
-      YMATask *task = taskList.tasks[indexPath.row];
-      [taskList removeTaskFromList:task];
+      [self.taskService removeTaskFromListIndex:indexPath.section taskIndex:indexPath.row];
       [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }];
-
     [alertViewController addAction:deleteAction];
 
     [self presentViewController:alertViewController animated:YES completion:nil];
   }];
-
-  return @[deleteAction, doneAction];
+ if (task.isTaskFinished) {
+   return @[deleteAction];
+ }
+  else {
+   return @[deleteAction, doneAction];
+ }
 }
 
 
@@ -135,8 +130,7 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
 #pragma mark - Delegate
 
 - (void)incomingTask:(id)Sender task:(YMATask *)task listIndex:(NSUInteger)index {
-    YMATaskList *taskList = [self.taskService taskListAtIndex:index];
-    [taskList incomingTask:task];
+    [self.taskService incomingTask:task intexOfList:index];
 }
 
 @end

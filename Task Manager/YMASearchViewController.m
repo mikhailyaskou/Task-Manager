@@ -11,13 +11,14 @@
 #import "YMATaskTableViewCell.h"
 #import "YMATask.h"
 #import "YMADateHelper.h"
+#import "YMAAddTaskViewController.h"
 
-@interface YMASearchViewController () <UISearchResultsUpdating, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface YMASearchViewController () <UISearchResultsUpdating, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, YMAAddTaskViewControllerDelegate>
 
 @property (nonatomic, strong) UISearchController *searchController;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, strong) NSArray *tasks;
+@property (nonatomic, strong) NSArray *allTasks;
 @property (nonatomic, strong) NSArray *resultOfSearch;
 @property (nonatomic, assign, getter=isShowOnlyCompleted) BOOL showOnlyCompleted;
 
@@ -27,64 +28,80 @@
 
 @implementation YMASearchViewController
 
+
 - (void)viewDidLoad {
-  [super viewDidLoad];
+    [super viewDidLoad];
 
-  self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-  self.searchController.searchResultsUpdater = self;
-  self.searchController.searchBar.delegate = self;
-  self.searchController.dimsBackgroundDuringPresentation = NO;
-  self.searchController.searchBar.scopeButtonTitles = @[@"All tasks", @"Completed"];
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.searchBar.delegate = self;
+    [self.searchController.searchBar sizeToFit];
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.searchBar.scopeButtonTitles = @[@"Active tasks", @"Completed"];
+    [self.searchController becomeFirstResponder];
+    
 
+    UINib *cellNib = [UINib nibWithNibName:@"YMATaskTableViewCell" bundle:nil];
+    [self.tableView registerNib:cellNib forCellReuseIdentifier:@"YMATaskTableViewCell"];
 
-  UINib *cellNib = [UINib nibWithNibName:@"YMATaskTableViewCell" bundle:nil];
-  [self.tableView registerNib:cellNib forCellReuseIdentifier:@"YMATaskTableViewCell"];
-
-  self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     YMATaskService *taskService = [YMATaskService sharedInstance];
-    self.tasks = [taskService allTasks];
+    self.allTasks = [taskService allTasks];
 }
 
 -(void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
-  [self updateSearchResultsForSearchController:self.searchController];
+    [self updateSearchResultsForSearchController:self.searchController];
 }
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    
+
     self.showOnlyCompleted = [@(self.searchController.searchBar.selectedScopeButtonIndex) boolValue];
-  NSPredicate *predicate;
+    NSPredicate *predicate;
 
     if (self.isShowOnlyCompleted) {
-       predicate = [NSPredicate predicateWithFormat:@"self.name contains[cd] %@ and self.isTaskFinished == YES", self.searchController.searchBar.text];
+        predicate = [NSPredicate predicateWithFormat:@"self.name contains[cd] %@ and self.isTaskFinished == YES", self.searchController.searchBar.text];
     }
-  else{
-      predicate = [NSPredicate predicateWithFormat:@"self.name contains[cd] %@", self.searchController.searchBar.text];
+    else{
+        predicate = [NSPredicate predicateWithFormat:@"self.name contains[cd] %@", self.searchController.searchBar.text];
     }
 
-  self.resultOfSearch = [NSArray arrayWithArray:[self.tasks filteredArrayUsingPredicate:predicate]];
+    self.resultOfSearch = [NSArray arrayWithArray:[self.allTasks filteredArrayUsingPredicate:predicate]];
 
-  NSLog(@"bool is: %@", self.showOnlyCompleted ? @"YES" : @"NO");
+    NSLog(@"bool is: %@", self.showOnlyCompleted ? @"YES" : @"NO");
 
-  [self.tableView reloadData];
+    [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return self.resultOfSearch.count;
+    return self.resultOfSearch.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YMATaskTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"YMATaskTableViewCell"];
-  
+
     YMATask *task = self.resultOfSearch[(NSUInteger) indexPath.row];
-    
+
     cell.nameLabel.text = task.name;
     cell.noteLabel.text = task.note;
     cell.dateLabel.text = [YMADateHelper stringFromDate:task.startDate];
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    YMAAddTaskViewController *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+    editTaskVC.listIndex = (NSUInteger) indexPath.section;
+    editTaskVC.delegate = self;
+    editTaskVC.task = self.resultOfSearch[(NSUInteger) indexPath.row];
+    self.searchController.active = NO;
+    [self showViewController:editTaskVC sender:nil];
+}
+
+- (void)incomingTask:(id)Sender task:(YMATask *)task listIndex:(NSUInteger)index {
+    //empty
+}
 
 @end

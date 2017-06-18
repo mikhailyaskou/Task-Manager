@@ -12,6 +12,8 @@
 @class YMATask;
 
 @interface YMATaskService : NSObject
+- (instancetype)initWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 
 @property (nonatomic, strong) NSArray *taskLists;
 
@@ -23,5 +25,8 @@
 - (void) removeTaskFromListIndex:(NSUInteger)listIndex taskIndex:(NSUInteger)taskIndex;
 - (void)filterAllTaskListOnTodayTask;
 - (NSArray *)allTasks;
+- (YMATaskList *)getAllTasksOnToday;
+- (void)removeTaskFromAllList:(YMATask *)task;
+- (void)incomingTask:(YMATask *)task intexOfList:(NSUInteger)listIndex;
 
 @end

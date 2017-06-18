@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface YMATask : NSObject
+- (instancetype)initWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 
 @property (nonatomic, assign) NSNumber *idTask;
 @property (nonatomic, copy) NSString *name;

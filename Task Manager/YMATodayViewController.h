@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "YMAAddTaskViewController.h"
 
-@interface YMATodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, YMAAddTaskViewControllerDelegate>
+@interface YMATodayViewController : UIViewController
 
 @end

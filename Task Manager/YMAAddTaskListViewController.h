@@ -7,16 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@class YMATaskList;
-
-@protocol YMAAddTaskListViewControllerDelegate <NSObject>
-
-- (void)incomingTaskList:(id)Sender taskList:(YMATaskList *)taskList;
-
-@end
 
 @interface YMAAddTaskListViewController : UITableViewController
 
-@property (nonatomic, weak) id <YMAAddTaskListViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITextField *projectNameLabel;
 
 @end
