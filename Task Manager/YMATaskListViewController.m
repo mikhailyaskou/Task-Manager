@@ -25,6 +25,7 @@
    self.taskService = [YMATaskService sharedInstance];
   self.tableView.dataSource = self;
   self.navigationItem.leftBarButtonItem = self.editButtonItem;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -34,18 +35,37 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return self.taskService.taskLists.count;
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return 1;
+    }
+    else {
+        
+        return self.taskService.taskLists.count;
+    }
+}
 
-  UITableViewCell *taskCell = [tableView dequeueReusableCellWithIdentifier:@"YMATaskListCell"];
-  YMATaskList *taskList = self.taskService.taskLists[(NSUInteger) indexPath.row];
-  taskCell.textLabel.text = taskList.name;
-  NSInteger numberOfActiveTasks = taskList.tasks.count; // active
-  taskCell.detailTextLabel.text = [NSString stringWithFormat:@"(%li)", (long)numberOfActiveTasks];
-  return taskCell;
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *taskCell = [UITableViewCell new];
+    
+    if (indexPath.section == 1 && indexPath.row == 0) {
+        taskCell  = [tableView dequeueReusableCellWithIdentifier:@"YMAAddProjectCellIdentifier"];
+    }
+    else
+    {
+        taskCell = [tableView dequeueReusableCellWithIdentifier:@"YMATaskListCell"];
+        YMATaskList *taskList = self.taskService.taskLists[(NSUInteger) indexPath.row];
+        taskCell.textLabel.text = taskList.name;
+        NSInteger numberOfActiveTasks = taskList.tasks.count; // active
+        taskCell.detailTextLabel.text = [NSString stringWithFormat:@"(%li)", (long)numberOfActiveTasks];
+    }    
+    return taskCell;
 }
 
 

@@ -74,6 +74,7 @@
 
 - (void)addTasks:(YMATaskList *)tasks {
     [self.privateTaskLists addObject:tasks];
+    [self saveTasks];
 }
 
 - (void)removeTasks:(YMATaskList *)tasks {

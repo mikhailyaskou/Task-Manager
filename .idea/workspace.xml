@@ -2,32 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09f841e0-2dd4-4edd-b67e-8f7f940ee22e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/YMAToDoListViewController.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/YMAToDoListViewController.m" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Task Manager/YMADateSelectorViewController.xib" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Task Manager.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/Task Manager/Base.lproj/Main.storyboard" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMAAddTaskListViewController.h" afterPath="$PROJECT_DIR$/Task Manager/YMAAddTaskListViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMAAddTaskListViewController.m" afterPath="$PROJECT_DIR$/Task Manager/YMAAddTaskListViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMADateSelectorViewController.h" afterPath="$PROJECT_DIR$/Task Manager/YMADateSelectorViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMADateSelectorViewController.m" afterPath="$PROJECT_DIR$/Task Manager/YMADateSelectorViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMAInboxViewController.m" afterPath="$PROJECT_DIR$/Task Manager/YMAInboxViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMASearchViewController.m" afterPath="$PROJECT_DIR$/Task Manager/YMASearchViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMATaskListViewController.h" afterPath="$PROJECT_DIR$/Task Manager/YMATaskListViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMATaskListViewController.m" afterPath="$PROJECT_DIR$/Task Manager/YMATaskListViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMATaskTableViewCell.xib" afterPath="$PROJECT_DIR$/Task Manager/YMATaskTableViewCell.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMATodayViewController.h" afterPath="$PROJECT_DIR$/Task Manager/YMATodayViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMATodayViewController.m" afterPath="$PROJECT_DIR$/Task Manager/YMATodayViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMAAddTaskViewController.h" afterPath="$PROJECT_DIR$/YMAAddTaskViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMAAddTaskViewController.m" afterPath="$PROJECT_DIR$/YMAAddTaskViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMADateHelper.m" afterPath="$PROJECT_DIR$/YMADateHelper.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMATask.h" afterPath="$PROJECT_DIR$/YMATask.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMATask.m" afterPath="$PROJECT_DIR$/YMATask.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMATaskList.h" afterPath="$PROJECT_DIR$/YMATaskList.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMATaskList.m" afterPath="$PROJECT_DIR$/YMATaskList.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMATaskService.h" afterPath="$PROJECT_DIR$/YMATaskService.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMATaskService.m" afterPath="$PROJECT_DIR$/YMATaskService.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMAToDoListViewController.m" afterPath="$PROJECT_DIR$/YMAToDoListViewController.m" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,8 +25,8 @@
       <file leaf-file-name="YMAInboxViewController.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Task Manager/YMAInboxViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="118" column="50" lean-forward="true" selection-start-line="113" selection-start-column="2" selection-end-line="118" selection-end-column="50" />
+            <state relative-caret-position="160">
+              <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="22" />
               <folding>
                 <element signature="e#157#191#0" expanded="true" />
               </folding>
@@ -54,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="YMASearchViewController.m" pinned="false" current-in-tab="true">
+      <file leaf-file-name="YMASearchViewController.m" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Task Manager/YMASearchViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="984">
-              <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+            <state relative-caret-position="-469">
+              <caret line="45" column="121" lean-forward="false" selection-start-line="45" selection-start-column="121" selection-end-line="45" selection-end-column="121" />
               <folding>
                 <element signature="e#158#193#0" expanded="true" />
               </folding>
@@ -66,24 +46,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="YMAAddTaskViewController.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/YMAAddTaskViewController.h">
+      <file leaf-file-name="YMATodayViewController.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Task Manager/YMATodayViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="59" lean-forward="false" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
+            <state relative-caret-position="-333">
+              <caret line="119" column="30" lean-forward="false" selection-start-line="119" selection-start-column="30" selection-end-line="119" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="YMATaskListViewController.m" pinned="false" current-in-tab="false">
+      <file leaf-file-name="YMATaskListViewController.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Task Manager/YMATaskListViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
-              <caret line="66" column="1" lean-forward="false" selection-start-line="66" selection-start-column="1" selection-end-line="66" selection-end-column="1" />
-              <folding>
-                <element signature="e#160#197#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="393">
+              <caret line="66" column="9" lean-forward="false" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -95,6 +73,21 @@
               <caret line="29" column="33" lean-forward="false" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
               <folding>
                 <element signature="e#160#197#0" expanded="true" />
+                <marker date="1497827385000" expanded="true" signature="1573:1590" ph="{...}" />
+                <marker date="1497827385000" expanded="true" signature="1681:1719" ph="{...}" />
+                <marker date="1497827385000" expanded="true" signature="1824:2161" ph="{...}" />
+                <marker date="1497827385000" expanded="true" signature="2255:2600" ph="{...}" />
+                <marker date="1497827385000" expanded="true" signature="2729:4289" ph="{...}" />
+                <marker date="1497827385000" expanded="true" signature="3255:4155" ph="^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath){...}" />
+                <marker date="1497827385000" expanded="true" signature="3818:4010" ph="^(UIAlertAction * _Nonnull action){...}" />
+                <marker date="1497827385000" expanded="true" signature="3943:3955" ph="@[...]" />
+                <marker date="1497827385000" expanded="true" signature="4204:4219" ph="@[...]" />
+                <marker date="1497827385000" expanded="true" signature="4253:4280" ph="@[...]" />
+                <marker date="1497827385000" expanded="true" signature="4292:4540" ph="/.../" />
+                <marker date="1497827385000" expanded="true" signature="4542:5153" ph="/.../" />
+                <marker date="1497827385000" expanded="true" signature="5155:5345" ph="/.../" />
+                <marker date="1497827385000" expanded="true" signature="5347:5593" ph="/.../" />
+                <marker date="1497827385000" expanded="true" signature="5595:5939" ph="/.../" />
               </folding>
             </state>
           </provider>
@@ -104,8 +97,19 @@
         <entry file="file://$PROJECT_DIR$/YMATaskService.m">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="311">
-              <caret line="120" column="21" lean-forward="true" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
-              <folding />
+              <caret line="121" column="21" lean-forward="true" selection-start-line="121" selection-start-column="21" selection-end-line="121" selection-end-column="21" />
+              <folding>
+                <marker date="1497831358000" expanded="true" signature="1793:1863" ph="{...}" />
+                <marker date="1497831358000" expanded="true" signature="1906:1957" ph="{...}" />
+                <marker date="1497831358000" expanded="true" signature="2010:2054" ph="{...}" />
+                <marker date="1497831358000" expanded="true" signature="2148:2264" ph="{...}" />
+                <marker date="1497831358000" expanded="true" signature="2357:2465" ph="{...}" />
+                <marker date="1497831358000" expanded="true" signature="2504:2634" ph="{...}" />
+                <marker date="1497831358000" expanded="true" signature="2672:2835" ph="{...}" />
+                <marker date="1497831358000" expanded="true" signature="2859:2938" ph="{...}" />
+                <marker date="1497831358000" expanded="true" signature="3027:3166" ph="{...}" />
+                <marker date="1497831358000" expanded="true" signature="3214:3420" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -113,7 +117,7 @@
       <file leaf-file-name="YMAInboxViewController.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Task Manager/YMAInboxViewController.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
+            <state relative-caret-position="195">
               <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
@@ -192,9 +196,9 @@
         <option value="$PROJECT_DIR$/Task Manager/YMAAddTaskListViewController.h" />
         <option value="$PROJECT_DIR$/Task Manager/YMAAddTaskListViewController.m" />
         <option value="$PROJECT_DIR$/YMAToDoListViewController.h" />
-        <option value="$PROJECT_DIR$/Task Manager/YMATaskListViewController.m" />
         <option value="$PROJECT_DIR$/YMAToDoListViewController.m" />
         <option value="$PROJECT_DIR$/Task Manager/YMASearchViewController.m" />
+        <option value="$PROJECT_DIR$/Task Manager/YMATaskListViewController.m" />
       </list>
     </option>
   </component>
@@ -474,7 +478,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67352000" />
+    <option name="totallyTimeSpent" value="70049000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -487,7 +491,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1366" height="678" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -527,9 +530,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#160#197#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -721,29 +722,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Task Manager/YMATodayViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="119" column="30" lean-forward="false" selection-start-line="119" selection-start-column="30" selection-end-line="119" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Task Manager/main.m">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Task Manager/YMATaskListViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="66" column="1" lean-forward="false" selection-start-line="66" selection-start-column="1" selection-end-line="66" selection-end-column="1" />
-          <folding>
-            <element signature="e#160#197#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -781,20 +763,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Task Manager/YMAInboxViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/YMAToDoListViewController.m">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
           <caret line="29" column="33" lean-forward="false" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
           <folding>
             <element signature="e#160#197#0" expanded="true" />
+            <marker date="1497827385000" expanded="true" signature="1573:1590" ph="{...}" />
+            <marker date="1497827385000" expanded="true" signature="1681:1719" ph="{...}" />
+            <marker date="1497827385000" expanded="true" signature="1824:2161" ph="{...}" />
+            <marker date="1497827385000" expanded="true" signature="2255:2600" ph="{...}" />
+            <marker date="1497827385000" expanded="true" signature="2729:4289" ph="{...}" />
+            <marker date="1497827385000" expanded="true" signature="3255:4155" ph="^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath){...}" />
+            <marker date="1497827385000" expanded="true" signature="3818:4010" ph="^(UIAlertAction * _Nonnull action){...}" />
+            <marker date="1497827385000" expanded="true" signature="3943:3955" ph="@[...]" />
+            <marker date="1497827385000" expanded="true" signature="4204:4219" ph="@[...]" />
+            <marker date="1497827385000" expanded="true" signature="4253:4280" ph="@[...]" />
+            <marker date="1497827385000" expanded="true" signature="4292:4540" ph="/.../" />
+            <marker date="1497827385000" expanded="true" signature="4542:5153" ph="/.../" />
+            <marker date="1497827385000" expanded="true" signature="5155:5345" ph="/.../" />
+            <marker date="1497827385000" expanded="true" signature="5347:5593" ph="/.../" />
+            <marker date="1497827385000" expanded="true" signature="5595:5939" ph="/.../" />
           </folding>
         </state>
       </provider>
@@ -802,28 +791,63 @@
     <entry file="file://$PROJECT_DIR$/YMATaskService.m">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
-          <caret line="120" column="21" lean-forward="true" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
+          <caret line="121" column="21" lean-forward="true" selection-start-line="121" selection-start-column="21" selection-end-line="121" selection-end-column="21" />
+          <folding>
+            <marker date="1497831358000" expanded="true" signature="1793:1863" ph="{...}" />
+            <marker date="1497831358000" expanded="true" signature="1906:1957" ph="{...}" />
+            <marker date="1497831358000" expanded="true" signature="2010:2054" ph="{...}" />
+            <marker date="1497831358000" expanded="true" signature="2148:2264" ph="{...}" />
+            <marker date="1497831358000" expanded="true" signature="2357:2465" ph="{...}" />
+            <marker date="1497831358000" expanded="true" signature="2504:2634" ph="{...}" />
+            <marker date="1497831358000" expanded="true" signature="2672:2835" ph="{...}" />
+            <marker date="1497831358000" expanded="true" signature="2859:2938" ph="{...}" />
+            <marker date="1497831358000" expanded="true" signature="3027:3166" ph="{...}" />
+            <marker date="1497831358000" expanded="true" signature="3214:3420" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Task Manager/YMAInboxViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Task Manager/YMAInboxViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="118" column="50" lean-forward="true" selection-start-line="113" selection-start-column="2" selection-end-line="118" selection-end-column="50" />
+        <state relative-caret-position="160">
+          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="22" />
           <folding>
             <element signature="e#157#191#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Task Manager/YMATodayViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-333">
+          <caret line="119" column="30" lean-forward="false" selection-start-line="119" selection-start-column="30" selection-end-line="119" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Task Manager/YMASearchViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="984">
-          <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        <state relative-caret-position="-469">
+          <caret line="45" column="121" lean-forward="false" selection-start-line="45" selection-start-column="121" selection-end-line="45" selection-end-column="121" />
           <folding>
             <element signature="e#158#193#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Task Manager/YMATaskListViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="66" column="9" lean-forward="false" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>

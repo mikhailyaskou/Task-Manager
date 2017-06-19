@@ -13,16 +13,15 @@
 #import "YMADateHelper.h"
 #import "YMAAddTaskViewController.h"
 
-@interface YMASearchViewController () <UISearchResultsUpdating, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, YMAAddTaskViewControllerDelegate>
+@interface YMASearchViewController () <UISearchResultsUpdating, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *noResultLabel;
 @property (nonatomic, strong) UISearchController *searchController;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSArray *allTasks;
 @property (nonatomic, strong) NSArray *resultOfSearch;
 @property (nonatomic, assign, getter=isShowOnlyCompleted) BOOL showOnlyCompleted;
-
-
 
 @end
 
@@ -35,21 +34,39 @@
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
     self.searchController.searchBar.delegate = self;
-    [self.searchController.searchBar sizeToFit];
     self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.definesPresentationContext = YES;
     self.searchController.searchBar.scopeButtonTitles = @[@"Active tasks", @"Completed"];
     [self.searchController becomeFirstResponder];
-    
 
     UINib *cellNib = [UINib nibWithNibName:@"YMATaskTableViewCell" bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"YMATaskTableViewCell"];
 
     self.tableView.tableHeaderView = self.searchController.searchBar;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     YMATaskService *taskService = [YMATaskService sharedInstance];
     self.allTasks = [taskService allTasks];
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    NSInteger numOfSections = 0;
+    if (self.resultOfSearch.count>0)
+    {
+        numOfSections                 = 1;
+        self.noResultLabel.hidden = YES;
+        tableView.scrollEnabled = YES;
+    }
+    else
+    {
+        self.noResultLabel.hidden = NO;
+        self.tableView.backgroundView = self.noResultLabel;
+        tableView.scrollEnabled = NO;
+    }
+    return numOfSections;
 }
 
 -(void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
@@ -94,14 +111,15 @@
 
     YMAAddTaskViewController *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
     editTaskVC.listIndex = (NSUInteger) indexPath.section;
-    editTaskVC.delegate = self;
     editTaskVC.task = self.resultOfSearch[(NSUInteger) indexPath.row];
-    self.searchController.active = NO;
     [self showViewController:editTaskVC sender:nil];
 }
 
-- (void)incomingTask:(id)Sender task:(YMATask *)task listIndex:(NSUInteger)index {
-    //empty
+#pragma mark - Actions
+
+-(void)dismissKeyboard
+{
+    [self.searchController.searchBar resignFirstResponder];
 }
 
 @end
