@@ -96,6 +96,10 @@
   }
 }
 
+- (void)insertTask:(YMATask *)task atIndex:(NSUInteger)index {
+    [self.privateTasks insertObject:task atIndex:index];
+}
+
 - (void)filterUsingPredicate:(NSPredicate *)predicate {
   [self.privateTasks filterUsingPredicate:predicate];
 }

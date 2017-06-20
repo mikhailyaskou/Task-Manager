@@ -8,7 +8,6 @@
 
 #import "YMADateHelper.h"
 
-//static NSString * const YMADateFormat = @"mm:HH/dd.MM.yyyy";
 static NSString * const YMADateFormat = @"dd.MM.yyyy";
 
 @implementation YMADateHelper

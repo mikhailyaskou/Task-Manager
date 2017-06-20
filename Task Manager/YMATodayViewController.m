@@ -25,7 +25,6 @@
 
 @implementation YMATodayViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
@@ -62,7 +61,6 @@
     [self updateUi];
 
 }
-
 
 //title for section
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

@@ -28,5 +28,7 @@
 - (YMATaskList *)getAllTasksOnToday;
 - (void)removeTaskFromAllList:(YMATask *)task;
 - (void)incomingTask:(YMATask *)task intexOfList:(NSUInteger)listIndex;
+- (void)removeTasks:(YMATaskList *)tasks;
+- (void)saveTasks;
 
 @end

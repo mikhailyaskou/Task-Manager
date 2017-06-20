@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *noResultLabel;
 @property (nonatomic, strong) UISearchController *searchController;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @property (nonatomic, strong) NSArray *allTasks;
 @property (nonatomic, strong) NSArray *resultOfSearch;
 @property (nonatomic, assign, getter=isShowOnlyCompleted) BOOL showOnlyCompleted;
@@ -30,7 +29,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
     self.searchController.searchBar.delegate = self;
@@ -52,11 +50,12 @@
     self.allTasks = [taskService allTasks];
 }
 
+//show - NO RESULT
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     NSInteger numOfSections = 0;
     if (self.resultOfSearch.count>0)
     {
-        numOfSections                 = 1;
+        numOfSections = 1;
         self.noResultLabel.hidden = YES;
         tableView.scrollEnabled = YES;
     }
@@ -74,21 +73,17 @@
 }
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-
     self.showOnlyCompleted = [@(self.searchController.searchBar.selectedScopeButtonIndex) boolValue];
     NSPredicate *predicate;
-
     if (self.isShowOnlyCompleted) {
         predicate = [NSPredicate predicateWithFormat:@"self.name contains[cd] %@ and self.isTaskFinished == YES", self.searchController.searchBar.text];
     }
-    else{
+    else
+    {
         predicate = [NSPredicate predicateWithFormat:@"self.name contains[cd] %@", self.searchController.searchBar.text];
     }
-
     self.resultOfSearch = [NSArray arrayWithArray:[self.allTasks filteredArrayUsingPredicate:predicate]];
-
     NSLog(@"bool is: %@", self.showOnlyCompleted ? @"YES" : @"NO");
-
     [self.tableView reloadData];
 }
 
@@ -98,9 +93,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YMATaskTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"YMATaskTableViewCell"];
-
     YMATask *task = self.resultOfSearch[(NSUInteger) indexPath.row];
-
     cell.nameLabel.text = task.name;
     cell.noteLabel.text = task.note;
     cell.dateLabel.text = [YMADateHelper stringFromDate:task.startDate];
@@ -108,7 +101,6 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
     YMAAddTaskViewController *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
     editTaskVC.listIndex = (NSUInteger) indexPath.section;
     editTaskVC.task = self.resultOfSearch[(NSUInteger) indexPath.row];

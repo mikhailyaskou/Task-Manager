@@ -25,6 +25,12 @@
     dispatch_once(&onceToken, ^{
       sharedInstance = [YMATaskService new];
       [sharedInstance loadData];
+        //to prevent crash if "[NSKeyedUnarchiver initForReadingWithData:]: data is NULL"
+        if (sharedInstance.privateTaskLists.count == 0){
+            YMATaskList *tasks = [YMATaskList new];
+            tasks.name = @"Inbox";
+            [sharedInstance.privateTaskLists addObject:tasks];
+        }
     });
     return sharedInstance;
 }
@@ -79,6 +85,7 @@
 
 - (void)removeTasks:(YMATaskList *)tasks {
     [self.privateTaskLists removeObject:tasks];
+    [self saveTasks];
 }
 
 - (YMATaskList *)taskListAtIndex:(NSUInteger)index {
