@@ -16,6 +16,9 @@
 @end
 
 @implementation YMATaskList
+
+#pragma mark  - Coder
+
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super init];
     if (self) {
@@ -24,33 +27,14 @@
         self.creationDate = [coder decodeObjectForKey:@"self.creationDate"];
         self.privateTasks = [coder decodeObjectForKey:@"self.privateTasks"];
     }
-
     return self;
 }
-
-#pragma mark  - Coder
 
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.idTaskList forKey:@"self.idTaskList"];
     [coder encodeObject:self.name forKey:@"self.name"];
     [coder encodeObject:self.creationDate forKey:@"self.creationDate"];
     [coder encodeObject:self.privateTasks forKey:@"self.privateTasks"];
-}
-
-- (instancetype)initWithIdTaskList:(NSNumber *)idTaskList name:(NSString *)name creationDate:(NSDate *)creationDate tasks:(NSArray *)tasks {
-    self = [super init];
-    if (self) {
-        _idTaskList = idTaskList;
-        _name = name;
-        _creationDate = creationDate;
-        _privateTasks = [tasks mutableCopy];
-    }
-
-    return self;
-}
-
-+ (instancetype)listWithIdTaskList:(NSNumber *)idTaskList name:(NSString *)name creationDate:(NSDate *)creationDate tasks:(NSArray *)tasks {
-    return [[self alloc] initWithIdTaskList:idTaskList name:name creationDate:creationDate tasks:tasks];
 }
 
 //lazy getter
@@ -96,6 +80,10 @@
 
 - (void)insertTask:(YMATask *)task atIndex:(NSUInteger)index {
     [self.privateTasks insertObject:task atIndex:index];
+}
+
+- (void)sortUsingDescriptors:(NSSortDescriptor *)sortDescriptor {
+    [self.privateTasks sortUsingDescriptors:sortDescriptor];
 }
 
 - (void)filterTaskToday {

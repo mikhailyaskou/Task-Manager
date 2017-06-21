@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "YMAAddTaskViewController.h"
+
 @class YMATaskService;
 
 @interface YMAInboxViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, YMAAddTaskViewControllerDelegate>
 
-@property(nonatomic, strong) YMATaskService *taskService;
-
 @end
+static const NSInteger indexForInboxSection = 0;

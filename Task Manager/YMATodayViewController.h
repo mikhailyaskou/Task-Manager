@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "YMAAddTaskViewController.h"
 
+static const NSInteger indexForInboxSection = 0;
+
 @interface YMATodayViewController : UIViewController
 
 @end

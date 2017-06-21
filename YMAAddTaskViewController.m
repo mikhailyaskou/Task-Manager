@@ -60,14 +60,14 @@
 }
 
 - (IBAction)unwindToEditViewController:(UIStoryboardSegue *)unwindSegue {
-    if ([unwindSegue.identifier isEqualToString:@"DateSelectorDoneTappedIdentifier"]) {
+    if ([unwindSegue.identifier isEqualToString:DateSelectorDoneTappedIdentifier]) {
         YMADateSelectorViewController *dateSelectorViewController = unwindSegue.sourceViewController;
         [self setDate:dateSelectorViewController.date];
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender {
-    if ([[segue identifier] isEqualToString:@"DateSelectorTappedSegueIdentefier"]) {
+    if ([[segue identifier] isEqualToString:DateSelectorTappedSegueIdentefier]) {
         YMADateSelectorViewController *dateSelectorViewController = [segue destinationViewController];
         dateSelectorViewController.date = self.date;
     }
@@ -91,34 +91,34 @@
         UIAlertController *actionSheet =
             [UIAlertController alertControllerWithTitle:@"Select Priority" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(
+        [actionSheet addAction:[UIAlertAction actionWithTitle:PriorityCancel style:UIAlertActionStyleCancel handler:^(
             UIAlertAction *action) {
           [self dismissViewControllerAnimated:YES completion:^{
           }];
         }]];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleDefault handler:^(
-            UIAlertAction *action) {
-          self.priorityLabel.text = action.title;
-          [self dismissViewControllerAnimated:YES completion:^{
-          }];
-        }]];
-
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Low" style:UIAlertActionStyleDefault handler:^(
+        [actionSheet addAction:[UIAlertAction actionWithTitle:PriorityNone style:UIAlertActionStyleDefault handler:^(
             UIAlertAction *action) {
           self.priorityLabel.text = action.title;
           [self dismissViewControllerAnimated:YES completion:^{
           }];
         }]];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Medium" style:UIAlertActionStyleDefault handler:^(
+        [actionSheet addAction:[UIAlertAction actionWithTitle:PriorityLow style:UIAlertActionStyleDefault handler:^(
             UIAlertAction *action) {
           self.priorityLabel.text = action.title;
           [self dismissViewControllerAnimated:YES completion:^{
           }];
         }]];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"High" style:UIAlertActionStyleDestructive handler:^(
+        [actionSheet addAction:[UIAlertAction actionWithTitle:PriorityMedium style:UIAlertActionStyleDefault handler:^(
+            UIAlertAction *action) {
+          self.priorityLabel.text = action.title;
+          [self dismissViewControllerAnimated:YES completion:^{
+          }];
+        }]];
+
+        [actionSheet addAction:[UIAlertAction actionWithTitle:PriorityHigh style:UIAlertActionStyleDestructive handler:^(
             UIAlertAction *action) {
           self.priorityLabel.text = action.title;
           [self dismissViewControllerAnimated:YES completion:^{

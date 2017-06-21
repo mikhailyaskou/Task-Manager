@@ -12,6 +12,7 @@
 #import "YMATaskTableViewCell.h"
 #import "YMATask.h"
 #import "YMADateHelper.h"
+#import "YMAConstants.h"
 
 @interface YMATodayViewController () <UITableViewDataSource, UITableViewDelegate, YMAAddTaskViewControllerDelegate>
 
@@ -24,12 +25,14 @@
 
 @implementation YMATodayViewController
 
+#pragma mark - View lifetime
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    UINib *cellNib = [UINib nibWithNibName:@"YMATaskTableViewCell" bundle:nil];
-    [self.tableView registerNib:cellNib forCellReuseIdentifier:@"YMATaskTableViewCell"];
+    UINib *cellNib = [UINib nibWithNibName:YMATaskTableViewCellNibName bundle:nil];
+    [self.tableView registerNib:cellNib forCellReuseIdentifier:YMATaskTableViewCellNibName];
 }
 
 - (void)updateUi {
@@ -79,7 +82,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    YMATaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YMATaskTableViewCell"];
+    YMATaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:YMATaskTableViewCellNibName];
     YMATaskList *taskList = self.tasksForTableView[(NSUInteger) indexPath.section];
     YMATask *task = taskList.tasks[(NSUInteger) indexPath.row];
     cell.nameLabel.text = task.name;
@@ -97,7 +100,6 @@
         [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Done" handler:^(
             UITableViewRowAction *_Nonnull action,
             NSIndexPath *_Nonnull indexPath) {
-
           [task finishTask];
           [self updateUi];
           [self.tableView setEditing:NO];
@@ -141,7 +143,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YMAAddTaskViewController
-        *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+        *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:YMAAddTaskViewControllerIdentifier];
     editTaskVC.listIndex = (NSUInteger) indexPath.section;
     editTaskVC.delegate = self;
     YMATaskList *tasks = self.tasksForTableView[(NSUInteger) indexPath.section];
@@ -151,10 +153,10 @@
 
 - (IBAction)addTapped:(id)sender {
     YMAAddTaskViewController
-        *addTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+        *addTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:YMAAddTaskViewControllerIdentifier];
     addTaskVC.delegate = self;
     //0 is default category - Inbox
-    addTaskVC.listIndex = 0;
+    addTaskVC.listIndex = indexForInboxSection;
     [self showViewController:addTaskVC sender:nil];
 }
 

@@ -12,19 +12,21 @@
 #import "YMATask.h"
 #import "YMADateHelper.h"
 #import "YMAAddTaskViewController.h"
+#import "YMAConstants.h"
 
 @interface YMASearchViewController () <UISearchResultsUpdating, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property(weak, nonatomic) IBOutlet UILabel *noResultLabel;
 @property(nonatomic, strong) UISearchController *searchController;
 @property(weak, nonatomic) IBOutlet UITableView *tableView;
-@property(nonatomic, strong) NSArray *allTasks;
 @property(nonatomic, strong) NSArray *resultOfSearch;
 @property(nonatomic, assign, getter=isShowOnlyCompleted) BOOL showOnlyCompleted;
 
 @end
 
 @implementation YMASearchViewController
+
+#pragma mark - View lifetime
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,8 +38,8 @@
     self.searchController.searchBar.scopeButtonTitles = @[@"Active tasks", @"Completed"];
     [self.searchController becomeFirstResponder];
 
-    UINib *cellNib = [UINib nibWithNibName:@"YMATaskTableViewCell" bundle:nil];
-    [self.tableView registerNib:cellNib forCellReuseIdentifier:@"YMATaskTableViewCell"];
+    UINib *cellNib = [UINib nibWithNibName:YMATaskTableViewCellNibName bundle:nil];
+    [self.tableView registerNib:cellNib forCellReuseIdentifier:YMATaskTableViewCellNibName];
 
     self.tableView.tableHeaderView = self.searchController.searchBar;
     UITapGestureRecognizer
@@ -47,9 +49,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    YMATaskService *taskService = [YMATaskService sharedInstance];
-    self.allTasks = [taskService allTasks];
 }
+
+#pragma mark UI
 
 //show - NO RESULT
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -65,6 +67,7 @@
     }
     return numOfSections;
 }
+#pragma mark - Search
 
 - (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
     [self updateSearchResultsForSearchController:self.searchController];
@@ -78,19 +81,20 @@
             [NSPredicate predicateWithFormat:@"self.name contains[cd] %@ and self.isTaskFinished == YES", self.searchController.searchBar.text];
     } else {
         predicate =
-            [NSPredicate predicateWithFormat:@"self.name contains[cd] %@", self.searchController.searchBar.text];
+            [NSPredicate predicateWithFormat:@"self.name contains[cd] %@ and self.isTaskFinished == NO", self.searchController.searchBar.text];
     }
-    self.resultOfSearch = [NSArray arrayWithArray:[self.allTasks filteredArrayUsingPredicate:predicate]];
-    NSLog(@"bool is: %@", self.showOnlyCompleted ? @"YES" : @"NO");
+    self.resultOfSearch = [NSArray arrayWithArray:[[YMATaskService.sharedInstance allTasks] filteredArrayUsingPredicate:predicate]];
     [self.tableView reloadData];
 }
+
+#pragma mark TableView Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.resultOfSearch.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    YMATaskTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"YMATaskTableViewCell"];
+    YMATaskTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:YMATaskTableViewCellNibName];
     YMATask *task = self.resultOfSearch[(NSUInteger) indexPath.row];
     cell.nameLabel.text = task.name;
     cell.noteLabel.text = task.note;
@@ -100,7 +104,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YMAAddTaskViewController
-        *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+        *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:YMATaskTableViewCellIdentifier];
     editTaskVC.listIndex = (NSUInteger) indexPath.section;
     editTaskVC.task = self.resultOfSearch[(NSUInteger) indexPath.row];
     [self showViewController:editTaskVC sender:nil];

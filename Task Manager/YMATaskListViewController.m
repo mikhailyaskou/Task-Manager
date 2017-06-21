@@ -20,6 +20,8 @@
 
 @implementation YMATaskListViewController
 
+#pragma mark - View lifetime
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.taskService = [YMATaskService sharedInstance];
@@ -31,10 +33,10 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - UITableViewDataSource
+#pragma mark - TableView Delefate;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return numberOfSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -47,10 +49,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *taskCell;
-    if (indexPath.section == 1 && indexPath.row == 0) {
-        taskCell = [tableView dequeueReusableCellWithIdentifier:@"YMAAddProjectCellIdentifier"];
+    if (indexPath.section == indexSectionForAddRow && indexPath.row == indexRowForAddRow) {
+        taskCell = [tableView dequeueReusableCellWithIdentifier:YMAAddProjectCellIdentifier];
     } else {
-        taskCell = [tableView dequeueReusableCellWithIdentifier:@"YMATaskListCell"];
+        taskCell = [tableView dequeueReusableCellWithIdentifier:YMATaskListCellIdetifier];
         YMATaskList *taskList = self.taskService.taskLists[(NSUInteger) indexPath.row];
         taskCell.textLabel.text = taskList.name;
         NSInteger numberOfActiveTasks = taskList.tasks.count; // active
@@ -60,7 +62,7 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+    if (indexPath.row == indexRowForAddRow) {
         return UITableViewCellEditingStyleNone;
     }
     return UITableViewCellEditingStyleDelete;
@@ -127,7 +129,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender {
-    if ([segue.identifier isEqualToString:@"ShowProjectTasksIdentifier"]) {
+    if ([segue.identifier isEqualToString:ShowProjectTasksIdentifier]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         YMAToDoListViewController *toDoListViewController = [segue destinationViewController];
         toDoListViewController.tasks = self.taskService.taskLists[(NSUInteger) indexPath.row];
@@ -135,7 +137,7 @@
 }
 
 - (IBAction)unwindToEditViewController:(UIStoryboardSegue *)unwindSegue {
-    if ([unwindSegue.identifier isEqualToString:@"DoneTappedUnwindSegueIdentifier"]) {
+    if ([unwindSegue.identifier isEqualToString:DoneTappedUnwindSegueIdentifier]) {
         YMAAddTaskListViewController *taskListViewController = [unwindSegue sourceViewController];
         YMATaskList *newTaskList = [YMATaskList new];
         newTaskList.idTaskList = @(arc4random_uniform(100000));

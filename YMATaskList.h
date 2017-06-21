@@ -25,6 +25,7 @@
 - (void)incomingTask:(YMATask *)task;
 - (void)filterTaskToday;
 - (void)insertTask:(YMATask *)task atIndex:(NSUInteger)index;
+- (void)sortUsingDescriptors:(NSSortDescriptor *)sortDescriptor;
 
 
 @end

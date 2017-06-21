@@ -13,19 +13,25 @@
 #import "YMADateHelper.h"
 #import "YMAAddTaskViewController.h"
 #import "YMATaskService.h"
+#import "YMAConstants.h"
 
 @interface YMAToDoListViewController () <YMAAddTaskViewControllerDelegate>
+
+@property(assign, nonatomic, getter=isAscending) BOOL ascending;
 
 @end
 
 @implementation YMAToDoListViewController
 
+#pragma mark - View lifetime
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
-    UINib *cellNib = [UINib nibWithNibName:@"YMATaskTableViewCell" bundle:nil];
-    [self.tableView registerNib:cellNib forCellReuseIdentifier:@"YMATaskTableViewCell"];
+    UINib *cellNib = [UINib nibWithNibName:YMATaskTableViewCellNibName bundle:nil];
+    [self.tableView registerNib:cellNib forCellReuseIdentifier:YMATaskTableViewCellNibName];
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.ascending = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -35,6 +41,13 @@
 }
 
 #pragma mark - Actions
+- (IBAction)sortTable:(id)sender {
+    self.ascending = !self.ascending;
+    NSSortDescriptor
+        *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:nameFieldName ascending:self.isAscending];
+    [self.tasks sortUsingDescriptors:@[sortDescriptor]];
+    [self.tableView reloadData];
+}
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
@@ -43,7 +56,7 @@
 
 - (IBAction)addTapped:(id)sender {
     YMAAddTaskViewController
-        *addTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+        *addTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:YMAAddTaskViewControllerIdentifier];
     addTaskVC.delegate = self;
     [self showViewController:addTaskVC sender:nil];
 }
@@ -55,7 +68,7 @@
     [YMATaskService.sharedInstance saveTasks];
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table view delegate
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
@@ -76,7 +89,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    YMATaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YMATaskTableViewCell"];
+    YMATaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:YMATaskTableViewCellNibName];
     YMATask *task = self.tasks.tasks[(NSUInteger) indexPath.row];
     cell.nameLabel.text = task.name;
     cell.noteLabel.text = task.note;
@@ -86,7 +99,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YMAAddTaskViewController
-        *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+        *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:YMAAddTaskViewControllerIdentifier];
     editTaskVC.listIndex = (NSUInteger) indexPath.section;
     editTaskVC.delegate = self;
     editTaskVC.task = self.tasks.tasks[(NSUInteger) indexPath.row];

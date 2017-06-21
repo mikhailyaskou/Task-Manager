@@ -12,12 +12,13 @@
 #import "YMATaskList.h"
 #import "YMATaskTableViewCell.h"
 #import "YMADateHelper.h"
+#import "YMAConstants.h"
 
 @interface YMAInboxViewController ()
 
 @property(weak, nonatomic) IBOutlet UITableView *tableView;
 @property(weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-//@property (strong, nonatomic) NSMutableArray *allTasks;
+@property(nonatomic, strong) YMATaskService *taskService;
 @property(strong, nonatomic) NSMutableArray *tasksForTableView;
 @property(assign, nonatomic, getter=isAscending) BOOL ascending;
 
@@ -25,12 +26,13 @@
 
 @implementation YMAInboxViewController
 
+#pragma mark - View lifetime
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.taskService = [YMATaskService sharedInstance];
-    self.tableView.dataSource = self;
-    UINib *cellNib = [UINib nibWithNibName:@"YMATaskTableViewCell" bundle:nil];
-    [self.tableView registerNib:cellNib forCellReuseIdentifier:@"YMATaskTableViewCell"];
+    UINib *cellNib = [UINib nibWithNibName:YMATaskTableViewCellNibName bundle:nil];
+    [self.tableView registerNib:cellNib forCellReuseIdentifier:YMATaskTableViewCellNibName];
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.ascending = YES;
 }
@@ -42,46 +44,54 @@
 
 - (IBAction)segmentControllerTapped:(UISegmentedControl *)sender {
 
-    if (self.segmentedControl.selectedSegmentIndex == 0) {
-        //sort array
-        NSMutableArray *allTasks = [[self.taskService allTasks] mutableCopy];
-        NSSortDescriptor
-            *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDate" ascending:self.isAscending];
-        [allTasks sortUsingDescriptors:@[sortDescriptor]];
+    if ([YMATaskService.sharedInstance allTasks].count >0) {
 
-        self.tasksForTableView = [NSMutableArray new];
-        int section = 0;
-        YMATaskList *taskListFirstSection = [YMATaskList new];
-        //Adding first section
-        taskListFirstSection.name = [YMADateHelper stringFromDate:[(YMATask *) allTasks[(NSUInteger) section] startDate]];
-        [self.tasksForTableView addObject:taskListFirstSection];
+        if (sender.selectedSegmentIndex == 0) {
+            //sort array
+            NSMutableArray *allTasks = [[self.taskService allTasks] mutableCopy];
+            NSSortDescriptor
+                *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:startDateFieldName ascending:self.isAscending];
+            [allTasks sortUsingDescriptors:@[sortDescriptor]];
 
-        for (NSUInteger i = 0; i < allTasks.count - 1; i++) {
-            YMATask *firstObject = allTasks[i];
-            YMATask *secondObject = allTasks[i + 1];
+            self.tasksForTableView = [NSMutableArray new];
+            int section = 0;
+            YMATaskList *taskListFirstSection = [YMATaskList new];
+            //Adding first section
+            taskListFirstSection.name =
+                [YMADateHelper stringFromDate:[(YMATask *) allTasks[(NSUInteger) section] startDate]];
+            [self.tasksForTableView addObject:taskListFirstSection];
 
-            NSString *firstDate = [YMADateHelper stringFromDate:firstObject.startDate];
-            NSString *secondDate = [YMADateHelper stringFromDate:secondObject.startDate];
+            for (NSUInteger i = 0; i < allTasks.count - 1; i++) {
+                YMATask *firstObject = allTasks[i];
+                YMATask *secondObject = allTasks[i+1];
 
-            YMATaskList *taskListSection = self.tasksForTableView[(NSUInteger) section];
+                NSString *firstDate = [YMADateHelper stringFromDate:firstObject.startDate];
+                NSString *secondDate = [YMADateHelper stringFromDate:secondObject.startDate];
 
-            if (![taskListSection.tasks containsObject:firstObject]) {
-                [taskListSection addTask:firstObject];
+                YMATaskList *taskListSection = self.tasksForTableView[(NSUInteger) section];
+
+                if (![taskListSection.tasks containsObject:firstObject]) {
+                    [taskListSection addTask:firstObject];
+                }
+                if (![firstDate isEqualToString:secondDate]) {
+                    YMATaskList *taskList = [YMATaskList new];
+                    taskList.name = [YMADateHelper stringFromDate:[secondObject startDate]];
+                    [taskList addTask:secondObject];
+                    [self.tasksForTableView addObject:taskList];
+                    section++;
+                }
             }
-            if (![firstDate isEqualToString:secondDate]) {
-                YMATaskList *taskList = [YMATaskList new];
-                taskList.name = [YMADateHelper stringFromDate:[secondObject startDate]];
-                [taskList addTask:secondObject];
-                [self.tasksForTableView addObject:taskList];
-                section++;
-            }
+            //add last task in last section
+            YMATaskList *tasks = self.tasksForTableView[(NSUInteger) section];
+            [tasks addTask:allTasks[allTasks.count-1]];
+        } else {
+            self.tasksForTableView = [self.taskService.taskLists mutableCopy];
+            NSSortDescriptor
+                *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:nameFieldName ascending:self.isAscending];
+            [self.tasksForTableView sortUsingDescriptors:@[sortDescriptor]];
         }
-    } else {
-        self.tasksForTableView = [self.taskService.taskLists mutableCopy];
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:self.isAscending];
-        [self.tasksForTableView sortUsingDescriptors:@[sortDescriptor]];
+        [self.tableView reloadData];
     }
-    [self.tableView reloadData];
 }
 
 #pragma mark - Table View Delegate
@@ -104,7 +114,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    YMATaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YMATaskTableViewCell"];
+    YMATaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:YMATaskTableViewCellNibName];
     YMATask *task = [self taskFromTableViewTasks:indexPath];
     cell.nameLabel.text = task.name;
     cell.noteLabel.text = task.note;
@@ -166,7 +176,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YMAAddTaskViewController
-        *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+        *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:YMAAddTaskViewControllerIdentifier];
     editTaskVC.delegate = self;
     editTaskVC.task = [self taskFromTableViewTasks:indexPath];
     [self showViewController:editTaskVC sender:nil];
@@ -174,21 +184,19 @@
 
 - (IBAction)addTapped:(id)sender {
     YMAAddTaskViewController
-        *addTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+        *addTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:YMAAddTaskViewControllerIdentifier];
     addTaskVC.delegate = self;
-    //0 is default category - Inbox
-    addTaskVC.listIndex = 0;
     [self showViewController:addTaskVC sender:nil];
 }
 
 #pragma mark - Delegate
 
 - (void)incomingTask:(id)Sender task:(YMATask *)task listIndex:(NSUInteger)index {
-    YMATaskList *tasks = self.taskService.taskLists[(NSUInteger) index];
-    NSArray *allTask = [self.taskService allTasks];
+    //add in default group in index 0
+    NSArray *allTask = [YMATaskService.sharedInstance allTasks];
     if (NSNotFound == [allTask indexOfObject:task]) {
         //add new task
-        [tasks incomingTask:task];
+        [YMATaskService.sharedInstance incomingTask:task intexOfList:indexForInboxSection];
     }
 }
 

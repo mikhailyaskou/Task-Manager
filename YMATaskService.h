@@ -26,5 +26,6 @@
 - (void)removeTaskFromAllList:(YMATask *)task;
 - (void)removeTasks:(YMATaskList *)tasks;
 - (void)saveTasks;
+- (void)incomingTask:(YMATask *)task intexOfList:(NSUInteger)listIndex;
 
 @end

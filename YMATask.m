@@ -14,21 +14,6 @@
 
 @implementation YMATask
 
-- (instancetype)initWithIdTask:(NSNumber *)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate {
-    self = [super init];
-    if (self) {
-        self.idTask = idTask;
-        self.name = name;
-        self.note = note;
-        self.startDate = startDate;
-    }
-    return self;
-}
-
-+ (instancetype)taskWithId:(NSNumber *)idTask name:(NSString *)name note:(NSString *)note startDate:(NSDate *)startDate {
-    return [[self alloc] initWithIdTask:idTask name:name note:note startDate:startDate];
-}
-
 #pragma mark - Coder
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -43,7 +28,6 @@
         self.remindMeOnADay = [coder decodeBoolForKey:@"self.remindMeOnADay"];
         self.priority = [coder decodeObjectForKey:@"self.priority"];
     }
-
     return self;
 }
 - (void)encodeWithCoder:(NSCoder *)coder {

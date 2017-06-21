@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "YMADateSelectorViewController.h"
+
+static NSString *const DateSelectorDoneTappedIdentifier = @"DateSelectorDoneTappedIdentifier";
+static NSString *const DateSelectorTappedSegueIdentefier = @"DateSelectorTappedSegueIdentefier";
+static NSString *const PriorityCancel = @"Cancel";
+static NSString *const PriorityNone = @"None";
+static NSString *const PriorityLow = @"Low";
+static NSString *const PriorityMedium = @"Medium";
+static NSString *const PriorityHigh = @"High";
+
 @class YMATask;
 @class YMAAddTaskViewController;
 

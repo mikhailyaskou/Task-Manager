@@ -50,7 +50,7 @@
     return [_privateTaskLists copy];
 }
 
-#pragma mark - FileData
+#pragma mark - Coder
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super init];
@@ -110,9 +110,8 @@
 }
 
 - (YMATaskList *)getAllTasksOnToday {
-    NSArray *allTasks = [self allTasks];
     YMATaskList *tasks = [YMATaskList new];
-    tasks.tasks = allTasks;
+    tasks.tasks = [self allTasks];
     [tasks filterTaskToday];
     return tasks;
 }
