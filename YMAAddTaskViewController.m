@@ -12,13 +12,13 @@
 
 @interface YMAAddTaskViewController () <UIActionSheetDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *nameField;
-@property (weak, nonatomic) IBOutlet UISwitch *remindMeSwitch;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *priorityLabel;
-@property (weak, nonatomic) IBOutlet UITextView *noteField;
-@property (strong, nonatomic) NSDate *date;
-@property (weak, nonatomic) IBOutlet UITableViewCell *priorityCell;
+@property(weak, nonatomic) IBOutlet UITextField *nameField;
+@property(weak, nonatomic) IBOutlet UISwitch *remindMeSwitch;
+@property(weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property(weak, nonatomic) IBOutlet UILabel *priorityLabel;
+@property(weak, nonatomic) IBOutlet UITextView *noteField;
+@property(strong, nonatomic) NSDate *date;
+@property(weak, nonatomic) IBOutlet UITableViewCell *priorityCell;
 
 @end
 
@@ -41,11 +41,10 @@
     [super viewDidLoad];
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTapped)]];
     // update UI
-    if (_task){
+    if (_task) {
         self.title = @"Edit Item";
         [self updateUI];
-    }
-    else {
+    } else {
         self.title = @"Add Item";
         self.date = [NSDate date];
     }
@@ -62,7 +61,7 @@
 
 - (IBAction)unwindToEditViewController:(UIStoryboardSegue *)unwindSegue {
     if ([unwindSegue.identifier isEqualToString:@"DateSelectorDoneTappedIdentifier"]) {
-        YMADateSelectorViewController * dateSelectorViewController = unwindSegue.sourceViewController;
+        YMADateSelectorViewController *dateSelectorViewController = unwindSegue.sourceViewController;
         [self setDate:dateSelectorViewController.date];
     }
 }
@@ -86,35 +85,41 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *theCellClicked = [self.tableView cellForRowAtIndexPath:indexPath];
     if (theCellClicked == self.priorityCell) {
-        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Select Priority" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *actionSheet =
+            [UIAlertController alertControllerWithTitle:@"Select Priority" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(
+            UIAlertAction *action) {
           [self dismissViewControllerAnimated:YES completion:^{
           }];
         }]];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleDefault handler:^(
+            UIAlertAction *action) {
           self.priorityLabel.text = action.title;
           [self dismissViewControllerAnimated:YES completion:^{
           }];
         }]];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Low" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Low" style:UIAlertActionStyleDefault handler:^(
+            UIAlertAction *action) {
           self.priorityLabel.text = action.title;
           [self dismissViewControllerAnimated:YES completion:^{
           }];
         }]];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Medium" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Medium" style:UIAlertActionStyleDefault handler:^(
+            UIAlertAction *action) {
           self.priorityLabel.text = action.title;
           [self dismissViewControllerAnimated:YES completion:^{
           }];
         }]];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"High" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"High" style:UIAlertActionStyleDestructive handler:^(
+            UIAlertAction *action) {
           self.priorityLabel.text = action.title;
           [self dismissViewControllerAnimated:YES completion:^{
           }];

@@ -15,17 +15,16 @@
 
 @interface YMASearchViewController () <UISearchResultsUpdating, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *noResultLabel;
-@property (nonatomic, strong) UISearchController *searchController;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray *allTasks;
-@property (nonatomic, strong) NSArray *resultOfSearch;
-@property (nonatomic, assign, getter=isShowOnlyCompleted) BOOL showOnlyCompleted;
+@property(weak, nonatomic) IBOutlet UILabel *noResultLabel;
+@property(nonatomic, strong) UISearchController *searchController;
+@property(weak, nonatomic) IBOutlet UITableView *tableView;
+@property(nonatomic, strong) NSArray *allTasks;
+@property(nonatomic, strong) NSArray *resultOfSearch;
+@property(nonatomic, assign, getter=isShowOnlyCompleted) BOOL showOnlyCompleted;
 
 @end
 
 @implementation YMASearchViewController
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,26 +40,25 @@
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"YMATaskTableViewCell"];
 
     self.tableView.tableHeaderView = self.searchController.searchBar;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    UITapGestureRecognizer
+        *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
 }
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
     YMATaskService *taskService = [YMATaskService sharedInstance];
     self.allTasks = [taskService allTasks];
 }
 
 //show - NO RESULT
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     NSInteger numOfSections = 0;
-    if (self.resultOfSearch.count>0)
-    {
+    if (self.resultOfSearch.count > 0) {
         numOfSections = 1;
         self.noResultLabel.hidden = YES;
         tableView.scrollEnabled = YES;
-    }
-    else
-    {
+    } else {
         self.noResultLabel.hidden = NO;
         self.tableView.backgroundView = self.noResultLabel;
         tableView.scrollEnabled = NO;
@@ -68,7 +66,7 @@
     return numOfSections;
 }
 
--(void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
+- (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
     [self updateSearchResultsForSearchController:self.searchController];
 }
 
@@ -76,11 +74,11 @@
     self.showOnlyCompleted = [@(self.searchController.searchBar.selectedScopeButtonIndex) boolValue];
     NSPredicate *predicate;
     if (self.isShowOnlyCompleted) {
-        predicate = [NSPredicate predicateWithFormat:@"self.name contains[cd] %@ and self.isTaskFinished == YES", self.searchController.searchBar.text];
-    }
-    else
-    {
-        predicate = [NSPredicate predicateWithFormat:@"self.name contains[cd] %@", self.searchController.searchBar.text];
+        predicate =
+            [NSPredicate predicateWithFormat:@"self.name contains[cd] %@ and self.isTaskFinished == YES", self.searchController.searchBar.text];
+    } else {
+        predicate =
+            [NSPredicate predicateWithFormat:@"self.name contains[cd] %@", self.searchController.searchBar.text];
     }
     self.resultOfSearch = [NSArray arrayWithArray:[self.allTasks filteredArrayUsingPredicate:predicate]];
     NSLog(@"bool is: %@", self.showOnlyCompleted ? @"YES" : @"NO");
@@ -100,8 +98,9 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    YMAAddTaskViewController *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    YMAAddTaskViewController
+        *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
     editTaskVC.listIndex = (NSUInteger) indexPath.section;
     editTaskVC.task = self.resultOfSearch[(NSUInteger) indexPath.row];
     [self showViewController:editTaskVC sender:nil];
@@ -109,8 +108,7 @@
 
 #pragma mark - Actions
 
--(void)dismissKeyboard
-{
+- (void)dismissKeyboard {
     [self.searchController.searchBar resignFirstResponder];
 }
 

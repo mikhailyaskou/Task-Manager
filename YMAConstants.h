@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const YMAReceivedTaskNotificationName;
-extern NSString * const YMAAddTaskViewControllerNibName;
-extern NSString * const YMATaskNotificationKey;
+extern NSString *const YMAReceivedTaskNotificationName;
+extern NSString *const YMAAddTaskViewControllerNibName;
+extern NSString *const YMATaskNotificationKey;

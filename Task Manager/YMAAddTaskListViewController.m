@@ -7,7 +7,6 @@
 //
 
 #import "YMAAddTaskListViewController.h"
-#import "YMATaskList.h"
 
 @interface YMAAddTaskListViewController ()
 
@@ -16,6 +15,7 @@
 @implementation YMAAddTaskListViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     [self.projectNameLabel becomeFirstResponder];
 }
 

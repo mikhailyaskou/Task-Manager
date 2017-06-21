@@ -13,16 +13,13 @@
 #import "YMATaskTableViewCell.h"
 #import "YMADateHelper.h"
 
-static NSString * const YMACellIdentifier = @"YMATaskCell";
-static NSString * const YMADetailViewControllerIdentifier = @"detailView";
-
 @interface YMAInboxViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property(weak, nonatomic) IBOutlet UITableView *tableView;
+@property(weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 //@property (strong, nonatomic) NSMutableArray *allTasks;
-@property (strong, nonatomic) NSMutableArray *tasksForTableView;
-@property (assign, nonatomic, getter=isAscending) BOOL ascending;
+@property(strong, nonatomic) NSMutableArray *tasksForTableView;
+@property(assign, nonatomic, getter=isAscending) BOOL ascending;
 
 @end
 
@@ -48,19 +45,20 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         //sort array
         NSMutableArray *allTasks = [[self.taskService allTasks] mutableCopy];
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDate" ascending:self.isAscending];
+        NSSortDescriptor
+            *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDate" ascending:self.isAscending];
         [allTasks sortUsingDescriptors:@[sortDescriptor]];
 
         self.tasksForTableView = [NSMutableArray new];
         int section = 0;
         YMATaskList *taskListFirstSection = [YMATaskList new];
         //Adding first section
-        taskListFirstSection.name = [YMADateHelper stringFromDate:[(YMATask *) allTasks[section] startDate]];
+        taskListFirstSection.name = [YMADateHelper stringFromDate:[(YMATask *) allTasks[(NSUInteger) section] startDate]];
         [self.tasksForTableView addObject:taskListFirstSection];
 
         for (NSUInteger i = 0; i < allTasks.count - 1; i++) {
             YMATask *firstObject = allTasks[i];
-            YMATask *secondObject = allTasks[i+1];
+            YMATask *secondObject = allTasks[i + 1];
 
             NSString *firstDate = [YMADateHelper stringFromDate:firstObject.startDate];
             NSString *secondDate = [YMADateHelper stringFromDate:secondObject.startDate];
@@ -70,8 +68,7 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
             if (![taskListSection.tasks containsObject:firstObject]) {
                 [taskListSection addTask:firstObject];
             }
-            if (![firstDate isEqualToString:secondDate])
-            {
+            if (![firstDate isEqualToString:secondDate]) {
                 YMATaskList *taskList = [YMATaskList new];
                 taskList.name = [YMADateHelper stringFromDate:[secondObject startDate]];
                 [taskList addTask:secondObject];
@@ -79,9 +76,7 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
                 section++;
             }
         }
-    }
-    else
-    {
+    } else {
         self.tasksForTableView = [self.taskService.taskLists mutableCopy];
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:self.isAscending];
         [self.tasksForTableView sortUsingDescriptors:@[sortDescriptor]];
@@ -119,36 +114,43 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     //get task
-    YMATaskList *tasks= self.tasksForTableView[(NSUInteger) indexPath.section];
-    YMATask *task =  tasks.tasks[(NSUInteger) indexPath.row];
-    UITableViewRowAction *doneAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Done" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+    YMATaskList *tasks = self.tasksForTableView[(NSUInteger) indexPath.section];
+    YMATask *task = tasks.tasks[(NSUInteger) indexPath.row];
+    UITableViewRowAction *doneAction =
+        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Done" handler:^(
+            UITableViewRowAction *_Nonnull action,
+            NSIndexPath *_Nonnull indexPath) {
 
-      [task finishTask];
-      [self.tableView setEditing:NO];
-    }];
+          [task finishTask];
+          [self.tableView setEditing:NO];
+        }];
     //delete tapped
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-      //alert
-      UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:@"Do you want to remove item?" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UITableViewRowAction *deleteAction =
+        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(
+            UITableViewRowAction *_Nonnull action,
+            NSIndexPath *_Nonnull indexPath) {
+          //alert
+          UIAlertController *alertViewController =
+              [UIAlertController alertControllerWithTitle:@"Do you want to remove item?" message:nil preferredStyle:UIAlertControllerStyleAlert];
 
-      UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-      [alertViewController addAction:cancelAction];
-      UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self.taskService removeTaskFromAllList:task];
-        [tasks removeTaskFromList:task];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-      }];
-      [alertViewController addAction:deleteAction];
-      [self presentViewController:alertViewController animated:YES completion:nil];
-    }];
+          UIAlertAction
+              *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+          [alertViewController addAction:cancelAction];
+          UIAlertAction *deleteAction =
+              [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+                [self.taskService removeTaskFromAllList:task];
+                [tasks removeTaskFromList:task];
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+              }];
+          [alertViewController addAction:deleteAction];
+          [self presentViewController:alertViewController animated:YES completion:nil];
+        }];
     if (task.isTaskFinished) {
         return @[deleteAction];
-    }
-    else {
+    } else {
         return @[deleteAction, doneAction];
     }
 }
-
 
 #pragma mark - Actions
 
@@ -163,14 +165,16 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    YMAAddTaskViewController *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+    YMAAddTaskViewController
+        *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
     editTaskVC.delegate = self;
     editTaskVC.task = [self taskFromTableViewTasks:indexPath];
     [self showViewController:editTaskVC sender:nil];
 }
 
 - (IBAction)addTapped:(id)sender {
-    YMAAddTaskViewController *addTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+    YMAAddTaskViewController
+        *addTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
     addTaskVC.delegate = self;
     //0 is default category - Inbox
     addTaskVC.listIndex = 0;
@@ -182,7 +186,7 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
 - (void)incomingTask:(id)Sender task:(YMATask *)task listIndex:(NSUInteger)index {
     YMATaskList *tasks = self.taskService.taskLists[(NSUInteger) index];
     NSArray *allTask = [self.taskService allTasks];
-    if(NSNotFound == [allTask indexOfObject: task]) {
+    if (NSNotFound == [allTask indexOfObject:task]) {
         //add new task
         [tasks incomingTask:task];
     }
@@ -191,7 +195,7 @@ static NSString * const YMADetailViewControllerIdentifier = @"detailView";
 - (YMATask *)taskFromTableViewTasks:(NSIndexPath *)indexPath {
     YMATaskList *tasks = self.tasksForTableView[(NSUInteger) indexPath.section];
     YMATask *task = tasks.tasks[(NSUInteger) indexPath.row];
-    return  task;
+    return task;
 }
 
 @end

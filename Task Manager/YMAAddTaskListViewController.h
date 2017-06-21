@@ -10,6 +10,6 @@
 
 @interface YMAAddTaskListViewController : UITableViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *projectNameLabel;
+@property(weak, nonatomic) IBOutlet UITextField *projectNameLabel;
 
 @end

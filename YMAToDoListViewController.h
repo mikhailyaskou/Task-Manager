@@ -11,6 +11,6 @@
 
 @interface YMAToDoListViewController : UITableViewController
 
-@property (nonatomic, strong) YMATaskList *tasks;
+@property(nonatomic, strong) YMATaskList *tasks;
 
 @end

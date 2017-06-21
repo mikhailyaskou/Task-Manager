@@ -12,6 +12,6 @@
 
 @interface YMAInboxViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, YMAAddTaskViewControllerDelegate>
 
-@property (nonatomic, strong) YMATaskService *taskService;
+@property(nonatomic, strong) YMATaskService *taskService;
 
 @end

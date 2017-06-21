@@ -9,11 +9,10 @@
 #import "YMATaskService.h"
 #import "YMATask.h"
 #import "YMATaskList.h"
-#import "YMADateHelper.h"
 
-@interface YMATaskService() <NSCoding>
+@interface YMATaskService () <NSCoding>
 
-@property (nonatomic, strong) NSMutableArray *privateTaskLists;
+@property(nonatomic, strong) NSMutableArray *privateTaskLists;
 
 @end
 
@@ -25,29 +24,29 @@
     dispatch_once(&onceToken, ^{
       sharedInstance = [YMATaskService new];
       [sharedInstance loadData];
-        //to prevent crash if "[NSKeyedUnarchiver initForReadingWithData:]: data is NULL"
-        if (sharedInstance.privateTaskLists.count == 0){
-            YMATaskList *tasks = [YMATaskList new];
-            tasks.name = @"Inbox";
-            [sharedInstance.privateTaskLists addObject:tasks];
-        }
+      //to prevent crash if "[NSKeyedUnarchiver initForReadingWithData:]: data is NULL"
+      if (sharedInstance.privateTaskLists.count == 0) {
+          YMATaskList *tasks = [YMATaskList new];
+          tasks.name = @"Inbox";
+          [sharedInstance.privateTaskLists addObject:tasks];
+      }
     });
     return sharedInstance;
 }
 
 //lazy getter
 - (NSMutableArray *)privateTaskLists {
-    if (!_privateTaskLists){
+    if (!_privateTaskLists) {
         _privateTaskLists = [NSMutableArray new];
     }
     return _privateTaskLists;
 }
 
--(void)setTaskLists:(NSArray *)taskLists {
+- (void)setTaskLists:(NSArray *)taskLists {
     _privateTaskLists = [taskLists mutableCopy];
 }
 
--(NSArray *)taskLists {
+- (NSArray *)taskLists {
     return [_privateTaskLists copy];
 }
 
@@ -64,7 +63,6 @@
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.privateTaskLists forKey:@"self.privateTaskLists"];
 }
-
 
 - (void)saveTasks {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_privateTaskLists];
@@ -95,7 +93,7 @@
 #pragma mark - Task
 
 - (void)incomingTask:(YMATask *)task intexOfList:(NSUInteger)listIndex {
-     YMATaskList *tasks = self.privateTaskLists[listIndex];
+    YMATaskList *tasks = self.privateTaskLists[listIndex];
     [tasks incomingTask:task];
     [self saveTasks];
 }
@@ -123,7 +121,7 @@
     return [self.privateTaskLists valueForKeyPath:@"@unionOfArrays.tasks"];
 }
 
-- (void) removeTaskFromListIndex:(NSUInteger)listIndex taskIndex:(NSUInteger)taskIndex {
+- (void)removeTaskFromListIndex:(NSUInteger)listIndex taskIndex:(NSUInteger)taskIndex {
     YMATaskList *taskList = [self taskListAtIndex:listIndex];
     [taskList removeTask:(NSUInteger *) taskIndex];
     [self saveTasks];

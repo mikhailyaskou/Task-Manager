@@ -12,14 +12,13 @@
 #import "YMATaskTableViewCell.h"
 #import "YMATask.h"
 #import "YMADateHelper.h"
-#import "YMAAddTaskViewController.h"
 
 @interface YMATodayViewController () <UITableViewDataSource, UITableViewDelegate, YMAAddTaskViewControllerDelegate>
 
-@property (strong, nonatomic) YMATaskList *allTasks;
-@property (strong, nonatomic) NSMutableArray *tasksForTableView;
-@property (strong, nonatomic) YMATaskService *taskService;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property(strong, nonatomic) YMATaskList *allTasks;
+@property(strong, nonatomic) NSMutableArray *tasksForTableView;
+@property(strong, nonatomic) YMATaskService *taskService;
+@property(weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -40,12 +39,12 @@
     //tasks that will be displayed (two group - finished and not)
     self.tasksForTableView = [NSMutableArray new];
     //list with finished task
-    YMATaskList *finishedTasks = [YMATaskList  new];
+    YMATaskList *finishedTasks = [YMATaskList new];
     finishedTasks.name = @"Completed";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.taskFinished == YES"];
     finishedTasks.tasks = [NSArray arrayWithArray:[self.allTasks.tasks filteredArrayUsingPredicate:predicate]];
     //list with not finished task
-    YMATaskList *notFinishedTasks = [YMATaskList  new];
+    YMATaskList *notFinishedTasks = [YMATaskList new];
     predicate = [NSPredicate predicateWithFormat:@"self.taskFinished == NO"];
     notFinishedTasks.tasks = [NSArray arrayWithArray:[self.allTasks.tasks filteredArrayUsingPredicate:predicate]];
     //add in displayed array
@@ -119,9 +118,9 @@
               [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
                 //delete task from tasksForTableView
                 [tasks removeTaskFromList:task];
-                //remove task vorom service
+                //remove task from service
                 [self.taskService removeTaskFromAllList:task];
-               [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
               }];
           [alertViewController addAction:deleteAction];
           [self presentViewController:alertViewController animated:YES completion:nil];
@@ -141,16 +140,18 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    YMAAddTaskViewController *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+    YMAAddTaskViewController
+        *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
     editTaskVC.listIndex = (NSUInteger) indexPath.section;
     editTaskVC.delegate = self;
     YMATaskList *tasks = self.tasksForTableView[(NSUInteger) indexPath.section];
-    editTaskVC.task =   tasks.tasks[(NSUInteger) indexPath.row];
+    editTaskVC.task = tasks.tasks[(NSUInteger) indexPath.row];
     [self showViewController:editTaskVC sender:nil];
 }
 
 - (IBAction)addTapped:(id)sender {
-    YMAAddTaskViewController *addTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+    YMAAddTaskViewController
+        *addTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
     addTaskVC.delegate = self;
     //0 is default category - Inbox
     addTaskVC.listIndex = 0;
@@ -160,9 +161,8 @@
 #pragma mark - Delegate
 
 - (void)incomingTask:(id)Sender task:(YMATask *)task listIndex:(NSUInteger)index {
-
     YMATaskList *tasks = self.taskService.taskLists[(NSUInteger) index];
-    if(NSNotFound == [self.allTasks.tasks indexOfObject: task]) {
+    if (NSNotFound == [self.allTasks.tasks indexOfObject:task]) {
         //add new task
         [tasks incomingTask:task];
     }

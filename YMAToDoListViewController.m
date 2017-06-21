@@ -21,6 +21,7 @@
 @implementation YMAToDoListViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     self.tableView.dataSource = self;
     UINib *cellNib = [UINib nibWithNibName:@"YMATaskTableViewCell" bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"YMATaskTableViewCell"];
@@ -28,13 +29,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
     self.title = self.tasks.name;
     [self.tableView reloadData];
 }
 
-
 #pragma mark - Actions
-
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
@@ -42,7 +42,8 @@
 }
 
 - (IBAction)addTapped:(id)sender {
-    YMAAddTaskViewController *addTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+    YMAAddTaskViewController
+        *addTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
     addTaskVC.delegate = self;
     [self showViewController:addTaskVC sender:nil];
 }
@@ -53,7 +54,6 @@
     [self.tasks incomingTask:task];
     [YMATaskService.sharedInstance saveTasks];
 }
-
 
 #pragma mark - Table view data source
 
@@ -85,41 +85,49 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    YMAAddTaskViewController *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
+    YMAAddTaskViewController
+        *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"YMAAddTaskViewController"];
     editTaskVC.listIndex = (NSUInteger) indexPath.section;
     editTaskVC.delegate = self;
     editTaskVC.task = self.tasks.tasks[(NSUInteger) indexPath.row];
     [self showViewController:editTaskVC sender:nil];
 }
 
-
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     //get task
     YMATask *task = self.tasks.tasks[(NSUInteger) indexPath.row];
-    UITableViewRowAction *doneAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Done" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+    UITableViewRowAction *doneAction =
+        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Done" handler:^(
+            UITableViewRowAction *_Nonnull action,
+            NSIndexPath *_Nonnull indexPath) {
 
-      [task finishTask];
-      [self.tableView setEditing:NO];
-    }];
+          [task finishTask];
+          [self.tableView setEditing:NO];
+        }];
     //delete tapped
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-      //alert
-      UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:@"Do you want to remove item?" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UITableViewRowAction *deleteAction =
+        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(
+            UITableViewRowAction *_Nonnull action,
+            NSIndexPath *_Nonnull indexPath) {
+          //alert
+          UIAlertController *alertViewController =
+              [UIAlertController alertControllerWithTitle:@"Do you want to remove item?" message:nil preferredStyle:UIAlertControllerStyleAlert];
 
-      UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-      [alertViewController addAction:cancelAction];
-      UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self.tasks removeTaskFromList:task];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-      }];
-      [alertViewController addAction:deleteAction];
+          UIAlertAction
+              *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+          [alertViewController addAction:cancelAction];
+          UIAlertAction *deleteAction =
+              [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+                [self.tasks removeTaskFromList:task];
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+              }];
+          [alertViewController addAction:deleteAction];
 
-      [self presentViewController:alertViewController animated:YES completion:nil];
-    }];
+          [self presentViewController:alertViewController animated:YES completion:nil];
+        }];
     if (task.isTaskFinished) {
         return @[deleteAction];
-    }
-    else {
+    } else {
         return @[deleteAction, doneAction];
     }
 }

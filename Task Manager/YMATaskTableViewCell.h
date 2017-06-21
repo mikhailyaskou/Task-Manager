@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface YMATaskTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *noteLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property(weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property(weak, nonatomic) IBOutlet UILabel *noteLabel;
+@property(weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

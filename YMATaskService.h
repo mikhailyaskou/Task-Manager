@@ -15,19 +15,15 @@
 - (instancetype)initWithCoder:(NSCoder *)coder;
 - (void)encodeWithCoder:(NSCoder *)coder;
 
-@property (nonatomic, strong) NSArray *taskLists;
+@property(nonatomic, strong) NSArray *taskLists;
 
 + (instancetype)sharedInstance;
 
 - (void)addTasks:(YMATaskList *)tasks;
 - (YMATaskList *)taskListAtIndex:(NSUInteger)index;
-- (YMATask *)taskFromListAtIndex:(NSUInteger)indexOfList taskIndex:(NSUInteger)indexOfTask;
-- (void) removeTaskFromListIndex:(NSUInteger)listIndex taskIndex:(NSUInteger)taskIndex;
-- (void)filterAllTaskListOnTodayTask;
 - (NSArray *)allTasks;
 - (YMATaskList *)getAllTasksOnToday;
 - (void)removeTaskFromAllList:(YMATask *)task;
-- (void)incomingTask:(YMATask *)task intexOfList:(NSUInteger)listIndex;
 - (void)removeTasks:(YMATaskList *)tasks;
 - (void)saveTasks;
 

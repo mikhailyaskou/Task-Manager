@@ -8,7 +8,7 @@
 
 #import "YMATask.h"
 
-@interface YMATask() <NSCoding>
+@interface YMATask () <NSCoding>
 
 @end
 

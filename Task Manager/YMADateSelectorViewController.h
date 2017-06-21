@@ -10,6 +10,6 @@
 
 @interface YMADateSelectorViewController : UIViewController
 
-@property (strong, nonatomic) NSDate *date;
+@property(strong, nonatomic) NSDate *date;
 
 @end

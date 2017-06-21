@@ -19,9 +19,9 @@
 
 @interface YMAAddTaskViewController : UITableViewController
 
-@property (nonatomic, weak) id<YMAAddTaskViewControllerDelegate> delegate;
-@property (nonatomic, strong) YMATask *task;
-@property (assign, nonatomic) NSUInteger listIndex;
+@property(nonatomic, weak) id <YMAAddTaskViewControllerDelegate> delegate;
+@property(nonatomic, strong) YMATask *task;
+@property(assign, nonatomic) NSUInteger listIndex;
 
 
 @end
