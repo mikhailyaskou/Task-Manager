@@ -60,7 +60,7 @@
                                     <action selector="addTapped:" destination="9pv-A4-QxB" id="bkv-9l-pe0"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title=" ⇅ " id="J8c-0A-nAn">
+                            <barButtonItem image="ic_swap_vert" id="J8c-0A-nAn">
                                 <connections>
                                     <action selector="sortTable:" destination="9pv-A4-QxB" id="TZN-AH-v26"/>
                                 </connections>
@@ -342,21 +342,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRA-Pp-3jf">
-                                                    <rect key="frame" x="79" y="8" width="200" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRA-Pp-3jf">
+                                                    <rect key="frame" x="41" y="9" width="238" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUh-Qo-4Mr">
-                                                    <rect key="frame" x="17" y="8" width="54" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✪" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUh-Qo-4Mr">
+                                                    <rect key="frame" x="17" y="8" width="16" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="1kO-wa-NgA"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <color key="textColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kRA-Pp-3jf" firstAttribute="trailing" secondItem="5il-pp-4Ku" secondAttribute="trailingMargin" id="73F-W3-3MK"/>
+                                                <constraint firstItem="tUh-Qo-4Mr" firstAttribute="baseline" secondItem="kRA-Pp-3jf" secondAttribute="baseline" id="SWD-59-ru4"/>
+                                                <constraint firstItem="tUh-Qo-4Mr" firstAttribute="leading" secondItem="5il-pp-4Ku" secondAttribute="leadingMargin" constant="9" id="X2D-4a-azU"/>
+                                                <constraint firstItem="tUh-Qo-4Mr" firstAttribute="top" secondItem="5il-pp-4Ku" secondAttribute="topMargin" id="tWu-ee-2IA"/>
+                                                <constraint firstItem="kRA-Pp-3jf" firstAttribute="leading" secondItem="tUh-Qo-4Mr" secondAttribute="trailing" constant="8" symbolic="YES" id="uIV-Ie-XQw"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -457,7 +465,7 @@
                                 <rect key="frame" x="0.0" y="56" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Ip-mO-KtO" id="Wzp-fa-Na2">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -474,7 +482,7 @@
                                     <action selector="addTapped:" destination="4Ka-Bb-OLg" id="591-Aw-iId"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title=" ⇅ " id="RYx-zo-heP">
+                            <barButtonItem image="ic_swap_vert" id="RYx-zo-heP">
                                 <connections>
                                     <action selector="sortTable:" destination="4Ka-Bb-OLg" id="asZ-A0-SJD"/>
                                 </connections>
@@ -512,7 +520,7 @@
         <scene sceneID="QoX-wi-kVN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wcP-hH-Vfd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Inbox" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Inbox" image="ic_listing" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gb1-jJ-pCq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -531,7 +539,7 @@
         <scene sceneID="muB-ga-SIg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AQx-O0-RlH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Today" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Today" image="ic_inventory" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oHN-BI-zRb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -550,7 +558,7 @@
         <scene sceneID="B8I-Mb-cO7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tAe-61-hxx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="ToDoList" id="fgG-Un-Kt9"/>
+                    <tabBarItem key="tabBarItem" title="ToDoList" image="ic_list" id="fgG-Un-Kt9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RCP-UB-a2K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -569,7 +577,7 @@
         <scene sceneID="CHX-ts-3OY">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pBn-gG-dCd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" id="GYV-s5-z0h"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="ic_search" id="GYV-s5-z0h"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="l83-D2-1tk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -706,7 +714,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="ic_inventory" width="24" height="24"/>
+        <image name="ic_list" width="24" height="24"/>
+        <image name="ic_listing" width="24" height="24"/>
+        <image name="ic_search" width="24" height="24"/>
+        <image name="ic_swap_vert" width="14" height="18"/>
     </resources>
 </document>

@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09f841e0-2dd4-4edd-b67e-8f7f940ee22e" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/YMADateHelper.h" afterPath="$PROJECT_DIR$/Task Manager/Helpers/YMADateHelper.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/YMADateHelper.m" afterPath="$PROJECT_DIR$/Task Manager/Helpers/YMADateHelper.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Task Manager.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/Task Manager/Base.lproj/Main.storyboard" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMAInboxViewController.h" afterPath="$PROJECT_DIR$/Task Manager/YMAInboxViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMAInboxViewController.m" afterPath="$PROJECT_DIR$/Task Manager/YMAInboxViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMASearchViewController.m" afterPath="$PROJECT_DIR$/Task Manager/YMASearchViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMATaskListViewController.h" afterPath="$PROJECT_DIR$/Task Manager/YMATaskListViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMATaskListViewController.m" afterPath="$PROJECT_DIR$/Task Manager/YMATaskListViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMATodayViewController.h" afterPath="$PROJECT_DIR$/Task Manager/YMATodayViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task Manager/YMATodayViewController.m" afterPath="$PROJECT_DIR$/Task Manager/YMATodayViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMAAddTaskViewController.h" afterPath="$PROJECT_DIR$/YMAAddTaskViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMAAddTaskViewController.m" afterPath="$PROJECT_DIR$/YMAAddTaskViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMAConstants.h" afterPath="$PROJECT_DIR$/YMAConstants.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMAConstants.m" afterPath="$PROJECT_DIR$/YMAConstants.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMATask.m" afterPath="$PROJECT_DIR$/YMATask.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMATaskList.h" afterPath="$PROJECT_DIR$/YMATaskList.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMATaskList.m" afterPath="$PROJECT_DIR$/YMATaskList.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMATaskService.h" afterPath="$PROJECT_DIR$/YMATaskService.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMATaskService.m" afterPath="$PROJECT_DIR$/YMATaskService.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YMAToDoListViewController.m" afterPath="$PROJECT_DIR$/YMAToDoListViewController.m" />
-    </list>
+    <list default="true" id="09f841e0-2dd4-4edd-b67e-8f7f940ee22e" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +80,7 @@
       <file leaf-file-name="YMATask.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/YMATask.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56">
+            <state relative-caret-position="86">
               <caret line="23" column="60" lean-forward="true" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
               <folding />
             </state>
@@ -529,7 +505,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108197000" />
+    <option name="totallyTimeSpent" value="108299000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -542,13 +518,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1366" height="678" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3727422" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3727422" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -915,7 +890,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/YMATask.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
+        <state relative-caret-position="86">
           <caret line="23" column="60" lean-forward="true" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
           <folding />
         </state>
