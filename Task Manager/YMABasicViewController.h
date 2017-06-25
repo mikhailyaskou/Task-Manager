@@ -14,11 +14,8 @@
 @interface YMABasicViewController : UIViewController
 
 @property(strong, nonatomic) NSMutableArray *tasksForTableView;
-@property(nonatomic, strong) YMATaskService *taskService;
 @property(weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (YMATask *)taskFromTableViewTasks:(NSIndexPath *)indexPath;
-
-
 
 @end

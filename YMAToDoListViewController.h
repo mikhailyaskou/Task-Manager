@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YMABasicViewController.h"
 @class YMATaskList;
 
-@interface YMAToDoListViewController : UITableViewController
+@interface YMAToDoListViewController : YMABasicViewController
 
 @property(nonatomic, strong) YMATaskList *tasks;
 

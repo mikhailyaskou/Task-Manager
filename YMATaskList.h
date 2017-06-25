@@ -22,15 +22,14 @@
 @property(nonatomic, copy) NSArray *tasks;
 
 - (NSUInteger)count;
-- (void)setTasks:(NSArray *)tasks;
-- (void)removeTaskFromList:(YMATask *)task;
 - (void)addTask:(YMATask *)task;
-- (YMATask *)taskAtIndex:(NSUInteger)index;
+- (void)setTasks:(NSArray *)tasks;
 - (void)removeTask:(NSUInteger *)index;
+- (void)removeTaskFromList:(YMATask *)task;
+- (YMATask *)taskAtIndex:(NSUInteger)index;
 - (void)incomingTask:(YMATask *)task;
 - (void)filterTaskToday;
 - (void)insertTask:(YMATask *)task atIndex:(NSUInteger)index;
 - (void)sortUsingDescriptors:(NSSortDescriptor *)sortDescriptor;
-
 
 @end

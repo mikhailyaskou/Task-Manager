@@ -24,40 +24,36 @@
 
 #pragma mark - View lifetime
 
-
-
 - (void)updateUi {
     [self segmentControllerTapped:self.segmentedControl];
 }
 
-
 - (IBAction)segmentControllerTapped:(UISegmentedControl *)sender {
 
-    if ([self.taskService allTasks].count >0) {
+    if ([YMATaskService.sharedInstance allTasks].count > 0) {
 
         if (sender.selectedSegmentIndex == 0) {
             //sort array
-            NSMutableArray *allTasks = [[self.taskService allTasks] mutableCopy];
+            NSMutableArray *allTasks = [[YMATaskService.sharedInstance allTasks] mutableCopy];
             NSSortDescriptor
                 *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:startDateFieldName ascending:self.isAscending];
             [allTasks sortUsingDescriptors:@[sortDescriptor]];
-
             self.tasksForTableView = [NSMutableArray new];
             int section = 0;
             YMATaskList *taskListFirstSection = [YMATaskList new];
             //Adding first section
             taskListFirstSection.name =
-                [YMADateHelper stringFromDate:[(YMATask *) allTasks[(NSUInteger) section] startDate]];
+                [YMADateHelper stringFromDate:[(YMATask *) allTasks[section] startDate]];
             [self.tasksForTableView addObject:taskListFirstSection];
 
             for (NSUInteger i = 0; i < allTasks.count - 1; i++) {
                 YMATask *firstObject = allTasks[i];
-                YMATask *secondObject = allTasks[i+1];
+                YMATask *secondObject = allTasks[i + 1];
 
                 NSString *firstDate = [YMADateHelper stringFromDate:firstObject.startDate];
                 NSString *secondDate = [YMADateHelper stringFromDate:secondObject.startDate];
 
-                YMATaskList *taskListSection = self.tasksForTableView[(NSUInteger) section];
+                YMATaskList *taskListSection = self.tasksForTableView[section];
 
                 if (![taskListSection.tasks containsObject:firstObject]) {
                     [taskListSection addTask:firstObject];
@@ -71,10 +67,10 @@
                 }
             }
             //add last task in last section
-            YMATaskList *tasks = self.tasksForTableView[(NSUInteger) section];
-            [tasks addTask:allTasks[allTasks.count-1]];
+            YMATaskList *tasks = self.tasksForTableView[section];
+            [tasks addTask:allTasks[allTasks.count - 1]];
         } else {
-            self.tasksForTableView = [self.taskService.taskLists mutableCopy];
+            self.tasksForTableView = [YMATaskService.sharedInstance.taskLists mutableCopy];
             NSSortDescriptor
                 *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:nameFieldName ascending:self.isAscending];
             [self.tasksForTableView sortUsingDescriptors:@[sortDescriptor]];

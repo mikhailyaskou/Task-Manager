@@ -9,10 +9,8 @@
 #import "YMATodayViewController.h"
 #import "YMATaskService.h"
 #import "YMATaskList.h"
-#import "YMAConstants.h"
 
-@interface YMATodayViewController () <UITableViewDataSource, UITableViewDelegate, YMAAddTaskViewControllerDelegate>
-
+@interface YMATodayViewController ()
 @property(strong, nonatomic) YMATaskList *allTasks;
 
 @end
@@ -21,10 +19,9 @@
 
 #pragma mark - View lifetime
 
-
 - (void)updateUi {
     //get all task
-    self.allTasks = [self.taskService getAllTasksOnToday];
+    self.allTasks = [YMATaskService.sharedInstance getAllTasksOnToday];
     //tasks that will be displayed (two group - finished and not)
     self.tasksForTableView = [NSMutableArray new];
     //list with finished task

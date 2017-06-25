@@ -447,23 +447,13 @@
         <scene sceneID="qUd-Gq-cgT">
             <objects>
                 <tableViewController id="4Ka-Bb-OLg" customClass="YMAToDoListViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="70" sectionHeaderHeight="18" sectionFooterHeight="18" id="3Dl-WL-1rD">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="70" sectionHeaderHeight="1" sectionFooterHeight="1" id="3Dl-WL-1rD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5Ip-mO-KtO">
-                                <rect key="frame" x="0.0" y="56" width="320" height="70"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Ip-mO-KtO" id="Wzp-fa-Na2">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="4Ka-Bb-OLg" id="dtL-da-h8d"/>
-                            <outlet property="delegate" destination="4Ka-Bb-OLg" id="wgt-cs-YPh"/>
+                            <outlet property="dataSource" destination="4Ka-Bb-OLg" id="5oZ-14-1HF"/>
+                            <outlet property="delegate" destination="4Ka-Bb-OLg" id="jRE-ab-pgi"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Projaect Name" id="dqE-im-VhG">
@@ -481,6 +471,9 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="3Dl-WL-1rD" id="nzE-jc-1bU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7U0-Yi-380" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

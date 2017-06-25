@@ -80,7 +80,7 @@
 }
 
 - (void)removeTask:(NSUInteger *)index {
-    [self.privateTasks removeObjectAtIndex:(NSUInteger) index];
+    [self.privateTasks removeObjectAtIndex:index];
 }
 
 - (void)removeTaskFromList:(YMATask *)task {

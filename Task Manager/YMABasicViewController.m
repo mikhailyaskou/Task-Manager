@@ -14,19 +14,20 @@
 #import "YMATask.h"
 #import "YMAAddTaskViewController.h"
 
-@interface YMABasicViewController ()
+@interface YMABasicViewController () <UITableViewDataSource, UITableViewDelegate, YMAAddTaskViewControllerDelegate>
+
+@property(nonatomic, strong) YMATaskService *taskService;
 
 @end
 
 @implementation YMABasicViewController
 
 - (YMATaskService *)taskService {
-    if (!_taskService){
+    if (!_taskService) {
         _taskService = YMATaskService.sharedInstance;
     }
     return _taskService;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,7 +43,7 @@
 
 //title for section
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    YMATaskList *tasks = self.tasksForTableView[(NSUInteger) section];
+    YMATaskList *tasks = self.tasksForTableView[section];
     return tasks.name;
 }
 
@@ -53,7 +54,7 @@
 
 //number of rows
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    YMATaskList *tasks = self.tasksForTableView[(NSUInteger) section];
+    YMATaskList *tasks = self.tasksForTableView[section];
     return tasks.tasks.count;
 }
 
@@ -65,19 +66,18 @@
 }
 
 - (YMATask *)taskFromTableViewTasks:(NSIndexPath *)indexPath {
-    YMATaskList *tasks = self.tasksForTableView[(NSUInteger) indexPath.section];
-    YMATask *task = tasks.tasks[(NSUInteger) indexPath.row];
+    YMATaskList *tasks = self.tasksForTableView[indexPath.section];
+    YMATask *task = tasks.tasks[indexPath.row];
     return task;
 }
 
 - (void)updateUi {
-
 }
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     //get task
-    YMATaskList *tasks = self.tasksForTableView[(NSUInteger) indexPath.section];
-    YMATask *task = tasks.tasks[(NSUInteger) indexPath.row];
+    YMATaskList *tasks = self.tasksForTableView[indexPath.section];
+    YMATask *task = tasks.tasks[indexPath.row];
     UITableViewRowAction *doneAction =
         [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Done" handler:^(
             UITableViewRowAction *_Nonnull action,
@@ -125,7 +125,6 @@
     [self showViewController:editTaskVC sender:nil];
 }
 
-
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
     [self.tableView setEditing:editing animated:animated];
@@ -139,16 +138,14 @@
     [self showViewController:addTaskVC sender:nil];
 }
 
-
 - (void)incomingTask:(id)Sender task:(YMATask *)task listIndex:(NSUInteger)index {
 
     NSArray *allTask = [YMATaskService.sharedInstance allTasks];
     if (NSNotFound == [allTask indexOfObject:task]) {
         //add new task
-        [YMATaskService.sharedInstance incomingTask:task intexOfList:indexForInboxSection];
+        [self.taskService incomingTask:task intexOfList:indexForInboxSection];
     }
 }
-
 
 
 @end

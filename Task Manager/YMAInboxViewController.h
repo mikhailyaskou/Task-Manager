@@ -12,6 +12,6 @@
 
 @class YMATaskService;
 
-@interface YMAInboxViewController : YMABasicViewController <UITableViewDataSource, UITableViewDelegate, YMAAddTaskViewControllerDelegate>
+@interface YMAInboxViewController : YMABasicViewController
 
 @end

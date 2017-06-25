@@ -98,17 +98,6 @@
     [self saveTasks];
 }
 
-- (YMATask *)taskFromListAtIndex:(NSUInteger)indexOfList taskIndex:(NSUInteger)indexOfTask {
-    YMATaskList *tasks = [self taskListAtIndex:indexOfList];
-    return [tasks taskAtIndex:indexOfTask];
-}
-
-- (void)filterAllTaskListOnTodayTask {
-    for (NSUInteger i = 0; i < [self.privateTaskLists count]; ++i) {
-        [self.privateTaskLists[i] filterTaskToday];
-    }
-}
-
 - (YMATaskList *)getAllTasksOnToday {
     YMATaskList *tasks = [YMATaskList new];
     tasks.tasks = [self allTasks];

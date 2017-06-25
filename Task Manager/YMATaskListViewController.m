@@ -53,7 +53,7 @@
         taskCell = [tableView dequeueReusableCellWithIdentifier:YMAAddProjectCellIdentifier];
     } else {
         taskCell = [tableView dequeueReusableCellWithIdentifier:YMATaskListCellIdetifier];
-        YMATaskList *taskList = self.taskService.taskLists[(NSUInteger) indexPath.row];
+        YMATaskList *taskList = self.taskService.taskLists[indexPath.row];
         taskCell.textLabel.text = taskList.name;
         NSInteger numberOfActiveTasks = taskList.tasks.count; // active
         taskCell.detailTextLabel.text = [NSString stringWithFormat:@"(%li)", (long) numberOfActiveTasks];
@@ -70,7 +70,7 @@
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     //get task list
-    YMATaskList *taskList = self.taskService.taskLists[(NSUInteger) indexPath.row];
+    YMATaskList *taskList = self.taskService.taskLists[indexPath.row];
     UITableViewRowAction *editAction =
         [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Edit" handler:^(
             UITableViewRowAction *_Nonnull action,
@@ -132,7 +132,7 @@
     if ([segue.identifier isEqualToString:ShowProjectTasksIdentifier]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         YMAToDoListViewController *toDoListViewController = [segue destinationViewController];
-        toDoListViewController.tasks = self.taskService.taskLists[(NSUInteger) indexPath.row];
+        toDoListViewController.tasks = self.taskService.taskLists[indexPath.row];
     }
 }
 

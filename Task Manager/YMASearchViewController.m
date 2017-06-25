@@ -8,14 +8,9 @@
 
 #import "YMASearchViewController.h"
 #import "YMATaskService.h"
-#import "YMATaskTableViewCell.h"
-#import "YMATask.h"
-#import "YMADateHelper.h"
-#import "YMAAddTaskViewController.h"
-#import "YMAConstants.h"
 #import "YMATaskList.h"
 
-@interface YMASearchViewController () <UISearchResultsUpdating, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface YMASearchViewController () <UISearchResultsUpdating, UISearchBarDelegate>
 
 @property(weak, nonatomic) IBOutlet UILabel *noResultLabel;
 @property(nonatomic, strong) UISearchController *searchController;
