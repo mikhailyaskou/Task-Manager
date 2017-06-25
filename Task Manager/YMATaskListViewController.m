@@ -23,6 +23,11 @@
 
 #pragma mark - View lifetime
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.taskService = [YMATaskService sharedInstance];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     [self.tableView reloadData];
@@ -48,9 +53,9 @@
         taskCell = [tableView dequeueReusableCellWithIdentifier:YMAAddProjectCellIdentifier];
     } else {
         taskCell = [tableView dequeueReusableCellWithIdentifier:YMATaskListCellIdetifier];
-        YMATaskList *taskList = self.taskService.taskLists[indexPath.row];
+        YMATaskList *taskList = self.taskService.taskLists[(NSUInteger) indexPath.row];
         taskCell.textLabel.text = taskList.name;
-        NSInteger numberOfActiveTasks = taskList.tasks.count;
+        NSInteger numberOfActiveTasks = taskList.tasks.count; // active
         taskCell.detailTextLabel.text = [NSString stringWithFormat:@"(%li)", (long) numberOfActiveTasks];
     }
     return taskCell;
