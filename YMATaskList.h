@@ -10,6 +10,9 @@
 #import <Foundation/Foundation.h>
 
 @interface YMATaskList : NSObject
+- (instancetype)initWithTasks:(NSMutableArray *)tasks;
++ (instancetype)listWithTasks:(NSMutableArray *)tasks;
+
 - (instancetype)initWithCoder:(NSCoder *)coder;
 - (void)encodeWithCoder:(NSCoder *)coder;
 
@@ -18,6 +21,8 @@
 @property(nonatomic, strong) NSDate *creationDate;
 @property(nonatomic, copy) NSArray *tasks;
 
+- (NSUInteger)count;
+- (void)setTasks:(NSArray *)tasks;
 - (void)removeTaskFromList:(YMATask *)task;
 - (void)addTask:(YMATask *)task;
 - (YMATask *)taskAtIndex:(NSUInteger)index;

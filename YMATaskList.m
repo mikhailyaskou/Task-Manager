@@ -17,6 +17,17 @@
 
 @implementation YMATaskList
 
+- (instancetype)initWithTasks:(NSMutableArray *)tasks {
+    self = [super init];
+    if (self) {
+        _privateTasks = tasks;
+    }
+    return self;
+}
++ (instancetype)listWithTasks:(NSMutableArray *)tasks {
+    return [[self alloc] initWithTasks:tasks];
+}
+
 #pragma mark  - Coder
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -94,5 +105,9 @@
     NSPredicate
         *predicate = [NSPredicate predicateWithFormat:@"(startDate >= %@) AND (startDate <= %@)", startDate, endDate];
     [self.privateTasks filterUsingPredicate:predicate];
+}
+
+- (NSUInteger)count {
+    return self.privateTasks.count;
 }
 @end

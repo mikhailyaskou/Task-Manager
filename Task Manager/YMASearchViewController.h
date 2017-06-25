@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YMABasicViewController.h"
 
-@interface YMASearchViewController : UIViewController
+@interface YMASearchViewController : YMABasicViewController
 
 @end

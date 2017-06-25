@@ -436,19 +436,10 @@
                     <navigationItem key="navigationItem" title="Search" id="y1L-90-CfL"/>
                     <connections>
                         <outlet property="noResultLabel" destination="sCj-ax-yr8" id="lVX-OR-afZ"/>
-                        <outlet property="searchDisplayController" destination="Y6Q-Aj-L7B" id="uGG-w5-HTk"/>
                         <outlet property="tableView" destination="Ynb-gM-gor" id="ucZ-n9-w3j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Xv-2c-6rP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Y6Q-Aj-L7B">
-                    <connections>
-                        <outlet property="delegate" destination="Gmm-la-Vzk" id="qmP-Pc-IQn"/>
-                        <outlet property="searchContentsController" destination="Gmm-la-Vzk" id="L3O-zJ-pgH"/>
-                        <outlet property="searchResultsDataSource" destination="Gmm-la-Vzk" id="Ttw-H3-lHf"/>
-                        <outlet property="searchResultsDelegate" destination="Gmm-la-Vzk" id="f2r-Ri-APY"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1688" y="1323"/>
         </scene>
