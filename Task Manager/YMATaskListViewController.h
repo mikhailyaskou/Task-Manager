@@ -14,7 +14,7 @@ static NSString *const YMAAddProjectCellIdentifier = @"YMAAddProjectCellIdentifi
 static NSString *const YMATaskListCellIdetifier = @"YMATaskListCell";
 static NSString *const ShowProjectTasksIdentifier = @"ShowProjectTasksIdentifier";
 static NSString *const DoneTappedUnwindSegueIdentifier = @"DoneTappedUnwindSegueIdentifier";
-static const NSInteger numberOfSections = 2;
+static const NSInteger numberOfSectionsForProjectView = 2;
 static const NSInteger indexSectionForAddRow = 1;
 static const NSInteger indexRowForAddRow = 0;
 

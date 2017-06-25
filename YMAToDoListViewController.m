@@ -41,6 +41,7 @@
 }
 
 #pragma mark - Actions
+
 - (IBAction)sortTable:(id)sender {
     self.ascending = !self.ascending;
     NSSortDescriptor

@@ -19,8 +19,6 @@
 
 @property(weak, nonatomic) IBOutlet UILabel *noResultLabel;
 @property(nonatomic, strong) UISearchController *searchController;
-@property(weak, nonatomic) IBOutlet UITableView *tableView;
-@property(strong, nonatomic) NSMutableArray *tasksForTableView;
 
 @end
 
@@ -30,9 +28,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //register cell
-    UINib *cellNib = [UINib nibWithNibName:YMATaskTableViewCellNibName bundle:nil];
-    [self.tableView registerNib:cellNib forCellReuseIdentifier:YMATaskTableViewCellNibName];
     //create search controller
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
@@ -42,13 +37,6 @@
     self.searchController.searchBar.scopeButtonTitles = @[@"Active tasks", @"Completed"];
     [self.searchController becomeFirstResponder];
     self.tableView.tableHeaderView = self.searchController.searchBar;
-    //hide keyboard if tapped in empty place
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
 }
 
 #pragma mark - Search
@@ -58,13 +46,13 @@
     [self updateSearchResultsForSearchController:self.searchController];
 }
 
-//changed serched value
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     //default section
     self.tasksForTableView = [NSMutableArray new];
     //filter finished or not and search text
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.name contains[cd] %@ and self.isTaskFinished == %@",
-                self.searchController.searchBar.text, [NSNumber numberWithBool:self.searchController.searchBar.selectedScopeButtonIndex]];
+    NSPredicate
+        *predicate = [NSPredicate predicateWithFormat:@"self.name contains[cd] %@ and self.isTaskFinished == %@",
+                                                      self.searchController.searchBar.text, [NSNumber numberWithBool:self.searchController.searchBar.selectedScopeButtonIndex]];
     self.tasksForTableView[0] =
         [YMATaskList listWithTasks:[[[YMATaskService.sharedInstance allTasks] filteredArrayUsingPredicate:predicate] mutableCopy]];
     [self.tableView reloadData];
@@ -86,20 +74,6 @@
         tableView.scrollEnabled = NO;
     }
     return numOfSections;
-}
-/*
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    YMAAddTaskViewController
-        *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:YMATaskTableViewCellIdentifier];
-    editTaskVC.listIndex = (NSUInteger) indexPath.section;
-    editTaskVC.task = self.tasksForTableView[indexPath.row];
-    [self showViewController:editTaskVC sender:nil];
-}
-*/
-#pragma mark - Actions
-
-- (void)dismissKeyboard {
-    [self.searchController.searchBar resignFirstResponder];
 }
 
 @end
