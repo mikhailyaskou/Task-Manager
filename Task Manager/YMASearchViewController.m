@@ -19,8 +19,8 @@
 @property(weak, nonatomic) IBOutlet UILabel *noResultLabel;
 @property(nonatomic, strong) UISearchController *searchController;
 @property(weak, nonatomic) IBOutlet UITableView *tableView;
-@property(nonatomic, strong) NSArray *resultOfSearch;
 @property(nonatomic, assign, getter=isShowOnlyCompleted) BOOL showOnlyCompleted;
+@property(strong, nonatomic) NSMutableArray *tasksForTableView;
 
 @end
 
@@ -56,7 +56,7 @@
 //show - NO RESULT
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     NSInteger numOfSections = 0;
-    if (self.resultOfSearch.count > 0) {
+    if (self.tasksForTableView.count > 0) {
         numOfSections = 1;
         self.noResultLabel.hidden = YES;
         tableView.scrollEnabled = YES;
@@ -83,22 +83,19 @@
         predicate =
             [NSPredicate predicateWithFormat:@"self.name contains[cd] %@ and self.isTaskFinished == NO", self.searchController.searchBar.text];
     }
-    self.resultOfSearch = [NSArray arrayWithArray:[[YMATaskService.sharedInstance allTasks] filteredArrayUsingPredicate:predicate]];
+    self.tasksForTableView = [NSArray arrayWithArray:[[YMATaskService.sharedInstance allTasks] filteredArrayUsingPredicate:predicate]];
     [self.tableView reloadData];
 }
 
 #pragma mark TableView Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.resultOfSearch.count;
+    return self.tasksForTableView.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    YMATaskTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:YMATaskTableViewCellNibName];
-    YMATask *task = self.resultOfSearch[(NSUInteger) indexPath.row];
-    cell.nameLabel.text = task.name;
-    cell.noteLabel.text = task.note;
-    cell.dateLabel.text = [YMADateHelper stringFromDate:task.startDate];
+    YMATask *task = self.tasksForTableView[indexPath.row];
+    YMATaskTableViewCell *cell = [YMATaskTableViewCell idequeueReusableCellWithTask:task tableView:self.tableView];
     return cell;
 }
 
@@ -106,7 +103,7 @@
     YMAAddTaskViewController
         *editTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:YMATaskTableViewCellIdentifier];
     editTaskVC.listIndex = (NSUInteger) indexPath.section;
-    editTaskVC.task = self.resultOfSearch[(NSUInteger) indexPath.row];
+    editTaskVC.task = self.tasksForTableView[indexPath.row];
     [self showViewController:editTaskVC sender:nil];
 }
 

@@ -15,6 +15,7 @@
 
 @property(nonatomic, strong) YMATaskService *taskService;
 @property(weak, nonatomic) IBOutlet UITableView *tableView;
+@property(strong, nonatomic) NSMutableArray *tasksForTableView;
 
 @end
 
@@ -25,7 +26,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.taskService = [YMATaskService sharedInstance];
-    self.tableView.dataSource = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

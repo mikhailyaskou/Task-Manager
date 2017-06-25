@@ -13,3 +13,4 @@ extern NSString * const YMAAddTaskViewControllerIdentifier;
 extern NSString * const nameFieldName;
 extern NSString * const startDateFieldName;
 extern NSString * const YMATaskTableViewCellIdentifier;
+extern NSUInteger indexForInboxSection;

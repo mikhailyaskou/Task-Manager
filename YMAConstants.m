@@ -13,3 +13,4 @@ NSString * const YMAAddTaskViewControllerIdentifier = @"YMAAddTaskViewController
 NSString * const nameFieldName = @"name";
 NSString * const startDateFieldName = @"startDate";
 NSString * const YMATaskTableViewCellIdentifier = @"YMAAddTaskViewController";
+NSUInteger indexForInboxSection = 0;
