@@ -50,7 +50,6 @@
         self.title = titleAddItem;
         self.date = [NSDate date];
     }
-    [self.nameField becomeFirstResponder];
 }
 
 - (void)updateUI {
