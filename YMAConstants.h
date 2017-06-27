@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const dateSelectorDoneTappedIdentifier;
+extern NSString * const dateSelectorTappedSegueIdentifier;
 extern NSString * const YMATaskTableViewCellNibName;
 extern NSString * const YMAAddTaskViewControllerIdentifier;
 extern NSString * const nameFieldName;

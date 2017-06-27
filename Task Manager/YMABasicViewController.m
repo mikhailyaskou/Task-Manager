@@ -13,6 +13,7 @@
 #import "YMAConstants.h"
 #import "YMATask.h"
 #import "YMAAddTaskViewController.h"
+#import "YMALocalizedConstants.h"
 
 @interface YMABasicViewController () <UITableViewDataSource, UITableViewDelegate, YMAAddTaskViewControllerDelegate>
 
@@ -79,7 +80,7 @@
     YMATaskList *tasks = self.tasksForTableView[indexPath.section];
     YMATask *task = tasks.tasks[indexPath.row];
     UITableViewRowAction *doneAction =
-        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Done" handler:^(
+        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:titleDone handler:^(
             UITableViewRowAction *_Nonnull action,
             NSIndexPath *_Nonnull indexPath) {
           [task finishTask];
@@ -88,18 +89,18 @@
         }];
     //delete tapped
     UITableViewRowAction *deleteAction =
-        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(
+        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:titleDelete handler:^(
             UITableViewRowAction *_Nonnull action,
             NSIndexPath *_Nonnull indexPath) {
           //alert
           UIAlertController *alertViewController =
-              [UIAlertController alertControllerWithTitle:@"Do you want to remove item?" message:nil preferredStyle:UIAlertControllerStyleAlert];
+              [UIAlertController alertControllerWithTitle:titleRemoveItem message:nil preferredStyle:UIAlertControllerStyleAlert];
 
           UIAlertAction
-              *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+              *cancelAction = [UIAlertAction actionWithTitle:titleChancel style:UIAlertActionStyleCancel handler:nil];
           [alertViewController addAction:cancelAction];
           UIAlertAction *deleteAction =
-              [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+              [UIAlertAction actionWithTitle:titleDelete style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
                 //remove task from service
                 [self.taskService removeTaskFromAllList:task];
                 //delete task from tasksForTableView
@@ -110,11 +111,8 @@
           [alertViewController addAction:deleteAction];
           [self presentViewController:alertViewController animated:YES completion:nil];
         }];
-    if (task.isTaskFinished) {
-        return @[deleteAction];
-    } else {
-        return @[deleteAction, doneAction];
-    }
+
+    return task.isTaskFinished ? @[deleteAction] : @[deleteAction, doneAction];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

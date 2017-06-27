@@ -9,6 +9,7 @@
 #import "YMATaskService.h"
 #import "YMATask.h"
 #import "YMATaskList.h"
+#import "YMALocalizedConstants.h"
 
 @interface YMATaskService () <NSCoding>
 
@@ -27,7 +28,7 @@
       //to prevent crash if "[NSKeyedUnarchiver initForReadingWithData:]: data is NULL"
       if (sharedInstance.privateTaskLists.count == 0) {
           YMATaskList *tasks = [YMATaskList new];
-          tasks.name = @"Inbox";
+          tasks.name = titleInbox;
           [sharedInstance.privateTaskLists addObject:tasks];
       }
     });

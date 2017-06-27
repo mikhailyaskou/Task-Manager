@@ -163,7 +163,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="aGu-sx-MsJ" kind="show" identifier="DateSelectorTappedSegueIdentefier" id="b3Q-mW-2eP"/>
+                                            <segue destination="aGu-sx-MsJ" kind="show" identifier="DateSelectorTappedSegueIdentifier" id="b3Q-mW-2eP"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>

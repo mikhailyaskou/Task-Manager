@@ -10,10 +10,10 @@
 #import "YMAAddTaskViewController.h"
 #import "YMAAddTaskListViewController.h"
 
-static NSString *const YMAAddProjectCellIdentifier = @"YMAAddProjectCellIdentifier";
-static NSString *const YMATaskListCellIdetifier = @"YMATaskListCell";
-static NSString *const ShowProjectTasksIdentifier = @"ShowProjectTasksIdentifier";
-static NSString *const DoneTappedUnwindSegueIdentifier = @"DoneTappedUnwindSegueIdentifier";
+static NSString * const YMAAddProjectCellIdentifier = @"YMAAddProjectCellIdentifier";
+static NSString * const YMATaskListCellIdetifier = @"YMATaskListCell";
+static NSString * const ShowProjectTasksIdentifier = @"ShowProjectTasksIdentifier";
+static NSString * const DoneTappedUnwindSegueIdentifier = @"DoneTappedUnwindSegueIdentifier";
 static const NSInteger numberOfSectionsForProjectView = 2;
 static const NSInteger indexSectionForAddRow = 1;
 static const NSInteger indexRowForAddRow = 0;

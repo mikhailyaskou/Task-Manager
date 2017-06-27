@@ -9,6 +9,7 @@
 #import "YMASearchViewController.h"
 #import "YMATaskService.h"
 #import "YMATaskList.h"
+#import "YMALocalizedConstants.h"
 
 @interface YMASearchViewController () <UISearchResultsUpdating, UISearchBarDelegate>
 
@@ -29,7 +30,7 @@
     self.searchController.searchBar.delegate = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.definesPresentationContext = YES;
-    self.searchController.searchBar.scopeButtonTitles = @[@"Active tasks", @"Completed"];
+    self.searchController.searchBar.scopeButtonTitles = @[titleActiveTasks, titleCompleted];
     [self.searchController becomeFirstResponder];
     self.tableView.tableHeaderView = self.searchController.searchBar;
 }

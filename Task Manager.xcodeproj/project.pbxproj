@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D84E07AD65CF344E22E85DA /* YMAToDoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D84EACDC4FE34DC33387E36 /* YMAToDoListViewController.m */; };
 		1D84E44DFE2F50A3331CEC51 /* YMADateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D84EAB0A887BA0BC9429BB9 /* YMADateHelper.m */; };
+		1D84EA81C5C0A227C68F4EEC /* YMAAddTaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D84E1F11741DE370D441DD1 /* YMAAddTaskListViewController.m */; };
 		980A383A1EEFD0F1008941A0 /* YMATaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 980A38381EEFD0F1008941A0 /* YMATaskTableViewCell.m */; };
 		980A383B1EEFD0F1008941A0 /* YMATaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980A38391EEFD0F1008941A0 /* YMATaskTableViewCell.xib */; };
 		981086061EFD50EC00628152 /* YMABasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 981086051EFD50EC00628152 /* YMABasicViewController.m */; };
+		981A11661F024B2E000919FA /* YMALocalizedConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 981A11651F024B2E000919FA /* YMALocalizedConstants.m */; };
 		984337371EF186D900C900D6 /* YMAAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 984337361EF186D900C900D6 /* YMAAddTaskViewController.m */; };
-		9843373B1EF1CDAA00C900D6 /* YMAAddTaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9843373A1EF1CDAA00C900D6 /* YMAAddTaskListViewController.m */; };
 		989CF1A11EE35360004C1A47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 989CF1A01EE35360004C1A47 /* main.m */; };
 		989CF1A41EE35360004C1A47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 989CF1A31EE35360004C1A47 /* AppDelegate.m */; };
 		989CF1AD1EE35360004C1A47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 989CF1AB1EE35360004C1A47 /* Main.storyboard */; };
@@ -26,22 +28,25 @@
 		989CF1CB1EE35F28004C1A47 /* YMATaskService.m in Sources */ = {isa = PBXBuildFile; fileRef = 989CF1CA1EE35F28004C1A47 /* YMATaskService.m */; };
 		989CF1D61EE37112004C1A47 /* YMADateSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 989CF1D41EE37112004C1A47 /* YMADateSelectorViewController.m */; };
 		98B655C01EEDB9D300109F7F /* YMAConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B655BF1EEDB9D300109F7F /* YMAConstants.m */; };
-		98C388DD1EF48A7000A63A51 /* YMAToDoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98C388DC1EF48A7000A63A51 /* YMAToDoListViewController.m */; };
 		98D5E73E1EE5619100C4E969 /* YMATaskList.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D5E73D1EE5619100C4E969 /* YMATaskList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D84E1F11741DE370D441DD1 /* YMAAddTaskListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAAddTaskListViewController.m; sourceTree = "<group>"; };
+		1D84E2A04021F2518C2DCAD4 /* YMAAddTaskListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAAddTaskListViewController.h; sourceTree = "<group>"; };
 		1D84E4A19EC15F0AD32393BC /* YMADateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMADateHelper.h; sourceTree = "<group>"; };
+		1D84E7290CDE38EBCE255FA5 /* YMAToDoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAToDoListViewController.h; sourceTree = SOURCE_ROOT; };
 		1D84EAB0A887BA0BC9429BB9 /* YMADateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMADateHelper.m; sourceTree = "<group>"; };
+		1D84EACDC4FE34DC33387E36 /* YMAToDoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAToDoListViewController.m; sourceTree = SOURCE_ROOT; };
 		980A38371EEFD0F1008941A0 /* YMATaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMATaskTableViewCell.h; sourceTree = "<group>"; };
 		980A38381EEFD0F1008941A0 /* YMATaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMATaskTableViewCell.m; sourceTree = "<group>"; };
 		980A38391EEFD0F1008941A0 /* YMATaskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YMATaskTableViewCell.xib; sourceTree = "<group>"; };
 		981086041EFD50EC00628152 /* YMABasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMABasicViewController.h; sourceTree = "<group>"; };
 		981086051EFD50EC00628152 /* YMABasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMABasicViewController.m; sourceTree = "<group>"; };
+		981A11641F024B2E000919FA /* YMALocalizedConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMALocalizedConstants.h; sourceTree = "<group>"; };
+		981A11651F024B2E000919FA /* YMALocalizedConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMALocalizedConstants.m; sourceTree = "<group>"; };
 		984337351EF186D900C900D6 /* YMAAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAAddTaskViewController.h; path = ../YMAAddTaskViewController.h; sourceTree = "<group>"; };
 		984337361EF186D900C900D6 /* YMAAddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAAddTaskViewController.m; path = ../YMAAddTaskViewController.m; sourceTree = "<group>"; };
-		984337391EF1CDAA00C900D6 /* YMAAddTaskListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAAddTaskListViewController.h; sourceTree = "<group>"; };
-		9843373A1EF1CDAA00C900D6 /* YMAAddTaskListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAAddTaskListViewController.m; sourceTree = "<group>"; };
 		989CF19C1EE3535F004C1A47 /* Task Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		989CF1A01EE35360004C1A47 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		989CF1A21EE35360004C1A47 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -66,8 +71,6 @@
 		989CF1D41EE37112004C1A47 /* YMADateSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMADateSelectorViewController.m; sourceTree = "<group>"; };
 		98B655BE1EEDB9D300109F7F /* YMAConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAConstants.h; sourceTree = "<group>"; };
 		98B655BF1EEDB9D300109F7F /* YMAConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAConstants.m; sourceTree = "<group>"; };
-		98C388DB1EF48A7000A63A51 /* YMAToDoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAToDoListViewController.h; path = ../YMAToDoListViewController.h; sourceTree = "<group>"; };
-		98C388DC1EF48A7000A63A51 /* YMAToDoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAToDoListViewController.m; path = ../YMAToDoListViewController.m; sourceTree = "<group>"; };
 		98D5E73C1EE5619100C4E969 /* YMATaskList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMATaskList.h; sourceTree = "<group>"; };
 		98D5E73D1EE5619100C4E969 /* YMATaskList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMATaskList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +86,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D84E79A3E72ACE08B54F9C0 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				1D84E7290CDE38EBCE255FA5 /* YMAToDoListViewController.h */,
+				1D84EACDC4FE34DC33387E36 /* YMAToDoListViewController.m */,
+				1D84E2A04021F2518C2DCAD4 /* YMAAddTaskListViewController.h */,
+				1D84E1F11741DE370D441DD1 /* YMAAddTaskListViewController.m */,
+			);
+			name = List;
+			sourceTree = "<group>";
+		};
 		1D84EA776B7CCD03746B8DF7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,19 +123,9 @@
 				989CF1D41EE37112004C1A47 /* YMADateSelectorViewController.m */,
 				984337351EF186D900C900D6 /* YMAAddTaskViewController.h */,
 				984337361EF186D900C900D6 /* YMAAddTaskViewController.m */,
+				1D84E79A3E72ACE08B54F9C0 /* List */,
 			);
 			name = Task;
-			sourceTree = "<group>";
-		};
-		9843373C1EF1CDB600C900D6 /* List */ = {
-			isa = PBXGroup;
-			children = (
-				98C388DB1EF48A7000A63A51 /* YMAToDoListViewController.h */,
-				98C388DC1EF48A7000A63A51 /* YMAToDoListViewController.m */,
-				984337391EF1CDAA00C900D6 /* YMAAddTaskListViewController.h */,
-				9843373A1EF1CDAA00C900D6 /* YMAAddTaskListViewController.m */,
-			);
-			name = List;
 			sourceTree = "<group>";
 		};
 		989CF1931EE3535F004C1A47 = {
@@ -170,7 +174,6 @@
 		989CF1C51EE3549F004C1A47 /* TapBarViewContreollers */ = {
 			isa = PBXGroup;
 			children = (
-				9843373C1EF1CDB600C900D6 /* List */,
 				984337381EF19D4000C900D6 /* Task */,
 				981086041EFD50EC00628152 /* YMABasicViewController.h */,
 				981086051EFD50EC00628152 /* YMABasicViewController.m */,
@@ -213,6 +216,8 @@
 			children = (
 				98B655BE1EEDB9D300109F7F /* YMAConstants.h */,
 				98B655BF1EEDB9D300109F7F /* YMAConstants.m */,
+				981A11641F024B2E000919FA /* YMALocalizedConstants.h */,
+				981A11651F024B2E000919FA /* YMALocalizedConstants.m */,
 			);
 			name = Constants;
 			path = ..;
@@ -300,15 +305,16 @@
 				989CF1CB1EE35F28004C1A47 /* YMATaskService.m in Sources */,
 				981086061EFD50EC00628152 /* YMABasicViewController.m in Sources */,
 				984337371EF186D900C900D6 /* YMAAddTaskViewController.m in Sources */,
-				9843373B1EF1CDAA00C900D6 /* YMAAddTaskListViewController.m in Sources */,
 				989CF1C81EE35EED004C1A47 /* YMATask.m in Sources */,
 				989CF1BE1EE35454004C1A47 /* YMATodayViewController.m in Sources */,
 				989CF1A11EE35360004C1A47 /* main.m in Sources */,
 				98B655C01EEDB9D300109F7F /* YMAConstants.m in Sources */,
 				989CF1D61EE37112004C1A47 /* YMADateSelectorViewController.m in Sources */,
-				98C388DD1EF48A7000A63A51 /* YMAToDoListViewController.m in Sources */,
 				98D5E73E1EE5619100C4E969 /* YMATaskList.m in Sources */,
 				1D84E44DFE2F50A3331CEC51 /* YMADateHelper.m in Sources */,
+				981A11661F024B2E000919FA /* YMALocalizedConstants.m in Sources */,
+				1D84E07AD65CF344E22E85DA /* YMAToDoListViewController.m in Sources */,
+				1D84EA81C5C0A227C68F4EEC /* YMAAddTaskListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,8 @@
 
 #import "YMAConstants.h"
 
+NSString * const dateSelectorDoneTappedIdentifier = @"DateSelectorDoneTappedIdentifier";
+NSString * const dateSelectorTappedSegueIdentifier = @"DateSelectorTappedSegueIdentifier";
 NSString * const YMATaskTableViewCellNibName = @"YMATaskTableViewCell";
 NSString * const YMAAddTaskViewControllerIdentifier = @"YMAAddTaskViewController";
 NSString * const nameFieldName = @"name";

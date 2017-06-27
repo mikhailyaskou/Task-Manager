@@ -9,6 +9,7 @@
 #import "YMATodayViewController.h"
 #import "YMATaskService.h"
 #import "YMATaskList.h"
+#import "YMALocalizedConstants.h"
 
 @interface YMATodayViewController ()
 @property(strong, nonatomic) YMATaskList *allTasks;
@@ -26,7 +27,7 @@
     self.tasksForTableView = [NSMutableArray new];
     //list with finished task
     YMATaskList *finishedTasks = [YMATaskList new];
-    finishedTasks.name = @"Completed";
+    finishedTasks.name = titleCompleted;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.taskFinished == YES"];
     finishedTasks.tasks = [NSArray arrayWithArray:[self.allTasks.tasks filteredArrayUsingPredicate:predicate]];
     //list with not finished task

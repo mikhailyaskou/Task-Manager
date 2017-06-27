@@ -9,6 +9,8 @@
 #import "YMAAddTaskViewController.h"
 #import "YMATask.h"
 #import "YMADateHelper.h"
+#import "YMALocalizedConstants.h"
+#import "YMAConstants.h"
 
 @interface YMAAddTaskViewController () <UIActionSheetDelegate>
 
@@ -42,10 +44,10 @@
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTapped)]];
     // update UI
     if (_task) {
-        self.title = @"Edit Item";
+        self.title = titleEditItem;
         [self updateUI];
     } else {
-        self.title = @"Add Item";
+        self.title = titleAddItem;
         self.date = [NSDate date];
     }
     [self.nameField becomeFirstResponder];
@@ -60,14 +62,14 @@
 }
 
 - (IBAction)unwindToEditViewController:(UIStoryboardSegue *)unwindSegue {
-    if ([unwindSegue.identifier isEqualToString:DateSelectorDoneTappedIdentifier]) {
+    if ([unwindSegue.identifier isEqualToString:dateSelectorDoneTappedIdentifier]) {
         YMADateSelectorViewController *dateSelectorViewController = unwindSegue.sourceViewController;
         [self setDate:dateSelectorViewController.date];
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender {
-    if ([[segue identifier] isEqualToString:DateSelectorTappedSegueIdentefier]) {
+    if ([[segue identifier] isEqualToString:dateSelectorTappedSegueIdentifier]) {
         YMADateSelectorViewController *dateSelectorViewController = [segue destinationViewController];
         dateSelectorViewController.date = self.date;
     }
@@ -89,36 +91,36 @@
     UITableViewCell *theCellClicked = [self.tableView cellForRowAtIndexPath:indexPath];
     if (theCellClicked == self.priorityCell) {
         UIAlertController *actionSheet =
-            [UIAlertController alertControllerWithTitle:@"Select Priority" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+            [UIAlertController alertControllerWithTitle:titleSelectPriority message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:PriorityCancel style:UIAlertActionStyleCancel handler:^(
+        [actionSheet addAction:[UIAlertAction actionWithTitle:titleChancel style:UIAlertActionStyleCancel handler:^(
             UIAlertAction *action) {
           [self dismissViewControllerAnimated:YES completion:^{
           }];
         }]];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:PriorityNone style:UIAlertActionStyleDefault handler:^(
-            UIAlertAction *action) {
-          self.priorityLabel.text = action.title;
-          [self dismissViewControllerAnimated:YES completion:^{
-          }];
-        }]];
-
-        [actionSheet addAction:[UIAlertAction actionWithTitle:PriorityLow style:UIAlertActionStyleDefault handler:^(
+        [actionSheet addAction:[UIAlertAction actionWithTitle:priorityNone style:UIAlertActionStyleDefault handler:^(
             UIAlertAction *action) {
           self.priorityLabel.text = action.title;
           [self dismissViewControllerAnimated:YES completion:^{
           }];
         }]];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:PriorityMedium style:UIAlertActionStyleDefault handler:^(
+        [actionSheet addAction:[UIAlertAction actionWithTitle:priorityLow style:UIAlertActionStyleDefault handler:^(
             UIAlertAction *action) {
           self.priorityLabel.text = action.title;
           [self dismissViewControllerAnimated:YES completion:^{
           }];
         }]];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:PriorityHigh style:UIAlertActionStyleDestructive handler:^(
+        [actionSheet addAction:[UIAlertAction actionWithTitle:priorityMedium style:UIAlertActionStyleDefault handler:^(
+            UIAlertAction *action) {
+          self.priorityLabel.text = action.title;
+          [self dismissViewControllerAnimated:YES completion:^{
+          }];
+        }]];
+
+        [actionSheet addAction:[UIAlertAction actionWithTitle:priorityHigh style:UIAlertActionStyleDestructive handler:^(
             UIAlertAction *action) {
           self.priorityLabel.text = action.title;
           [self dismissViewControllerAnimated:YES completion:^{
