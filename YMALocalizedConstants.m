@@ -4,7 +4,7 @@
 //
 //  Created by Mikhail Yaskou on 27.06.17.
 //  Copyright © 2017 Mikhail Yaskou. All rights reserved.
-//
+//localization
 
 #import "YMALocalizedConstants.h"
 
