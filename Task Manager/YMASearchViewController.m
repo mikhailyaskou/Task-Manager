@@ -30,7 +30,7 @@
     self.searchController.searchBar.delegate = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.definesPresentationContext = YES;
-    self.searchController.searchBar.scopeButtonTitles = @[titleActiveTasks, titleCompleted];
+    self.searchController.searchBar.scopeButtonTitles = @[YMATitleActiveTasks, YMATitleCompleted];
     [self.searchController becomeFirstResponder];
     self.tableView.tableHeaderView = self.searchController.searchBar;
 }

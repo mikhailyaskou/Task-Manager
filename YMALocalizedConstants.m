@@ -10,23 +10,23 @@
 
 @implementation YMALocalizedConstants
 
-NSString * const priorityNone = @"None";
-NSString * const priorityLow = @"Low";
-NSString * const priorityMedium = @"Medium";
-NSString * const priorityHigh = @"High";
-NSString * const titleDelete = @"Delete";
-NSString * const titleRemoveItem = @"Do you want to remove item?";
-NSString * const titleChancel = @"Cancel";
-NSString * const titleDone = @"Done";
-NSString * const titleEdit = @"Edit";
-NSString * const titleEditProject = @"Edit Project?";
-NSString * const titleProjectName = @"Project Name";
-NSString * const titleCompleted = @"Completed";
-NSString * const titleSelectPriority = @"Select Priority";
-NSString * const titleActiveTasks = @"Active tasks";
-NSString * const titleEditItem = @"Edit Item";
-NSString * const titleAddItem = @"Add Item";
-NSString * const titleOk = @"Ok";
-NSString * const titleInbox = @"Inbox";
+NSString * const YMAPriorityNone = @"None";
+NSString * const YMAPriorityLow = @"Low";
+NSString * const YMAPriorityMedium = @"Medium";
+NSString * const YMAPriorityHigh = @"High";
+NSString * const YMATitleDelete = @"Delete";
+NSString * const YMATitleRemoveItem = @"Do you want to remove item?";
+NSString * const YMATitleChancel = @"Cancel";
+NSString * const YMATitleDone = @"Done";
+NSString * const YMATitleEdit = @"Edit";
+NSString * const YMATitleEditProject = @"Edit Project?";
+NSString * const YMATitleProjectName = @"Project Name";
+NSString * const YMATitleCompleted = @"Completed";
+NSString * const YMATitleSelectPriority = @"Select Priority";
+NSString * const YMATitleActiveTasks = @"Active tasks";
+NSString * const YMATitleEditItem = @"Edit Item";
+NSString * const YMATitleAddItem = @"Add Item";
+NSString * const YMATitleOk = @"Ok";
+NSString * const YMATitleInbox = @"Inbox";
 
 @end

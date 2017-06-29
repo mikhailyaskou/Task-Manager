@@ -12,11 +12,11 @@
 
 static NSString * const YMAAddProjectCellIdentifier = @"YMAAddProjectCellIdentifier";
 static NSString * const YMATaskListCellIdetifier = @"YMATaskListCell";
-static NSString * const ShowProjectTasksIdentifier = @"ShowProjectTasksIdentifier";
-static NSString * const DoneTappedUnwindSegueIdentifier = @"DoneTappedUnwindSegueIdentifier";
-static const NSInteger numberOfSectionsForProjectView = 2;
-static const NSInteger indexSectionForAddRow = 1;
-static const NSInteger indexRowForAddRow = 0;
+static NSString * const YMAShowProjectTasksIdentifier = @"ShowProjectTasksIdentifier";
+static NSString * const YMADoneTappedUnwindSegueIdentifier = @"DoneTappedUnwindSegueIdentifier";
+static const NSInteger YMANumberOfSectionsForProjectView = 2;
+static const NSInteger YMAIndexSectionForAddRow = 1;
+static const NSInteger YMAIndexRowForAddRow = 0;
 
 @interface YMATaskListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

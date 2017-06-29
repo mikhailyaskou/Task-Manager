@@ -10,7 +10,7 @@
 #import "YMAAddTaskViewController.h"
 #import "YMABasicViewController.h"
 
-static NSUInteger indexForInboxSection = 0;
+static NSUInteger YMAIndexForInboxSection = 0;
 
 @interface YMATodayViewController : YMABasicViewController
 

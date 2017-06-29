@@ -40,7 +40,7 @@
 - (IBAction)sortTable:(id)sender {
     self.ascending = !self.ascending;
     NSSortDescriptor
-        *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:nameFieldName ascending:self.isAscending];
+        *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:YMANameFieldName ascending:self.isAscending];
     [self.tasks sortUsingDescriptors:@[sortDescriptor]];
     [self.tableView reloadData];
 }

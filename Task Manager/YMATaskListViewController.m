@@ -36,7 +36,7 @@
 #pragma mark - TableView Delefate;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return numberOfSectionsForProjectView;
+    return YMANumberOfSectionsForProjectView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -45,7 +45,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *taskCell;
-    if (indexPath.section == indexSectionForAddRow && indexPath.row == indexRowForAddRow) {
+    if (indexPath.section == YMAIndexSectionForAddRow && indexPath.row == YMAIndexRowForAddRow) {
         taskCell = [tableView dequeueReusableCellWithIdentifier:YMAAddProjectCellIdentifier];
     } else {
         taskCell = [tableView dequeueReusableCellWithIdentifier:YMATaskListCellIdetifier];
@@ -58,29 +58,29 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.row == indexRowForAddRow ? UITableViewCellEditingStyleNone : UITableViewCellEditingStyleDelete;
+    return indexPath.row == YMAIndexRowForAddRow ? UITableViewCellEditingStyleNone : UITableViewCellEditingStyleDelete;
 }
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     //get task list
     YMATaskList *taskList = self.taskService.taskLists[indexPath.row];
     UITableViewRowAction *editAction =
-        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:titleEdit handler:^(
+        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:YMATitleEdit handler:^(
             UITableViewRowAction *_Nonnull action,
             NSIndexPath *_Nonnull indexPath) {
           //edit action
 
 
           UIAlertController *alertViewController =
-              [UIAlertController alertControllerWithTitle:titleEditProject message:nil preferredStyle:UIAlertControllerStyleAlert];
+              [UIAlertController alertControllerWithTitle:YMATitleEditProject message:nil preferredStyle:UIAlertControllerStyleAlert];
           [alertViewController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField.placeholder = titleProjectName;
+            textField.placeholder = YMATitleProjectName;
             textField.text = taskList.name;
           }];
-          UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:titleChancel style:UIAlertActionStyleCancel handler:nil];
+          UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:YMATitleChancel style:UIAlertActionStyleCancel handler:nil];
           [alertViewController addAction:cancelAction];
           UIAlertAction *OkAction =
-              [UIAlertAction actionWithTitle:titleOk style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+              [UIAlertAction actionWithTitle:YMATitleOk style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
                 taskList.name = alertViewController.textFields[0].text;
                 [self.taskService saveTasks];
                 UITableViewCell *tableViewCell = [self.tableView cellForRowAtIndexPath:indexPath];
@@ -94,14 +94,14 @@
     editAction.backgroundColor = [UIColor blueColor];
     //delete tapped
     UITableViewRowAction *deleteAction =
-        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:titleDelete handler:^(
+        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:YMATitleDelete handler:^(
             UITableViewRowAction *_Nonnull action,
             NSIndexPath *_Nonnull indexPath) {
           //alert
-          UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:titleRemoveItem message:nil preferredStyle:UIAlertControllerStyleAlert];
-          UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:titleChancel style:UIAlertActionStyleCancel handler:nil];
+          UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:YMATitleRemoveItem message:nil preferredStyle:UIAlertControllerStyleAlert];
+          UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:YMATitleChancel style:UIAlertActionStyleCancel handler:nil];
           [alertViewController addAction:cancelAction];
-          UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:titleDelete style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+          UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:YMATitleDelete style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
                 [self.taskService removeTasks:taskList];
                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
               }];
@@ -119,7 +119,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender {
-    if ([segue.identifier isEqualToString:ShowProjectTasksIdentifier]) {
+    if ([segue.identifier isEqualToString:YMAShowProjectTasksIdentifier]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         YMAToDoListViewController *toDoListViewController = [segue destinationViewController];
         toDoListViewController.tasks = self.taskService.taskLists[indexPath.row];
@@ -127,7 +127,7 @@
 }
 
 - (IBAction)unwindToEditViewController:(UIStoryboardSegue *)unwindSegue {
-    if ([unwindSegue.identifier isEqualToString:DoneTappedUnwindSegueIdentifier]) {
+    if ([unwindSegue.identifier isEqualToString:YMADoneTappedUnwindSegueIdentifier]) {
         YMAAddTaskListViewController *taskListViewController = [unwindSegue sourceViewController];
         YMATaskList *newTaskList = [YMATaskList new];
         newTaskList.idTaskList = @(arc4random_uniform(100000));

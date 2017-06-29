@@ -14,6 +14,7 @@
 #import "YMATask.h"
 #import "YMAAddTaskViewController.h"
 #import "YMALocalizedConstants.h"
+#import "YMADateHelper.h"
 
 @interface YMABasicViewController () <UITableViewDataSource, UITableViewDelegate, YMAAddTaskViewControllerDelegate>
 
@@ -62,7 +63,10 @@
 //fill the cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YMATask *task = [self taskFromTableViewTasks:indexPath];
-    YMATaskTableViewCell *cell = [YMATaskTableViewCell idequeueReusableCellWithTask:task tableView:self.tableView];
+    YMATaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:YMATaskTableViewCellNibName];
+    cell.nameLabel.text = task.name;
+    cell.noteLabel.text = task.note;
+    cell.dateLabel.text = [YMADateHelper stringFromDate:task.startDate];
     return cell;
 }
 
@@ -80,7 +84,7 @@
     YMATaskList *tasks = self.tasksForTableView[indexPath.section];
     YMATask *task = tasks.tasks[indexPath.row];
     UITableViewRowAction *doneAction =
-        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:titleDone handler:^(
+        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:YMATitleDone handler:^(
             UITableViewRowAction *_Nonnull action,
             NSIndexPath *_Nonnull indexPath) {
           [task finishTask];
@@ -89,18 +93,18 @@
         }];
     //delete tapped
     UITableViewRowAction *deleteAction =
-        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:titleDelete handler:^(
+        [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:YMATitleDelete handler:^(
             UITableViewRowAction *_Nonnull action,
             NSIndexPath *_Nonnull indexPath) {
           //alert
           UIAlertController *alertViewController =
-              [UIAlertController alertControllerWithTitle:titleRemoveItem message:nil preferredStyle:UIAlertControllerStyleAlert];
+              [UIAlertController alertControllerWithTitle:YMATitleRemoveItem message:nil preferredStyle:UIAlertControllerStyleAlert];
 
           UIAlertAction
-              *cancelAction = [UIAlertAction actionWithTitle:titleChancel style:UIAlertActionStyleCancel handler:nil];
+              *cancelAction = [UIAlertAction actionWithTitle:YMATitleChancel style:UIAlertActionStyleCancel handler:nil];
           [alertViewController addAction:cancelAction];
           UIAlertAction *deleteAction =
-              [UIAlertAction actionWithTitle:titleDelete style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+              [UIAlertAction actionWithTitle:YMATitleDelete style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
                 //remove task from service
                 [self.taskService removeTaskFromAllList:task];
                 //delete task from tasksForTableView
@@ -132,7 +136,7 @@
     YMAAddTaskViewController
         *addTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:YMAAddTaskViewControllerIdentifier];
     addTaskVC.delegate = self;
-    addTaskVC.listIndex = indexForInboxSection;
+    addTaskVC.listIndex = YMAIndexForInboxSection;
     [self showViewController:addTaskVC sender:nil];
 }
 
@@ -141,7 +145,7 @@
     NSArray *allTask = [YMATaskService.sharedInstance allTasks];
     if (NSNotFound == [allTask indexOfObject:task]) {
         //add new task
-        [self.taskService incomingTask:task intexOfList:indexForInboxSection];
+        [self.taskService incomingTask:task intexOfList:YMAIndexForInboxSection];
     }
 }
 

@@ -8,11 +8,11 @@
 
 #import "YMAConstants.h"
 
-NSString * const dateSelectorDoneTappedIdentifier = @"DateSelectorDoneTappedIdentifier";
-NSString * const dateSelectorTappedSegueIdentifier = @"DateSelectorTappedSegueIdentifier";
+NSString * const YMADateSelectorDoneTappedIdentifier = @"DateSelectorDoneTappedIdentifier";
+NSString * const YMADateSelectorTappedSegueIdentifier = @"DateSelectorTappedSegueIdentifier";
 NSString * const YMATaskTableViewCellNibName = @"YMATaskTableViewCell";
 NSString * const YMAAddTaskViewControllerIdentifier = @"YMAAddTaskViewController";
-NSString * const nameFieldName = @"name";
-NSString * const startDateFieldName = @"startDate";
+NSString * const YMANameFieldName = @"name";
+NSString * const YMAStartDateFieldName = @"startDate";
 NSString * const YMATaskTableViewCellIdentifier = @"YMAAddTaskViewController";
-NSUInteger indexForInboxSection = 0;
+NSUInteger const YMAIndexForInboxSection = 0;

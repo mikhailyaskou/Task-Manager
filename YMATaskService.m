@@ -28,7 +28,7 @@
       //to prevent crash if "[NSKeyedUnarchiver initForReadingWithData:]: data is NULL"
       if (sharedInstance.privateTaskLists.count == 0) {
           YMATaskList *tasks = [YMATaskList new];
-          tasks.name = titleInbox;
+          tasks.name = YMATitleInbox;
           [sharedInstance.privateTaskLists addObject:tasks];
       }
     });

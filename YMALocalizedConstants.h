@@ -10,31 +10,23 @@
 
 @interface YMALocalizedConstants : NSObject
 
-extern NSString * const priorityNone;
-extern NSString * const priorityLow;
-extern NSString * const priorityMedium;
-extern NSString * const priorityHigh;
-
-extern NSString * const titleDelete;
-extern NSString * const titleRemoveItem;
-extern NSString * const titleChancel;
-extern NSString * const titleDone;
-
-extern NSString * const titleEdit;
-extern NSString * const titleEditProject;
-extern NSString * const titleProjectName;
-
-extern NSString * const titleCompleted;
-
-extern NSString * const titleSelectPriority;
-
-extern NSString * const titleActiveTasks;
-extern NSString * const titleEditItem;
-extern NSString * const titleAddItem;
-extern NSString * const titleOk;
-extern NSString * const titleInbox;
-
-
-
+extern NSString * const YMAPriorityNone;
+extern NSString * const YMAPriorityLow;
+extern NSString * const YMAPriorityMedium;
+extern NSString * const YMAPriorityHigh;
+extern NSString * const YMATitleDelete;
+extern NSString * const YMATitleRemoveItem;
+extern NSString * const YMATitleChancel;
+extern NSString * const YMATitleDone;
+extern NSString * const YMATitleEdit;
+extern NSString * const YMATitleEditProject;
+extern NSString * const YMATitleProjectName;
+extern NSString * const YMATitleCompleted;
+extern NSString * const YMATitleSelectPriority;
+extern NSString * const YMATitleActiveTasks;
+extern NSString * const YMATitleEditItem;
+extern NSString * const YMATitleAddItem;
+extern NSString * const YMATitleOk;
+extern NSString * const YMATitleInbox;
 
 @end

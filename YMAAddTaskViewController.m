@@ -44,10 +44,10 @@
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTapped)]];
     // update UI
     if (_task) {
-        self.title = titleEditItem;
+        self.title = YMATitleEditItem;
         [self updateUI];
     } else {
-        self.title = titleAddItem;
+        self.title = YMATitleAddItem;
         self.date = [NSDate date];
     }
 }
@@ -61,14 +61,14 @@
 }
 
 - (IBAction)unwindToEditViewController:(UIStoryboardSegue *)unwindSegue {
-    if ([unwindSegue.identifier isEqualToString:dateSelectorDoneTappedIdentifier]) {
+    if ([unwindSegue.identifier isEqualToString:YMADateSelectorDoneTappedIdentifier]) {
         YMADateSelectorViewController *dateSelectorViewController = unwindSegue.sourceViewController;
         [self setDate:dateSelectorViewController.date];
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender {
-    if ([[segue identifier] isEqualToString:dateSelectorTappedSegueIdentifier]) {
+    if ([[segue identifier] isEqualToString:YMADateSelectorTappedSegueIdentifier]) {
         YMADateSelectorViewController *dateSelectorViewController = [segue destinationViewController];
         dateSelectorViewController.date = self.date;
     }
@@ -87,50 +87,33 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *priorities=@[YMAPriorityNone, YMAPriorityLow, YMAPriorityMedium,YMAPriorityHigh];
     UITableViewCell *theCellClicked = [self.tableView cellForRowAtIndexPath:indexPath];
     if (theCellClicked == self.priorityCell) {
         UIAlertController *actionSheet =
-            [UIAlertController alertControllerWithTitle:titleSelectPriority message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-
-        [actionSheet addAction:[UIAlertAction actionWithTitle:titleChancel style:UIAlertActionStyleCancel handler:^(
+            [UIAlertController alertControllerWithTitle:YMATitleSelectPriority message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        //add priorities
+        for (NSString *priority in priorities) {
+            UIAlertAction *alertAction = [UIAlertAction actionWithTitle:priority style:UIAlertActionStyleDefault handler:^(
+                UIAlertAction *alertAction) {
+              self.priorityLabel.text = alertAction.title;
+              [self dismissViewControllerAnimated:YES completion:^{
+              }];
+            }];
+            [actionSheet addAction:alertAction];
+        }
+        //add chancel
+        [actionSheet addAction:[UIAlertAction actionWithTitle:YMATitleChancel style:UIAlertActionStyleCancel handler:^(
             UIAlertAction *action) {
           [self dismissViewControllerAnimated:YES completion:^{
           }];
         }]];
 
-        [actionSheet addAction:[UIAlertAction actionWithTitle:priorityNone style:UIAlertActionStyleDefault handler:^(
-            UIAlertAction *action) {
-          self.priorityLabel.text = action.title;
-          [self dismissViewControllerAnimated:YES completion:^{
-          }];
-        }]];
-
-        [actionSheet addAction:[UIAlertAction actionWithTitle:priorityLow style:UIAlertActionStyleDefault handler:^(
-            UIAlertAction *action) {
-          self.priorityLabel.text = action.title;
-          [self dismissViewControllerAnimated:YES completion:^{
-          }];
-        }]];
-
-        [actionSheet addAction:[UIAlertAction actionWithTitle:priorityMedium style:UIAlertActionStyleDefault handler:^(
-            UIAlertAction *action) {
-          self.priorityLabel.text = action.title;
-          [self dismissViewControllerAnimated:YES completion:^{
-          }];
-        }]];
-
-        [actionSheet addAction:[UIAlertAction actionWithTitle:priorityHigh style:UIAlertActionStyleDestructive handler:^(
-            UIAlertAction *action) {
-          self.priorityLabel.text = action.title;
-          [self dismissViewControllerAnimated:YES completion:^{
-          }];
-        }]];
         // Present action sheet.
         [self presentViewController:actionSheet animated:YES completion:nil];
     }
     //deselect row after selection
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
 
 @end

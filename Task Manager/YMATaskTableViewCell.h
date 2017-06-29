@@ -11,8 +11,6 @@
 
 @interface YMATaskTableViewCell : UITableViewCell
 
-+ (instancetype)idequeueReusableCellWithTask:(YMATask *)task tableView:(UITableView *)tableView;
-
 @property(weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property(weak, nonatomic) IBOutlet UILabel *noteLabel;
 @property(weak, nonatomic) IBOutlet UILabel *dateLabel;

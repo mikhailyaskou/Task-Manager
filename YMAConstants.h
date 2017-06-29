@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const dateSelectorDoneTappedIdentifier;
-extern NSString * const dateSelectorTappedSegueIdentifier;
+extern NSString * const YMADateSelectorDoneTappedIdentifier;
+extern NSString * const YMADateSelectorTappedSegueIdentifier;
 extern NSString * const YMATaskTableViewCellNibName;
 extern NSString * const YMAAddTaskViewControllerIdentifier;
-extern NSString * const nameFieldName;
-extern NSString * const startDateFieldName;
+extern NSString * const YMANameFieldName;
+extern NSString * const YMAStartDateFieldName;
 extern NSString * const YMATaskTableViewCellIdentifier;
-extern NSUInteger indexForInboxSection;
+extern NSUInteger const YMAIndexForInboxSection;

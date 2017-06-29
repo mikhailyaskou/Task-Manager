@@ -27,7 +27,7 @@
     self.tasksForTableView = [NSMutableArray new];
     //list with finished task
     YMATaskList *finishedTasks = [YMATaskList new];
-    finishedTasks.name = titleCompleted;
+    finishedTasks.name = YMATitleCompleted;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.taskFinished == YES"];
     finishedTasks.tasks = [NSArray arrayWithArray:[self.allTasks.tasks filteredArrayUsingPredicate:predicate]];
     //list with not finished task

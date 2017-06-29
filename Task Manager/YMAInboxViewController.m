@@ -36,7 +36,7 @@
             //sort array
             NSMutableArray *allTasks = [[YMATaskService.sharedInstance allTasks] mutableCopy];
             NSSortDescriptor
-                *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:startDateFieldName ascending:self.isAscending];
+                *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:YMAStartDateFieldName ascending:self.isAscending];
             [allTasks sortUsingDescriptors:@[sortDescriptor]];
             self.tasksForTableView = [NSMutableArray new];
             int section = 0;
@@ -72,7 +72,7 @@
         } else {
             self.tasksForTableView = [YMATaskService.sharedInstance.taskLists mutableCopy];
             NSSortDescriptor
-                *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:nameFieldName ascending:self.isAscending];
+                *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:YMANameFieldName ascending:self.isAscending];
             [self.tasksForTableView sortUsingDescriptors:@[sortDescriptor]];
         }
         [self.tableView reloadData];
