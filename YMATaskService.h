@@ -8,20 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
+@class YMATaskList;
 @class YMATask;
 
 @interface YMATaskService : NSObject
+- (instancetype)initWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 
-@property (nonatomic, strong) NSArray *tasks;
+@property(nonatomic, strong) NSArray *taskLists;
 
-- (instancetype)initWithTasks:(NSMutableArray *)tasks;
-+ (instancetype)taskServiceWithTasks:(NSMutableArray *)tasks;
++ (instancetype)sharedInstance;
 
-- (void)addTask:(YMATask *)task;
-- (NSInteger)numberOfTasks;
-- (YMATask *)taskByIndex:(NSUInteger)index;
-- (void)replaceTaskByIndex:(NSUInteger)index task:(YMATask *)task;
-- (void)update:(NSUInteger)index task:(id)task;
-- (void)incomingTask:(YMATask *)task;
-    
+- (void)addTasks:(YMATaskList *)tasks;
+- (YMATaskList *)taskListAtIndex:(NSUInteger)index;
+- (NSArray *)allTasks;
+- (YMATaskList *)getAllTasksOnToday;
+- (void)removeTaskFromAllList:(YMATask *)task;
+- (void)removeTasks:(YMATaskList *)tasks;
+- (void)saveTasks;
+- (void)incomingTask:(YMATask *)task intexOfList:(NSUInteger)listIndex;
+
 @end

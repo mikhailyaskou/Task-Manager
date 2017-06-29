@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YMAAddTaskViewController.h"
+#import "YMABasicViewController.h"
 
-@interface YMATodayViewController : UIViewController
+static NSUInteger YMAIndexForInboxSection = 0;
+
+@interface YMATodayViewController : YMABasicViewController
 
 @end
