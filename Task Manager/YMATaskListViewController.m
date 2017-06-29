@@ -69,8 +69,6 @@
             UITableViewRowAction *_Nonnull action,
             NSIndexPath *_Nonnull indexPath) {
           //edit action
-
-
           UIAlertController *alertViewController =
               [UIAlertController alertControllerWithTitle:YMATitleEditProject message:nil preferredStyle:UIAlertControllerStyleAlert];
           [alertViewController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
