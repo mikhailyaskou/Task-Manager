@@ -13,7 +13,7 @@
 		980A383A1EEFD0F1008941A0 /* YMATaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 980A38381EEFD0F1008941A0 /* YMATaskTableViewCell.m */; };
 		980A383B1EEFD0F1008941A0 /* YMATaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980A38391EEFD0F1008941A0 /* YMATaskTableViewCell.xib */; };
 		981086061EFD50EC00628152 /* YMABasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 981086051EFD50EC00628152 /* YMABasicViewController.m */; };
-		981A11661F024B2E000919FA /* YMALocalizedConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 981A11651F024B2E000919FA /* YMALocalizedConstants.m */; };
+		983B26251F050DD1000CB60E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 983B26271F050DD1000CB60E /* Localizable.strings */; };
 		984337371EF186D900C900D6 /* YMAAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 984337361EF186D900C900D6 /* YMAAddTaskViewController.m */; };
 		989CF1A11EE35360004C1A47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 989CF1A01EE35360004C1A47 /* main.m */; };
 		989CF1A41EE35360004C1A47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 989CF1A31EE35360004C1A47 /* AppDelegate.m */; };
@@ -44,7 +44,9 @@
 		981086041EFD50EC00628152 /* YMABasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMABasicViewController.h; sourceTree = "<group>"; };
 		981086051EFD50EC00628152 /* YMABasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMABasicViewController.m; sourceTree = "<group>"; };
 		981A11641F024B2E000919FA /* YMALocalizedConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMALocalizedConstants.h; sourceTree = "<group>"; };
-		981A11651F024B2E000919FA /* YMALocalizedConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMALocalizedConstants.m; sourceTree = "<group>"; };
+		983B26231F050DC8000CB60E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		983B26241F050DC8000CB60E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		983B26261F050DD1000CB60E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		984337351EF186D900C900D6 /* YMAAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAAddTaskViewController.h; path = ../YMAAddTaskViewController.h; sourceTree = "<group>"; };
 		984337361EF186D900C900D6 /* YMAAddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAAddTaskViewController.m; path = ../YMAAddTaskViewController.m; sourceTree = "<group>"; };
 		989CF19C1EE3535F004C1A47 /* Task Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +135,7 @@
 			children = (
 				989CF19E1EE3535F004C1A47 /* Task Manager */,
 				989CF19D1EE3535F004C1A47 /* Products */,
+				983B26271F050DD1000CB60E /* Localizable.strings */,
 			);
 			sourceTree = "<group>";
 		};
@@ -217,7 +220,6 @@
 				98B655BE1EEDB9D300109F7F /* YMAConstants.h */,
 				98B655BF1EEDB9D300109F7F /* YMAConstants.m */,
 				981A11641F024B2E000919FA /* YMALocalizedConstants.h */,
-				981A11651F024B2E000919FA /* YMALocalizedConstants.m */,
 			);
 			name = Constants;
 			path = ..;
@@ -287,6 +289,7 @@
 				980A383B1EEFD0F1008941A0 /* YMATaskTableViewCell.xib in Resources */,
 				989CF1AF1EE35360004C1A47 /* Assets.xcassets in Resources */,
 				989CF1AD1EE35360004C1A47 /* Main.storyboard in Resources */,
+				983B26251F050DD1000CB60E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +315,6 @@
 				989CF1D61EE37112004C1A47 /* YMADateSelectorViewController.m in Sources */,
 				98D5E73E1EE5619100C4E969 /* YMATaskList.m in Sources */,
 				1D84E44DFE2F50A3331CEC51 /* YMADateHelper.m in Sources */,
-				981A11661F024B2E000919FA /* YMALocalizedConstants.m in Sources */,
 				1D84E07AD65CF344E22E85DA /* YMAToDoListViewController.m in Sources */,
 				1D84EA81C5C0A227C68F4EEC /* YMAAddTaskListViewController.m in Sources */,
 			);
@@ -321,10 +323,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		983B26271F050DD1000CB60E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				983B26261F050DD1000CB60E /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		989CF1AB1EE35360004C1A47 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				989CF1AC1EE35360004C1A47 /* Base */,
+				983B26231F050DC8000CB60E /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -333,6 +344,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				989CF1B11EE35360004C1A47 /* Base */,
+				983B26241F050DC8000CB60E /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -344,6 +356,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -393,6 +406,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
