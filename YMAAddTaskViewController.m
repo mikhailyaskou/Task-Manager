@@ -11,6 +11,7 @@
 #import "YMADateHelper.h"
 #import "YMALocalizedConstants.h"
 #import "YMAConstants.h"
+#import "YMANotificationHelper.h"
 
 @interface YMAAddTaskViewController () <UIActionSheetDelegate>
 
@@ -82,6 +83,8 @@
     self.task.startDate = self.date;
     self.task.priority = self.priorityLabel.text;
     self.task.note = self.noteField.text;
+    //update or add or delete notification
+    [YMANotificationHelper updateNotificationStateForTask:self.task];
     [self.delegate incomingTask:self task:self.task listIndex:self.listIndex];
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -10,6 +10,7 @@
 #import "YMATask.h"
 #import "YMATaskList.h"
 #import "YMALocalizedConstants.h"
+#import "YMANotificationHelper.h"
 
 @interface YMATaskService () <NSCoding>
 
@@ -110,17 +111,12 @@
     return [self.privateTaskLists valueForKeyPath:@"@unionOfArrays.tasks"];
 }
 
-- (void)removeTaskFromListIndex:(NSUInteger)listIndex taskIndex:(NSUInteger)taskIndex {
-    YMATaskList *taskList = [self taskListAtIndex:listIndex];
-    [taskList removeTask:(NSUInteger *) taskIndex];
-    [self saveTasks];
-}
-
 - (void)removeTaskFromAllList:(YMATask *)task {
     for (NSUInteger i = 0; i < [self.privateTaskLists count]; ++i) {
-        YMATaskList *taskList = self.privateTaskLists[i];
-        [taskList removeTaskFromList:task];
+        [self.privateTaskLists[i] removeTaskFromList:task];
         [self saveTasks];
+        //remove notification
+        [YMANotificationHelper removeNotificationForTask:task];
     }
 }
 
