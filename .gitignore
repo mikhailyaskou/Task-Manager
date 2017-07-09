@@ -39,7 +39,7 @@ build
 !*.xcworkspace/contents.xcworkspacedata
 
 ## Idea
-*.idea
+*.idea/*
 
 # CocoaPods
 #
