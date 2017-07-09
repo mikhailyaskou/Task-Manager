@@ -1,0 +1,99 @@
+
+/* Class = "UITableViewSection"; headerTitle = "Приоритет"; ObjectID = "0h1-jg-rXE"; */
+"0h1-jg-rXE.headerTitle" = "Приоритет";
+
+/* Class = "UITableViewController"; title = "Добавить"; ObjectID = "40I-Jr-Hmk"; */
+"40I-Jr-Hmk.title" = "Добавить";
+
+/* Class = "UITableViewSection"; headerTitle = "Заметки"; ObjectID = "8p9-bN-Yxg"; */
+"8p9-bN-Yxg.headerTitle" = "Заметки";
+
+/* Class = "UINavigationItem"; title = "Входящие"; ObjectID = "F95-nh-ph5"; */
+"F95-nh-ph5.title" = "Входящие";
+
+/* Class = "UITabBarItem"; title = "Поиск"; ObjectID = "GYV-s5-z0h"; */
+"GYV-s5-z0h.title" = "Поиск";
+
+/* Class = "UIBarButtonItem"; title = "Отмена"; ObjectID = "IQo-Q4-ihW"; */
+"IQo-Q4-ihW.title" = "Отмена";
+
+/* Class = "UINavigationItem"; title = "Добавить Проект"; ObjectID = "LfT-00-K7G"; */
+"LfT-00-K7G.title" = "Добавить Проект";
+
+/* Class = "UILabel"; text = "Детали"; ObjectID = "QP3-5c-JX5"; */
+"QP3-5c-JX5.text" = "Детали";
+
+/* Class = "UITableViewSection"; headerTitle = "Задача"; ObjectID = "RML-UW-BN9"; */
+"RML-UW-BN9.headerTitle" = "Задача";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Tb8-z8-Huh"; */
+"Tb8-z8-Huh.text" = "Title";
+
+/* Class = "UINavigationItem"; title = "Выберите дату"; ObjectID = "TsK-RO-ZBf"; */
+"TsK-RO-ZBf.title" = "Выберите дату";
+
+/* Class = "UITableViewSection"; headerTitle = "Проект"; ObjectID = "UPR-3F-Q9c"; */
+"UPR-3F-Q9c.headerTitle" = "Проект";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "WYG-qj-VLr"; */
+"WYG-qj-VLr.text" = "Label";
+
+/* Class = "UILabel"; text = "08.08.2017"; ObjectID = "Wax-Mz-4yG"; */
+"Wax-Mz-4yG.text" = "08.08.2017";
+
+/* Class = "UINavigationItem"; title = "Проекты"; ObjectID = "XEk-Y5-WV3"; */
+"XEk-Y5-WV3.title" = "Проекты";
+
+/* Class = "UIViewController"; title = "Выбирите дату"; ObjectID = "aGu-sx-MsJ"; */
+"aGu-sx-MsJ.title" = "Выбирите дату";
+
+/* Class = "UITabBarItem"; title = "Входящие"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "Входящие";
+
+/* Class = "UITableViewController"; title = "Добавить проект"; ObjectID = "awK-yE-g2l"; */
+"awK-yE-g2l.title" = "Добавить проект";
+
+/* Class = "UITabBarItem"; title = "Сегодня"; ObjectID = "cPa-gy-q4n"; */
+"cPa-gy-q4n.title" = "Сегодня";
+
+/* Class = "UINavigationItem"; title = "Сегодня"; ObjectID = "deq-P6-Jet"; */
+"deq-P6-Jet.title" = "Сегодня";
+
+/* Class = "UINavigationItem"; title = "Имя Проекта"; ObjectID = "dqE-im-VhG"; */
+"dqE-im-VhG.title" = "Имя Проекта";
+
+/* Class = "UILabel"; text = "Приоритет"; ObjectID = "fSp-rQ-gIQ"; */
+"fSp-rQ-gIQ.text" = "Приоритет";
+
+/* Class = "UITabBarItem"; title = "Проекты"; ObjectID = "fgG-Un-Kt9"; */
+"fgG-Un-Kt9.title" = "Проекты";
+
+/* Class = "UITableViewSection"; headerTitle = "REMINDER"; ObjectID = "i95-8o-Agm"; */
+"i95-8o-Agm.headerTitle" = "REMINDER";
+
+/* Class = "UILabel"; text = "Нет"; ObjectID = "kFO-Qu-lRu"; */
+"kFO-Qu-lRu.text" = "Нет";
+
+/* Class = "UILabel"; text = "Добавить проект"; ObjectID = "kRA-Pp-3jf"; */
+"kRA-Pp-3jf.text" = "Добавить проект";
+
+/* Class = "UIBarButtonItem"; title = "Завершить"; ObjectID = "qgB-x7-Pfe"; */
+"qgB-x7-Pfe.title" = "Завершить";
+
+/* Class = "UILabel"; text = "Нет результата"; ObjectID = "sCj-ax-yr8"; */
+"sCj-ax-yr8.text" = "Нет результата";
+
+/* Class = "UILabel"; text = "✪"; ObjectID = "tUh-Qo-4Mr"; */
+"tUh-Qo-4Mr.text" = "✪";
+
+/* Class = "UISegmentedControl"; tjg-eQ-3tK.segmentTitles[0] = "Дата"; ObjectID = "tjg-eQ-3tK"; */
+"tjg-eQ-3tK.segmentTitles[0]" = "Дата";
+
+/* Class = "UISegmentedControl"; tjg-eQ-3tK.segmentTitles[1] = "Группа"; ObjectID = "tjg-eQ-3tK"; */
+"tjg-eQ-3tK.segmentTitles[1]" = "Группа";
+
+/* Class = "UILabel"; text = "Напомнить в день"; ObjectID = "vrQ-CC-yh2"; */
+"vrQ-CC-yh2.text" = "Напомнить в день";
+
+/* Class = "UINavigationItem"; title = "Поиск"; ObjectID = "y1L-90-CfL"; */
+"y1L-90-CfL.title" = "Поиск";

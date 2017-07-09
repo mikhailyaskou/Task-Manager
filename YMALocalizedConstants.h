@@ -6,27 +6,25 @@
 //  Copyright © 2017 Mikhail Yaskou. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface YMALocalizedConstants : NSObject
 
-extern NSString * const YMAPriorityNone;
-extern NSString * const YMAPriorityLow;
-extern NSString * const YMAPriorityMedium;
-extern NSString * const YMAPriorityHigh;
-extern NSString * const YMATitleDelete;
-extern NSString * const YMATitleRemoveItem;
-extern NSString * const YMATitleChancel;
-extern NSString * const YMATitleDone;
-extern NSString * const YMATitleEdit;
-extern NSString * const YMATitleEditProject;
-extern NSString * const YMATitleProjectName;
-extern NSString * const YMATitleCompleted;
-extern NSString * const YMATitleSelectPriority;
-extern NSString * const YMATitleActiveTasks;
-extern NSString * const YMATitleEditItem;
-extern NSString * const YMATitleAddItem;
-extern NSString * const YMATitleOk;
-extern NSString * const YMATitleInbox;
+#define YMAPriorityNone NSLocalizedString(@"None", @"None")
+#define YMAPriorityLow NSLocalizedString(@"Low", @"Low")
+#define YMAPriorityMedium NSLocalizedString(@"Medium", @"Medium")
+#define YMAPriorityHigh NSLocalizedString(@"High", @"High")
+#define YMATitleDelete NSLocalizedString(@"Delete", @"Delete")
+#define YMATitleRemoveItem NSLocalizedString(@"Do you want to remove item?", @"Do you want to remove item?")
+#define YMATitleChancel NSLocalizedString(@"Cancel", @"Cancel")
+#define YMATitleDone NSLocalizedString(@"Done", @"Done")
+#define YMATitleEdit NSLocalizedString(@"Edit", @"Edit")
+#define YMATitleEditProject NSLocalizedString(@"Edit Project?", @"Edit Project?")
+#define YMATitleProjectName NSLocalizedString(@"Project Name", @"Project Name")
+#define YMATitleCompleted NSLocalizedString(@"Completed", @"Completed")
+#define YMATitleSelectPriority NSLocalizedString(@"Select Priority", @"Select Priority")
+#define YMATitleActiveTasks NSLocalizedString(@"Active tasks", @"Active tasks")
+#define YMATitleEditItem NSLocalizedString(@"Edit Item", @"Edit Item")
+#define YMATitleAddItem NSLocalizedString(@"Add Item", @"Add Item")
+#define YMATitleOk NSLocalizedString(@"Ok", @"Ok")
+#define YMATitleInbox NSLocalizedString(@"Inbox", @"Inbox")
 
 @end
