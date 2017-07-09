@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <UserNotifications/UserNotifications.h>
 
 @interface AppDelegate ()
 
@@ -15,6 +16,13 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert)
+                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                              if (!error) {
+                                  NSLog(@"request succeeded!");
+                              }
+                          }];
     // Override point for customization after application launch.
     return YES;
 }
@@ -34,6 +42,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    application.applicationIconBadgeNumber = 0;
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

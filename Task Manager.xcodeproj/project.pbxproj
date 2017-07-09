@@ -15,6 +15,7 @@
 		981086061EFD50EC00628152 /* YMABasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 981086051EFD50EC00628152 /* YMABasicViewController.m */; };
 		983B26251F050DD1000CB60E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 983B26271F050DD1000CB60E /* Localizable.strings */; };
 		984337371EF186D900C900D6 /* YMAAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 984337361EF186D900C900D6 /* YMAAddTaskViewController.m */; };
+		98563F611F1042CC00D38AA5 /* YMANotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 98563F601F1042CC00D38AA5 /* YMANotificationHelper.m */; };
 		989CF1A11EE35360004C1A47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 989CF1A01EE35360004C1A47 /* main.m */; };
 		989CF1A41EE35360004C1A47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 989CF1A31EE35360004C1A47 /* AppDelegate.m */; };
 		989CF1AD1EE35360004C1A47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 989CF1AB1EE35360004C1A47 /* Main.storyboard */; };
@@ -49,6 +50,8 @@
 		983B26261F050DD1000CB60E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		984337351EF186D900C900D6 /* YMAAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAAddTaskViewController.h; path = ../YMAAddTaskViewController.h; sourceTree = "<group>"; };
 		984337361EF186D900C900D6 /* YMAAddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAAddTaskViewController.m; path = ../YMAAddTaskViewController.m; sourceTree = "<group>"; };
+		98563F5F1F1042CC00D38AA5 /* YMANotificationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMANotificationHelper.h; sourceTree = "<group>"; };
+		98563F601F1042CC00D38AA5 /* YMANotificationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMANotificationHelper.m; sourceTree = "<group>"; };
 		989CF19C1EE3535F004C1A47 /* Task Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		989CF1A01EE35360004C1A47 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		989CF1A21EE35360004C1A47 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -104,6 +107,8 @@
 			children = (
 				1D84E4A19EC15F0AD32393BC /* YMADateHelper.h */,
 				1D84EAB0A887BA0BC9429BB9 /* YMADateHelper.m */,
+				98563F5F1F1042CC00D38AA5 /* YMANotificationHelper.h */,
+				98563F601F1042CC00D38AA5 /* YMANotificationHelper.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 				98B655C01EEDB9D300109F7F /* YMAConstants.m in Sources */,
 				989CF1D61EE37112004C1A47 /* YMADateSelectorViewController.m in Sources */,
 				98D5E73E1EE5619100C4E969 /* YMATaskList.m in Sources */,
+				98563F611F1042CC00D38AA5 /* YMANotificationHelper.m in Sources */,
 				1D84E44DFE2F50A3331CEC51 /* YMADateHelper.m in Sources */,
 				1D84E07AD65CF344E22E85DA /* YMAToDoListViewController.m in Sources */,
 				1D84EA81C5C0A227C68F4EEC /* YMAAddTaskListViewController.m in Sources */,
